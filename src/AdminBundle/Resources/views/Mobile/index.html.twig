@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="text-center">
+        <h1>Мобільні новера:</h1>
+        
+        <a href="{{ path('mobile_edit', { 'id': mobiles.id }) }}"><button type="submit" class="ui-button ui-corner-all ui-widget">Редагувати</button></a><br/><br/>        
+    </div>
+    
+    <div class="text-marning">
+        {{ mobiles.mobile | raw}}    
+    </div>        
+    <br/><br/><br/><br/>  
+
+{% endblock %}

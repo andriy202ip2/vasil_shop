@@ -1,0 +1,29 @@
+oderemale_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:Oderemale:index" }
+    methods:  GET
+
+oderemale_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminBundle:Oderemale:show" }
+    methods:  GET
+
+#oderemale_new:
+#    path:     /new
+#    defaults: { _controller: "AdminBundle:Oderemale:new" }
+#    methods:  [GET, POST]
+
+#oderemale_edit:
+#    path:     /{id}/edit
+#    defaults: { _controller: "AdminBundle:Oderemale:edit" }
+#    methods:  [GET, POST]
+
+oderemale_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminBundle:Oderemale:delete" }
+    methods:  [GET, DELETE]
+
+oderemale_delete_all:
+    path:     /delete_all
+    defaults: { _controller: "AdminBundle:Oderemale:delete_all" }
+    methods:  [GET]

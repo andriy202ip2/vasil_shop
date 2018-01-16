@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="text-center">    
+
+        <h1>Модель Меню</h1>
+
+        <a href="{{ path('modelmenu_new') }}">Створити нову модель</a><br/><br/>
+
+        <div class="count">
+            Всього результатів: {{ modelMenus.getTotalItemCount }}
+        </div><br/>
+
+        <div class="navigation">
+            {{ knp_pagination_render(modelMenus) }}
+        </div><br/>
+
+        <table align="center" class="admin-table">
+            <thead>
+                <tr>
+                    <th>{{ knp_pagination_sortable(modelMenus, 'Імя', 'a.name') }}</th>
+                    <th>{{ knp_pagination_sortable(modelMenus, 'Id', 'a.id') }}</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for modelMenu in modelMenus %}
+                    <tr>
+                        <td><a href="{{ path('modelmenu_show', { 'id': modelMenu.id }) }}">{{ modelMenu.name }}</a></td>
+                        <td>{{ modelMenu.id }}</td>
+                        <td>
+                            <br/>
+                            <a href="{{ path('modelmenu_show', { 'id': modelMenu.id }) }}">Показати</a>
+                            <br/>
+                            <a href="{{ path('modelmenu_edit', { 'id': modelMenu.id }) }}">Редагувати</a>
+                            <br/><br/>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br/><div class="navigation">
+            {{ knp_pagination_render(modelMenus) }}
+        </div>
+
+        <br/><a href="{{ path('modelmenu_new') }}">Створити нову модель</a><br/><br/>
+
+    </div>
+
+{% endblock %}

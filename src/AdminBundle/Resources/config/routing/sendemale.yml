@@ -1,0 +1,29 @@
+sendemale_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:Sendemale:index" }
+    methods:  GET
+
+sendemale_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminBundle:Sendemale:show" }
+    methods:  GET
+
+#sendemale_new:
+#    path:     /new
+#    defaults: { _controller: "AdminBundle:Sendemale:new" }
+#    methods:  [GET, POST]
+
+#sendemale_edit:
+#    path:     /{id}/edit
+#    defaults: { _controller: "AdminBundle:Sendemale:edit" }
+#    methods:  [GET, POST]
+
+sendemale_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminBundle:Sendemale:delete" }
+    methods:  [GET, DELETE]
+    
+sendemale_delete_all:
+    path:     /delete_all
+    defaults: { _controller: "AdminBundle:Sendemale:delete_all" }
+    methods:  [GET]

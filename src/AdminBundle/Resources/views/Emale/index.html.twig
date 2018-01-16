@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="text-center">
+        <h1>Задати емейл для прийому пошти:</h1>
+        
+        <a href="{{ path('emale_edit', { 'id': emale.id }) }}"><button type="submit" class="ui-button ui-corner-all ui-widget">Редагувати</button></a><br/><br/>        
+    </div>
+    
+    <div class="text-marning">
+        {{ emale.emale | raw}}    
+    </div>        
+    <br/><br/><br/><br/>  
+
+{% endblock %}

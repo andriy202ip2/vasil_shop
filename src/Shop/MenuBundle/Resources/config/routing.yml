@@ -1,0 +1,36 @@
+
+shop_menu_homepage:
+    path:     /
+    defaults: { _controller: ShopMenuBundle:Default:index }
+
+shop_сontact:
+    path:     /сontact
+    defaults: { _controller: ShopMenuBundle:Default:сontact }
+
+shop_about:
+    path:     /about
+    defaults: { _controller: ShopMenuBundle:Default:about }
+    
+products:
+    resource: "@ShopMenuBundle/Resources/config/routing/products.yml"
+    prefix:   /products
+
+shop_mobil:
+    path:     /mobil
+    defaults: { _controller: ShopMenuBundle:Default:mobile }
+        
+shop_delivery:
+    path:     /delivery
+    defaults: { _controller: ShopMenuBundle:Default:delivery }
+    
+shop_payment:
+    path:     /payment
+    defaults: { _controller: ShopMenuBundle:Default:payment }
+    
+shop_send_emale:
+    path:     /sendemale
+    defaults: { _controller: ShopMenuBundle:Default:sendemale }
+    
+shop_send_oder_emale:
+    path:     /oderemale
+    defaults: { _controller: ShopMenuBundle:Default:oderemale }

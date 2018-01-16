@@ -1,0 +1,25 @@
+modelmenu_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:ModelMenu:index" }
+    methods:  GET
+
+modelmenu_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminBundle:ModelMenu:show" }
+    methods:  GET
+
+modelmenu_new:
+    path:     /new
+    defaults: { _controller: "AdminBundle:ModelMenu:new" }
+    methods:  [GET, POST]
+
+modelmenu_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:ModelMenu:edit" }
+    methods:  [GET, POST]
+
+modelmenu_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminBundle:ModelMenu:delete" }
+    methods:  [GET]
+#DELETE

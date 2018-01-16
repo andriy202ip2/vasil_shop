@@ -1,0 +1,24 @@
+mobile_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:Mobile:index" }
+    methods:  GET
+
+#mobile_show:
+#    path:     /{id}/show
+#    defaults: { _controller: "AdminBundle:Mobile:show" }
+#    methods:  GET
+
+#mobile_new:
+#    path:     /new
+#    defaults: { _controller: "AdminBundle:Mobile:new" }
+#    methods:  [GET, POST]
+
+mobile_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:Mobile:edit" }
+    methods:  [GET, POST]
+
+#mobile_delete:
+#    path:     /{id}/delete
+#    defaults: { _controller: "AdminBundle:Mobile:delete" }
+#    methods:  DELETE

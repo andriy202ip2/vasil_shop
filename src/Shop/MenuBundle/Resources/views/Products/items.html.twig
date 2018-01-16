@@ -1,0 +1,130 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Запчастини{% endblock %}
+
+{% block body %}
+
+    <div class="text-center">
+        <h1>Запчастини</h1>
+    </div>
+    <br/><br/>  
+    <center>
+        <table border="0" class="catalog">
+            <tbody><tr><td><b>Код GH</b></td><td><b>Сторона</b></td><td><b>Застосування</b></td><td><b>Ціна</b></td><td><b>Фото</b></td></tr>
+                <tr><td colspan="5"><hr></td></tr>
+
+                {% for Item in ItemsArray %}
+
+                    <tr>
+                        <td>
+                            {{ Item.name | raw }}
+                            <a href="#" class="item_dialog" val="item{{ Item.id }}">
+                                <img src="/img/info-small.png" style="border:0"></a>
+                        </td>
+                        <td>{{ Item.side | raw}}</td>
+                        <td>{{ Item.fit | raw}}</td>
+                        <td>
+                            {% if Item.price == null %}
+                                Під заказ
+                            {% elseif Item.price | money_as_float == 0 %}    
+                                Під заказ
+                            {% else %}
+                                {{ Item.price | money_convert("UAH") | money_format }}  за шт.                            
+                            {% endif %}
+                        </td>
+                        <td>
+
+                            <a href="#" class="item_dialog" val="item{{ Item.id }}" title="&lt;img src=&#39;/img/upload/{{ Item.img }}&#39; class=&#39;img_big&#39;&gt;{{ Item.imgData }}">
+                                <img src="/img/camera.png"></a>   
+                            <div class="item{{ Item.id }}i" style="display:none;">
+                                <img src="/img/upload/{{ Item.img }}" class="img_big">
+                                {{ Item.imgData | raw}}
+                            </div>
+                            <div class="item{{ Item.id }}t" style="display:none;">                                       
+                                {{ Item.imgData | raw}}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="item_element">
+                            <div class="showApplication item_on">Дисплей додаткових додатків</div>
+                            <div class="showApplication item_off" style="display:none;">Приховати</div>
+                            <div style="display:none;" class="item_info item{{ Item.id }}">
+                                {{ Item.details | raw}} 
+                            </div>
+                            <hr></td>
+                    </tr>
+
+                {% endfor %}                
+
+            </tbody>
+        </table>
+
+
+
+        <!-- ui-dialog -->
+        <div id="dialog" title="Dialog Title">            
+            <table style="width:100%">
+                <tr>
+                    <th><div id="dialog_data" style="width: 650px">dialog data</div></th>
+                    <th><div id="dialog_img" style="width: 500px">dialog img</div></th>
+                </tr>
+            </table> 
+        </div>
+    </center>
+    <br/><br/><br/><br/>  
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+            $("#dialog").dialog({
+                autoOpen: false,
+                width: 1200,
+                buttons: []
+            });
+
+            $(".item_dialog").each(function () {
+                $(this).click(function () {
+                    var id = $(this).attr('val');
+
+                    var html = $("." + id).html();
+                    var html2 = $("." + id + "i").html();
+                    var html3 = $("." + id + "t").html();
+
+                    $("#dialog_data").html(html);
+                    $("#dialog_img").html(html2);
+
+                    $(".ui-dialog-title").html(html3);
+
+                    $("#dialog").dialog("open");
+
+                    return false;
+                });
+            });
+
+            $(".item_element").each(function () {
+
+                var obj = $(this);
+
+                obj.find(".item_on").click(function () {
+                    $(this).css("display", "none");
+                    obj.find(".item_off").css("display", "block");
+                    obj.find(".item_info").css("display", "block");
+
+                });
+
+                obj.find(".item_off").click(function () {
+                    $(this).css("display", "none");
+                    obj.find(".item_on").css("display", "block");
+                    obj.find(".item_info").css("display", "none");
+                });
+
+            });
+
+        });
+    </script>    
+{% endblock %}

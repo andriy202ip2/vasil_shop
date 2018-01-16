@@ -1,0 +1,11 @@
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /admin/
+
+shop_user:
+    resource: "@SecurityUserBundle/Resources/config/routing.yml"
+    prefix:   /user/
+
+shop_menu:
+    resource: "@ShopMenuBundle/Resources/config/routing.yml"
+    prefix:   /

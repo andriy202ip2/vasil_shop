@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="text-center">
+
+        <h1>Список заказів</h1>
+
+        <a href="{{ path('oderemale_delete_all') }}"><button class="ui-button ui-corner-all ui-widget">Видалити Все</button></a><br/><br/>
+        
+        <div class="count">
+            Всього результатів: {{ oderemales.getTotalItemCount }}
+        </div><br/>
+
+        <div class="navigation">
+            {{ knp_pagination_render(oderemales) }}
+        </div><br/>
+        
+        <table align="center" class="admin-table admin-table-width">
+            <thead>
+                <tr>
+                    <th>{{ knp_pagination_sortable(oderemales, 'Id', 'a.id') }}</th>
+                    <th>Заказ</th>
+                    <th>{{ knp_pagination_sortable(oderemales, 'Час', 'a.data') }}</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for oderemale in oderemales %}
+                    <tr>
+                        <td><a href="{{ path('oderemale_show', { 'id': oderemale.id }) }}">{{ oderemale.id }}</a></td>
+                        <td>{{ oderemale.oderemale |striptags |slice(0, 50)}}...</td>
+                        <td style="width: 190px;">{{ oderemale.data |date("Y-m-d H:i:s")}}</td>
+                        <td style="width: 120px;">
+                            
+                            <br/>
+                            <a href="{{ path('oderemale_show', { 'id': oderemale.id }) }}">Показати</a><br/>
+                            <a href="{{ path('oderemale_delete', { 'id': oderemale.id }) }}">Видалити</a>
+                            
+                            <br/><br/>
+                            
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br/><div class="navigation">
+            {{ knp_pagination_render(oderemales) }}
+        </div><br/>
+            
+    </div>        
+{% endblock %}

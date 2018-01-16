@@ -1,0 +1,24 @@
+emale_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:Emale:index" }
+    methods:  GET
+
+#emale_show:
+#    path:     /{id}/show
+#    defaults: { _controller: "AdminBundle:Emale:show" }
+#    methods:  GET
+
+#emale_new:
+#    path:     /new
+#    defaults: { _controller: "AdminBundle:Emale:new" }
+#    methods:  [GET, POST]
+
+emale_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:Emale:edit" }
+    methods:  [GET, POST]
+
+#emale_delete:
+#    path:     /{id}/delete
+#    defaults: { _controller: "AdminBundle:Emale:delete" }
+#    methods:  DELETE

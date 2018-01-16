@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Моделі{% endblock %}
+
+{% block body %}
+
+    <div class="text-center">
+        <h1>Моделі</h1>
+    </div>
+
+    <div class="text-marning">
+
+        {% for model in modelMenus %} 
+            <div class="marning-smoll"><a href="{{ path('products_autos', { 'model_id': model.id }) }}">{{ model.name }}</a></div>
+        {% endfor %}     
+
+    </div>        
+    <br/><br/><br/><br/>  
+
+
+{% endblock %}

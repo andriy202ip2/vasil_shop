@@ -1,0 +1,24 @@
+datamenu_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:DataMenu:index" }
+    methods:  GET
+
+datamenu_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminBundle:DataMenu:show" }
+    methods:  GET
+
+datamenu_new:
+    path:     /new
+    defaults: { _controller: "AdminBundle:DataMenu:new" }
+    methods:  [GET, POST]
+
+datamenu_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:DataMenu:edit" }
+    methods:  [GET, POST]
+
+datamenu_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminBundle:DataMenu:delete" }
+    methods:  DELETE

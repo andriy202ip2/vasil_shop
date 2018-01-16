@@ -1,0 +1,24 @@
+automenu_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:AutoMenu:index" }
+    methods:  GET
+
+automenu_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminBundle:AutoMenu:show" }
+    methods:  GET
+
+automenu_new:
+    path:     /new
+    defaults: { _controller: "AdminBundle:AutoMenu:new" }
+    methods:  [GET, POST]
+
+automenu_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:AutoMenu:edit" }
+    methods:  [GET, POST]
+
+automenu_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminBundle:AutoMenu:delete" }
+    methods:  DELETE

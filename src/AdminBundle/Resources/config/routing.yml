@@ -1,0 +1,59 @@
+admin_homepage:
+    path:     /
+    defaults: { _controller: AdminBundle:Default:index }
+
+admin_user:
+    resource: "@AdminBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+    
+admin_modelmenu:
+     resource: "@AdminBundle/Resources/config/routing/modelmenu.yml"
+     prefix:   /modelmenu
+          
+admin_automenu:
+    resource: "@AdminBundle/Resources/config/routing/automenu.yml"
+    prefix:   /automenu
+
+admin_datamenu:
+    resource: "@AdminBundle/Resources/config/routing/datamenu.yml"
+    prefix:   /datamenu
+
+admin_items:
+    resource: "@AdminBundle/Resources/config/routing/items.yml"
+    prefix:   /items
+    
+admin_about:
+    resource: "@AdminBundle/Resources/config/routing/about.yml"
+    prefix:   /about
+
+admin_contact:
+    resource: "@AdminBundle/Resources/config/routing/contact.yml"
+    prefix:   /contact
+
+admin_mobile:
+    resource: "@AdminBundle/Resources/config/routing/mobile.yml"
+    prefix:   /mobile
+    
+admin_delivery:
+    resource: "@AdminBundle/Resources/config/routing/delivery.yml"
+    prefix:   /delivery
+
+admin_payment:
+    resource: "@AdminBundle/Resources/config/routing/payment.yml"
+    prefix:   /payment
+
+admin_emale:
+    resource: "@AdminBundle/Resources/config/routing/emale.yml"
+    prefix:   /emale
+
+admin_oderemale:
+    resource: "@AdminBundle/Resources/config/routing/oderemale.yml"
+    prefix:   /oderemale
+
+admin_sendemale:
+    resource: "@AdminBundle/Resources/config/routing/sendemale.yml"
+    prefix:   /sendemale
+
+admin_add_prices:
+    path:     /add_prices
+    defaults: { _controller: AdminBundle:Default:add_prices }

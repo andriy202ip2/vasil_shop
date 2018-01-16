@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Рока{% endblock %}
+
+{% block body %}
+
+    <div class="text-center">
+        <h1>Рока</h1>
+    </div>
+
+    <div class="text-marning">
+
+        {% for data in dataMenu %} 
+            <div class="marning-smoll"><a href="{{ path('products_items', { 'model_id': data.modelMenuId, 'auto_id': data.autoMenuId, 'data_id': data.id }) }}">Рока: {{ data.name }}</a></div>
+        {% endfor %}     
+
+    </div>        
+    <br/><br/><br/><br/>  
+
+
+{% endblock %}

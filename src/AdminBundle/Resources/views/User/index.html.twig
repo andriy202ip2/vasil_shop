@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="text-center">
+
+        <h1>Користувачі</h1>
+
+        <a href="{{ path('user_new') }}">Створити новаго користувача</a><br/><br/>
+        
+        <table align="center" class="admin-table admin-table-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Імя</th>
+                    <th>Прізвище</th>
+                    <th>Роль</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                        <td>{{ user.username }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.surname }}</td>
+                        <td>{{ user.roles|join(',') }}</td>
+                        <td>
+                            <br/>
+                            <a href="{{ path('user_show', { 'id': user.id }) }}">Показати</a>
+                            <br/>
+                            <a href="{{ path('user_edit', { 'id': user.id }) }}">Редагувати</a>
+                            <br/><br/>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+         <br/><a href="{{ path('user_new') }}">Створити новаго користувача</a><br/><br/>
+    </div>
+{% endblock %}

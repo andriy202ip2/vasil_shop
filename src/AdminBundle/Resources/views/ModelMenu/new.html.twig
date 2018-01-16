@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    
+    <div class="text-center">
+        
+    <h1>Модель Меню створення</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <br/><button class="ui-button ui-corner-all ui-widget">Створити</button>
+    {{ form_end(form) }}
+    
+    <br/> <a href="{{ path('modelmenu_index') }}"><button class="ui-button ui-corner-all ui-widget">Вернутись назад</button></a><br/><br/>
+        
+    </div>
+{% endblock %}

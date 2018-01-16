@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="text-center">
+
+        <h1>Рока Меню створення</h1>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="text" name="no_submit" id="no_submit" value="2" style="display: none;">
+        
+        <br/><button class="ui-button ui-corner-all ui-widget">Створити</button>
+        
+        {{ form_end(form) }}
+         
+        <br/> <a href="{{ path('datamenu_index') }}"><button class="ui-button ui-corner-all ui-widget">Вернутись назад</button></a><br/><br/>
+
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+            $(".mid").change(function () {
+                $("#no_submit").val(1);
+                $('form[name="shop_menubundle_datamenu"]').submit();
+            });
+        });
+    </script>   
+{% endblock %}

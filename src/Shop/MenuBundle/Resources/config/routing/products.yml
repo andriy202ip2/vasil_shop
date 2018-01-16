@@ -1,0 +1,28 @@
+products_index:
+    path:     /
+    defaults: { _controller: ShopMenuBundle:Products:index }
+    methods:  GET
+    
+products_autos:
+    path:     /autos/{model_id}/
+    defaults: { _controller: ShopMenuBundle:Products:autos }
+    methods:  GET
+    requirements:
+        model_id: '\d+'
+        
+products_data:
+    path:     /data/{model_id}/{auto_id}/
+    defaults: { _controller: ShopMenuBundle:Products:data }
+    methods:  GET
+    requirements:
+        model_id: '\d+'
+        auto_id: '\d+'      
+        
+products_items:
+    path:     /items/{model_id}/{auto_id}/{data_id}/
+    defaults: { _controller: ShopMenuBundle:Products:items }
+    methods:  GET
+    requirements:
+        model_id: '\d+'
+        auto_id: '\d+'         
+        data_id: '\d+'

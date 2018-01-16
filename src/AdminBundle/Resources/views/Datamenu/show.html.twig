@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="text-center"> 
+
+        <h1>Рока Меню</h1>
+
+        <table align="center" class="admin-table">
+            <tbody>
+                <tr>
+                    <th>Модель</th>
+                    <td>{{ dataMenu.model.name }}</td>
+                </tr>
+                <tr>
+                    <th>Авто</th>
+                    <td>{{ dataMenu.auto.name }}</td>
+                </tr>
+                <tr>
+                    <th>Рока</th>
+                    <td>{{ dataMenu.name }}</td>
+                </tr>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ dataMenu.id }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br/><a href="{{ path('datamenu_index') }}"><button class="ui-button ui-corner-all ui-widget">Вернутись назад</button></a><br/><br/>
+        <a href="{{ path('datamenu_edit', { 'id': dataMenu.id }) }}"><button class="ui-button ui-corner-all ui-widget">Редагувати</button></a><br/><br/>
+
+        {{ form_start(delete_form) }}
+        <button class="ui-button ui-corner-all ui-widget">Видалити</button>
+        {{ form_end(delete_form) }}
+
+
+    </div>
+
+{% endblock %}

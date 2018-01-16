@@ -1,0 +1,24 @@
+contact_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:Contact:index" }
+    methods:  GET
+
+contact_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:Contact:edit" }
+    methods:  [GET, POST]
+
+#contact_show:
+#    path:     /{id}/show
+#    defaults: { _controller: "AdminBundle:Contact:show" }
+#    methods:  GET
+
+#contact_new:
+#    path:     /new
+#    defaults: { _controller: "AdminBundle:Contact:new" }
+#    methods:  [GET, POST]
+
+#contact_delete:
+#    path:     /{id}/delete
+#    defaults: { _controller: "AdminBundle:Contact:delete" }
+#    methods:  DELETE

@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="text-center">
+        
+        <h1>Авто Меню</h1>
+        
+        <form id="form_item" method="GET">
+        Пшук по моделям: 
+        <select name="mid" id="mid" class="cat">
+            <option value="0" {{ model_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
+            {% for modelMenu in modelMenus %}
+                <option value="{{ modelMenu.id }}" {{ model_id == modelMenu.id  ? 'selected=""' : '' }}>
+                    {{ modelMenu.name }}
+                </option>                                          
+            {% endfor %}
+        </select>
+        </form>
+        
+        <br/><a href="{{ path('automenu_new') }}">Створити нове авто</a><br/><br/>
+
+        <div class="count">
+            Всього результатів: {{ autoMenus.getTotalItemCount }}
+        </div><br/>
+
+        <div class="navigation">
+            {{ knp_pagination_render(autoMenus) }}
+        </div><br/>
+
+
+        <table align="center" class="admin-table admin-table-width">
+            <thead>
+                <tr>
+                    <th>{{ knp_pagination_sortable(autoMenus, 'Модель', 'a.modelMenuId') }}</th>
+                    <th>{{ knp_pagination_sortable(autoMenus, 'Імя', 'a.name') }}</th>
+                    <th>{{ knp_pagination_sortable(autoMenus, 'Id', 'a.id') }}</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for autoMenu in autoMenus %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}">{{ autoMenu.model.name }}</a>                                                        
+                        </td>
+                        <td>{{ autoMenu.name }}</td>
+                        <td>{{ autoMenu.id }}</td>
+                        <td>
+                            <br/>
+                            <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}">Показати</a>
+                            <br/>
+                            <a href="{{ path('automenu_edit', { 'id': autoMenu.id }) }}">Редагувати</a>
+                            <br/><br/>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br/><div class="navigation">
+            {{ knp_pagination_render(autoMenus) }}
+        </div>
+
+        <br/><a href="{{ path('automenu_new') }}">Створити нове авто</a><br/><br/>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+             $("#mid").change(function () {
+                $("#form_item").submit();
+            });
+
+
+        });
+    </script>    
+{% endblock %}

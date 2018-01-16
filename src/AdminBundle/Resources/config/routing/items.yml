@@ -1,0 +1,24 @@
+items_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:Items:index" }
+    methods:  GET
+
+items_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminBundle:Items:show" }
+    methods:  GET
+
+items_new:
+    path:     /new
+    defaults: { _controller: "AdminBundle:Items:new" }
+    methods:  [GET, POST]
+
+items_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:Items:edit" }
+    methods:  [GET, POST]
+
+items_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminBundle:Items:delete" }
+    methods:  DELETE
