@@ -6,28 +6,22 @@
         <meta name="keywords" content="Амортизатор, Стоссдамппер, Амортизатори, Амортиссір, Амортигудор, Амортидзор, Аммортизатор" />
 
         <!--<link type="text/css" rel="stylesheet" href="/css/ben.css" />-->
-        <link href="/css/jquery-ui.css" rel="stylesheet" />
 
         <title>{% block title %}Найкраща якість автозапчастин!{% endblock %}</title>
 
+        <link href="/css/bootstrap.min.css" rel="stylesheet" />
         
-    {% stylesheets 
-        '@bootstrap_css' 
-        '@site_web'
-    %}
-        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
-    {% endstylesheets %}
-    {% javascripts '@jquery' '@bootstrap_js' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-        
+        <script src="/js/jquery-slim.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>   
+                
         <script language="JavaScript" src="/js/qTip.js" type="text/JavaScript"></script>
+        
+        <link href="/css/jquery-ui.css" rel="stylesheet" />
         <!--<script language="JavaScript" src="/js/jquery.min.js" type="text/JavaScript"></script>-->
         <script language="JavaScript" src="/js/jquery-ui.js" type="text/JavaScript"></script>
-
-        <!--<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />-->
-        <!--<script language="JavaScript" src="/js/bootstrap.min.js" type="text/JavaScript"></script>-->
-
+        
+              
         <script language="JavaScript" src="/js/jquery.mockjax.js" type="text/JavaScript"></script>
         <script language="JavaScript" src="/js/jquery.validate.js" type="text/JavaScript"></script>
         <script language="JavaScript" src="/js/jquery.maskedinput.js" type="text/JavaScript"></script>
@@ -89,6 +83,38 @@
 </head>
 <body>
 
+<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group mr-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-secondary">1</button>
+    <button type="button" class="btn btn-secondary">2</button>
+    <button type="button" class="btn btn-secondary">3</button>
+    <button type="button" class="btn btn-secondary">4</button>
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text" id="btnGroupAddon">@</div>
+    </div>
+    <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
+  </div>
+</div>
+
+<div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+  <div class="btn-group" role="group" aria-label="First group">
+    <button type="button" class="btn btn-secondary">1</button>
+    <button type="button" class="btn btn-secondary">2</button>
+    <button type="button" class="btn btn-secondary">3</button>
+    <button type="button" class="btn btn-secondary">4</button>
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text" id="btnGroupAddon2">@</div>
+    </div>
+    <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon2">
+  </div>
+</div>
+    
+    <br/><br/><br/><br/><br/><br/>
+    
     <!-- ui-dialog contakt -->
     <div id="dialog_contakt" title="ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК" style="display: none">  
 

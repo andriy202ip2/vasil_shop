@@ -111,11 +111,18 @@ assetic:
     debug:          '%kernel.debug%'
     use_controller: '%kernel.debug%'
     filters:
+        scssphp:
+            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+        jsqueeze: ~
         cssrewrite: ~
     assets:
         site_web:
             inputs:
-                - %kernel.root_dir%/../web/css/ben.css
+                #- %kernel.root_dir%/../web/css/ben.css
+                - %kernel.root_dir%/../web/css/jquery-ui.css
+        site_web_js:
+            inputs:
+                - %kernel.root_dir%/../web/js/jquery-ui.js
         jquery:
             inputs:
                 - %kernel.root_dir%/../vendor/components/jquery/jquery.js
