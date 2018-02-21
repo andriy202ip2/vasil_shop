@@ -5,13 +5,24 @@
         <meta name="description" content="Найкращі якісні амортизатори, спіральні пружини, керуючі озброєння та гальма" />
         <meta name="keywords" content="Амортизатор, Стоссдамппер, Амортизатори, Амортиссір, Амортигудор, Амортидзор, Аммортизатор" />
 
-        <link type="text/css" rel="stylesheet" href="/css/ben.css" />
+        <!--<link type="text/css" rel="stylesheet" href="/css/ben.css" />-->
         <link href="/css/jquery-ui.css" rel="stylesheet" />
 
         <title>{% block title %}Найкраща якість автозапчастин!{% endblock %}</title>
 
+        
+    {% stylesheets 
+        '@bootstrap_css' 
+        '@site_web'
+    %}
+        <link rel="stylesheet" type="text/css" media="screen" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+    {% javascripts '@jquery' '@bootstrap_js' %}
+        <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+        
         <script language="JavaScript" src="/js/qTip.js" type="text/JavaScript"></script>
-        <script language="JavaScript" src="/js/jquery.min.js" type="text/JavaScript"></script>
+        <!--<script language="JavaScript" src="/js/jquery.min.js" type="text/JavaScript"></script>-->
         <script language="JavaScript" src="/js/jquery-ui.js" type="text/JavaScript"></script>
 
         <!--<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" />-->
@@ -21,6 +32,7 @@
         <script language="JavaScript" src="/js/jquery.validate.js" type="text/JavaScript"></script>
         <script language="JavaScript" src="/js/jquery.maskedinput.js" type="text/JavaScript"></script>
 
+        
     {% block stylesheets %}{% endblock %}
 {% block javascripts %}{% endblock %}
 
