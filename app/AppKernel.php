@@ -26,6 +26,7 @@ class AppKernel extends Kernel {
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Tbbc\MoneyBundle\TbbcMoneyBundle(),
+            
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
         ];
 
