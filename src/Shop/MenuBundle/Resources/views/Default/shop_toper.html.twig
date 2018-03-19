@@ -1,0 +1,300 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div id="desc_in_left">    
+        <img src="./img/str_fr.png" id="str_fr"><img src="./img/str_long.png" id="str_long"><div class="str_slog">Забезпечуючи ваших рішень підвіски</div>
+
+        <center>
+
+            <h1>Каталог продукції</h1>
+
+            <form id="form_serch" method="GET">
+                <h3>Код GH пошук: <input type="text" name="serch" id="datepicker" class="cat" /> <samp class="ui-icon ui-icon-search" style="cursor:pointer;" id="serch_btn"></samp></h3>
+            </form>
+
+            <form id="form_item" method="GET">
+                <select name="mid" id="mid" class="cat">
+                    <option value="0" {{ model_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
+                    {% for modelMenu in modelMenus %}
+                        <option value="{{ modelMenu.id }}" {{ model_id == modelMenu.id  ? 'selected=""' : '' }}>
+                            {{ modelMenu.name }}
+                        </option>                                          
+                    {% endfor %}
+                </select>
+
+                <select name="aid" id="aid" class="cat" {{ model_id == 0  ? 'disabled="" style="background: transparent;"' : '' }}>
+                    <option value="0" {{ auto_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
+                    {% for auto in autoMenu %}
+                        <option value="{{ auto.id }}" {{ auto_id == auto.id  ? 'selected=""' : '' }}>
+                            {{ auto.name }}
+                        </option>                                          
+                    {% endfor %}
+                </select>
+
+                <select name="did" id="did" class="cat" {{ auto_id == 0  ? 'disabled="" style="background: transparent;"' : '' }}>
+                    <option value="0" {{ data_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
+                    {% for data in dataMenu %}
+                        <option value="{{ data.id }}" {{ data_id == data.id  ? 'selected=""' : '' }}>
+                            {{ data.name }}
+                        </option>                                          
+                    {% endfor %}
+                </select>
+                <br>
+
+                <br>
+                <table border="0" style="text-align:center">
+                    <tbody>
+                        <tr><td><img style="cursor:pointer;" src="/img/front_on.png" id="si1"></td>
+                            <td><img style="cursor:pointer; border-left: solid" src="/img/back_on.png" id="si2"></td>
+                            <td width="30"></td>
+                            <td><img align="left" src="/img/shock_on.png"></td>
+                        </tr>
+
+                        <tr><td style="font-size:11px">
+                                передня  <input type="checkbox" name="s1" id="s1" value="1" {{ s1  ? 'checked=""' : '' }}> 
+                            </td><td style="font-size:11px">
+                                задня  <input type="checkbox" name="s2" id="s2" value="2" {{ s2  ? 'checked=""' : '' }}>
+                            </td><td></td>
+                            <td>Амортизатор </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </form>
+
+            <br><br>
+            <!-- WYNIKI -->
+
+            {% if IsSerch or model_id and auto_id and data_id %}
+
+                <table border="0" class="catalog">
+                    <tbody><tr><td><b>Код GH</b></td><td><b>Сторона</b></td><td><b>Застосування</b></td><td><b>Ціна</b></td><td><b>Фото</b></td></tr>
+                        <tr><td colspan="5"><hr></td></tr>
+
+                        {% for Item in ItemsArray %}
+
+                            <tr>
+                                <td>
+                                    <span class="item{{ Item.id }}code">{{ Item.name | raw }}</span>
+                                    <a href="#" class="item_dialog" val="item{{ Item.id }}">
+                                        <img src="/img/info-small.png" style="border:0"></a>
+                                </td>
+                                <td>{{ Item.side | raw}}</td>
+                                <td>{{ Item.fit | raw}}</td>
+                                <td>
+                                    
+                                    {% if Item.price == null %}
+                                        <span class="item{{ Item.id }}price">Під заказ</span>
+                                    {% elseif Item.price | money_as_float == 0 %}    
+                                        <span class="item{{ Item.id }}price">Під заказ</span>
+                                    {% else %}
+                                        <span class="item{{ Item.id }}price">{{ Item.price | money_convert("UAH") | money_format }} за шт.</span>                          
+                                    {% endif %}
+                                                                        
+                                    <br/><br/><span style="font-size: 8pt;cursor:pointer;" class="to_order_a gold" val="item{{ Item.id }}">ЗАКАЗАТИ</span>
+                                </td>
+                                <td>
+
+                                    <a href="#" class="item_dialog" val="item{{ Item.id }}" title="&lt;img src=&#39;/img/upload/{{ Item.img }}&#39; class=&#39;img_big&#39;&gt;{{ Item.imgData }}">
+                                        <img src="/img/camera.png"></a>   
+                                    <div class="item{{ Item.id }}i" style="display:none;">
+                                        <img src="/img/upload/{{ Item.img }}" class="img_big">
+                                        {{ Item.imgData | raw}}
+                                    </div>
+                                    <div class="item{{ Item.id }}t" style="display:none;">                                       
+                                        {{ Item.imgData | raw}}
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="5" class="item_element">
+                                    <div class="showApplication item_on">Дисплей додаткових додатків</div>
+                                    <div class="showApplication item_off" style="display:none;">Приховати</div>
+                                    <div style="display:none;" class="item_info item{{ Item.id }}">
+                                        {{ Item.details | raw}} 
+                                    </div>
+                                    <hr></td>
+                            </tr>
+
+                        {% endfor %}                
+
+                    </tbody>
+                </table>
+
+            {% endif %}
+
+            <!-- ui-dialog -->
+            <div id="dialog" title="Dialog Title">            
+                <table style="width:100%">
+                    <tr>
+                        <th><div id="dialog_data" style="width: 650px">dialog data</div></th>
+                        <th><div id="dialog_img" style="width: 500px">dialog img</div></th>
+                    </tr>
+                </table> 
+            </div>
+
+        </center>
+        <br><br>
+
+        <!-- ui-dialog to_order -->
+        <div id="dialog_to_order" title="ЗАКАЗАТИ ТОВАР" style="display: none">  
+
+            <form onsubmit="return false" id="registerOrderForm">
+                Ваше ім'я:<br/>
+                <input id="call_name_oder" maxlength="30" name="call_name_oder" class="call-input" value="" type="text" /><br/>
+
+                Телефон:<br/>
+                <input id="call_mob_oder" maxlength="14" name="call_mob_oder" class="call-input required" value="" type="text" data-msg="Поле Телефон обов'язкове." /><br/>
+
+                <br/>Товар: <span id="diloge_oder_code"></span>
+                
+                <br/>Ціна: <span id="diloge_oder_price"></span><br/>
+                
+            </form>
+        </div>
+        <div id="dialog_to_order_ok" title="Повідомлення відправлено" style="display: none">
+            <p>Повідомлення відправлено !<br/>
+                Cкоро ми вам зателефонуємо !
+            </p>
+        </div>        
+
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+        $("#registerOrderForm").validate();
+
+        $("#dialog_to_order").dialog({
+            autoOpen: false,
+            width: 400,
+            buttons: {
+                "Відправити": function () {
+                    if ($("#registerOrderForm").valid()) {
+
+                        $("#dialog_to_order").dialog("close");
+                        
+                        $.ajax({
+                            method: "GET",
+                            url: "/oderemale",
+                            data: {call_name: $("#call_name_oder").val(),
+                                call_mob: $("#call_mob_oder").val(),
+                                oder_code: $("#diloge_oder_code").html(),
+                                oder_price: $("#diloge_oder_price").html()
+                            }
+                        })
+                                .done(function (msg) {
+                                    var data = eval('(' + msg + ')');
+                                    if (data.Result) {
+                                        $("#dialog_to_order_ok").dialog();
+
+                                        //alert(data.Result);     
+                                    }
+                                });
+                    }
+                }
+            }
+        });
+
+        $(".to_order_a").click(function () {
+            var id = $(this).attr('val');
+            //alert(id);
+            
+            var html2 = $("." + id + "code").html();
+            var html3 = $("." + id + "price").html();
+            
+             $("#diloge_oder_code").html(html2);
+             $("#diloge_oder_price").html(html3);
+            
+            $("#dialog_to_order").dialog("open");
+            return false;
+        });
+
+        $("#call_mob_oder").mask("(999) 999-9999");
+ 
+        //=====================================================  
+
+            $("#serch_btn").click(function () {
+                $("#form_serch").submit();
+            });
+
+            $("#dialog").dialog({
+                autoOpen: false,
+                width: 1200,
+                buttons: []
+            });
+
+            $(".item_dialog").each(function () {
+                $(this).click(function () {
+                    var id = $(this).attr('val');
+
+                    var html = $("." + id).html();
+                    var html2 = $("." + id + "i").html();
+                    var html3 = $("." + id + "t").html();
+
+                    $("#dialog_data").html(html);
+                    $("#dialog_img").html(html2);
+
+                    $(".ui-dialog-title").html(html3);
+
+                    $("#dialog").dialog("open");
+
+                    return false;
+                });
+            });
+
+            $("#mid").change(function () {
+                $("#aid").val(0);
+                $("#did").val(0);
+                $("#form_item").submit();
+            });
+
+            $("#aid").change(function () {
+                $("#did").val(0);
+                $("#form_item").submit();
+            });
+
+            $("#did, #s1, #s2").change(function () {
+                $("#form_item").submit();
+            });
+
+            $("#si1").click(function () {
+                $('#s1').prop('checked', !$('#s1').prop('checked'));
+                $("#form_item").submit();
+            });
+
+            $("#si2").click(function () {
+                $('#s2').prop('checked', !$('#s2').prop('checked'));
+                $("#form_item").submit();
+            });
+
+
+            $(".item_element").each(function () {
+
+                var obj = $(this);
+
+                obj.find(".item_on").click(function () {
+                    $(this).css("display", "none");
+                    obj.find(".item_off").css("display", "block");
+                    obj.find(".item_info").css("display", "block");
+
+                });
+
+                obj.find(".item_off").click(function () {
+                    $(this).css("display", "none");
+                    obj.find(".item_on").css("display", "block");
+                    obj.find(".item_info").css("display", "none");
+                });
+
+            });
+
+        });
+    </script>    
+{% endblock %}
