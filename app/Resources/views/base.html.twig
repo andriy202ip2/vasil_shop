@@ -1,36 +1,42 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://ogp.me/ns/fb#" xml:lang="pl" lang="pl" dir="ltr" prefix="og: http://ogp.me/ns#">
+<!DOCTYPE html>
+<html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="description" content="Найкращі якісні амортизатори, спіральні пружини, керуючі озброєння та гальма" />
-        <meta name="keywords" content="Амортизатор, Стоссдамппер, Амортизатори, Амортиссір, Амортигудор, Амортидзор, Аммортизатор" />
+        <title>{% block title %}автозапчастин!{% endblock %}</title>
 
-        <!--<link type="text/css" rel="stylesheet" href="/css/ben.css" />-->
+        <meta name="description" content="{% block description %}description!{% endblock %}" />
+        <meta name="keywords" content="{% block keywords %}keywords!{% endblock %}" />
 
-        <title>{% block title %}Найкраща якість автозапчастин!{% endblock %}</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <link rel="icon" type="image/x-icon" href="/img/opel73.ico">
 
         <link href="/css/bootstrap.min.css" rel="stylesheet" />
-        
-        <script src="/js/jquery-slim.min.js"></script>
+        <link href="/css/glyphicons.css" rel="stylesheet" />
+        <!--<link href="/css/bootstrap-theme.min.css" rel="stylesheet" />-->
+
+
+        <!--<script src="/js/jquery-slim.min.js"></script>-->
+        <script language="JavaScript" src="/js/jquery.min.js" type="text/JavaScript"></script>
         <script src="/js/popper.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>   
-                
-        <script language="JavaScript" src="/js/qTip.js" type="text/JavaScript"></script>
-        
+        <script src="/js/bootstrap.min.js"></script>
+
         <link href="/css/jquery-ui.css" rel="stylesheet" />
-        <!--<script language="JavaScript" src="/js/jquery.min.js" type="text/JavaScript"></script>-->
         <script language="JavaScript" src="/js/jquery-ui.js" type="text/JavaScript"></script>
-        
-              
+
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+
+        <link rel="stylesheet" type="text/css" href="/css/site3.css">
+        <link rel="stylesheet" type="text/css" href="/css/them.css">
+
+        <!--<script language="JavaScript" src="/js/qTip.js" type="text/JavaScript"></script>-->
+
         <script language="JavaScript" src="/js/jquery.mockjax.js" type="text/JavaScript"></script>
         <script language="JavaScript" src="/js/jquery.validate.js" type="text/JavaScript"></script>
-        <script language="JavaScript" src="/js/jquery.maskedinput.js" type="text/JavaScript"></script>
+        <script language="JavaScript" src="/js/jquery.maskedinput.js" type="text/JavaScript"></script>        
 
-        
+
     {% block stylesheets %}{% endblock %}
 {% block javascripts %}{% endblock %}
-
-<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
 
 <script>
     $(document).ready(function () {
@@ -74,47 +80,15 @@
         $("#call_mob").mask("(999) 999-9999");
         $("#call_time_b").mask("99:99");
         $("#call_time_e").mask("99:99");
-                
-        $("#container").height($(document).height());        
-              
+
+        $("#container").height($(document).height());
+
     });
 </script>   
 
 </head>
-<body>
+<body class="homepage">
 
-<div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-  <div class="btn-group mr-2" role="group" aria-label="First group">
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-  </div>
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <div class="input-group-text" id="btnGroupAddon">@</div>
-    </div>
-    <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon">
-  </div>
-</div>
-
-<div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
-  <div class="btn-group" role="group" aria-label="First group">
-    <button type="button" class="btn btn-secondary">1</button>
-    <button type="button" class="btn btn-secondary">2</button>
-    <button type="button" class="btn btn-secondary">3</button>
-    <button type="button" class="btn btn-secondary">4</button>
-  </div>
-  <div class="input-group">
-    <div class="input-group-prepend">
-      <div class="input-group-text" id="btnGroupAddon2">@</div>
-    </div>
-    <input type="text" class="form-control" placeholder="Input group example" aria-label="Input group example" aria-describedby="btnGroupAddon2">
-  </div>
-</div>
-    
-    <br/><br/><br/><br/><br/><br/>
-    
     <!-- ui-dialog contakt -->
     <div id="dialog_contakt" title="ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК" style="display: none">  
 
@@ -136,80 +110,253 @@
         <p>Повідомлення відправлено !<br/>
             Cкоро ми вам зателефонуємо !
         </p>
-    </div>
+    </div>    
 
+    <div>
+        <div></div>
+        <div></div>
 
-    <div id="container">
-        <img src="/img/background.png" class="background">
+        <div></div>
+        <div></div>
 
-            <!--languages-->
+        <!--heder logo-->
+        <div class="logo_line"> </div>
+        <div class="wrapper clr rel logo_txt">
 
-            <div style="height: 40px;"></div>
-
-            <!--logo-->
-
-            <a href=""><img src="/img/gh_logo.png" class="logo"></a>
-            <div class="slog">ваш постачальник рішень підвіски</div>
-
-            <div class="telefone">
-                <center>
-                    {{ render(url('shop_mobil')) }}
-                    <br/><span style="cursor:pointer;" class="contact_as">ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК</span>
-                </center>
-            </div>
-
-            <!--menu-->
-
-            <ul id="nav">
-                <li><a href="{{ path('shop_about') }}"><div class="menu"><div class="menu-text">Про нас</div></div></a></li>
-                <li><a href="{{ path('products_index') }}"><div class="menu"><div class="menu-text">Продукція</div></div></a></li>
-                <li><a href="{{ path('shop_menu_homepage') }}"><div class="menu"><div class="menu-text">Каталоги</div></div></a></li>
-
-                <li><a href="{{ path('shop_сontact') }}"><div class="menu"><div class="menu-text">Контакти</div></div></a></li>
-
-                <li><a href="{{ path('shop_delivery') }}"><div class="menu"><div class="menu-text">Доставка</div></div></a></li>
-
-                <li><a href="{{ path('shop_payment') }}"><div class="menu"><div class="menu-text">Оплата</div></div></a></li>
-
-                {% if app.user and (app.user.role == 'ROLE_ADMIN' or app.user.role == 'ROLE_ROOT') %}
-                    <li><a href="{{ path('admin_homepage') }}"><div class="menu"><div class="menu-text">Адмінка</div></div></a></li>
-                    {% endif %}
-
-                <!--{% if app.user %}
-                <li><a href="{{ path('security_user_logout') }}"><div class="menu"><div class="menu-text">Вихід</div></div></a></li>
-                {% else %}
-                <li><a href="{{ path('security_user_login') }}"><div class="menu"><div class="menu-text">Вхід</div></div></a></li>
-                    {% endif %}-->
-
-                    </ul>
-
-                    <div id="desc_out">
-                        <!--description-->
-
-                        <div id="desc_in">
-
-                            <!-- left - main text-->
-
-                        {% block body %}{% endblock %}
-                        <!--INSERT MAIN TEXT-->
-
-                        <!--end left-->
-
-                    </div>
+            <div class="float-right">
+                <div class="telefone">
+                    <center>
+                        <div class="font-x2">
+                            {{ render(url('shop_mobil')) }}
+                        </div>
+                        <span class="badge badge-pill badge-primary contact_as font-x" style="cursor:pointer;">ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК</span>
+                    </center>                    
                 </div>
+            </div>
+            <h1>
+                <a href="/" class="icon icon_logo">На главную {{ app.request.getSchemeAndHttpHost() }} объявления</a>
+            </h1>
         </div>
+        <!--heder logo end-->
 
 
-        <div align="center" class="copyright">
-            <hr width="225px" />
+
+
+
+<div class="container meny_position">
+  <div class="row justify-content-md-center pading_div">
+    
+      <div>
+            <a href="{{ path('shop_about') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Про нас</a>    
+            <a href="{{ path('products_index') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Продукція</a>
+            <a href="{{ path('shop_menu_homepage') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Каталоги</a>
+            <a href="{{ path('shop_сontact') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Контакти</a>
+
+      </div>
+
+      
+  </div>
+  <div class="row justify-content-md-center">
+    
+      <div>
+            <a href="{{ path('shop_delivery') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Доставка</a>
+            <a href="{{ path('shop_payment') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Оплата</a>
+          
+            {% if app.user and (app.user.role == 'ROLE_ADMIN' or app.user.role == 'ROLE_ROOT') %}
+                <a href="{{ path('admin_homepage') }}" class="btn btn-outline-primary">Адмінка</a>
+            {% endif %}
 
             {% if app.user %}
-                <a href="{{ path('security_user_logout') }}">Copyright © 2017. Вихід</a>
+                <a href="{{ path('security_user_logout') }}" class="btn btn-outline-primary">Вихід</a>
             {% else %}
-                <a href="{{ path('security_user_login') }}">Copyright © 2017.</a>
-            {% endif %}    
+                <a href="{{ path('security_user_login') }}" class="btn btn-outline-primary">Вхід</a>
+            {% endif %}
+            </div>
+  </div>
+</div>
+                
+
+
+    <!--serch and kategori-->
+    <section id="searchmain-container">
+        <div class="wrapper">
+
+            <div class="form-row align-items-center search_div searchmain">     
+                <form class="form-inline">
+                    <div class="input-group col-10">
+                        <span class="input-group-addon wight_background height37"><span class="glyphicon glyphicon-search"></span></span>
+                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                    </div>
+
+                    <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp; <b>ПОШУК</b></button>                                
+                </form>   
+            </div>            
+
+            <div class="maincategories">
+
+                <div class="maincategories-list clr">
+
+                    <div class="li fleft">
+                        <div class="item">
+                            <a href="https://www.site.ua/detskiy-mir/" data-id="36" class="link parent   ">
+                                <span><b>Детский мир</b></span>
+                                <span class="cat-icon cat-icon-circle cat-icon-i">Д</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="li fleft">
+                        <div class="item">
+                            <a href="https://www.site.ua/nedvizhimost/" data-id="1" class="link parent   ">
+                                <span><b>Недвижимость</b></span>
+                                <span class="cat-icon cat-icon-circle cat-icon-i">Н</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--meny hide style="display:none"-->
+                <div class="subcategories-list clr" style="" data-subcategory="36" id="bottom36">
+
+                    <div class="subcategories-title">
+                        <a href="https://www.site.ua/detskiy-mir/" data-id="36" class="link inlblk"><strong> Смотреть все объявления</strong></a> в Детский мир				</div>
+                    <ul>
+                        <li class="fleft">
+                            <a data-id="539" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-odezhda/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                <span class="link block category-name">
+                                    <span>Детская одежда</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="fleft">
+                            <a data-id="542" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-obuv/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                <span class="link block category-name">
+                                    <span>Детская обувь</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="fleft">
+                            <a data-id="68" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskie-kolyaski/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                <span class="link block category-name">
+                                    <span>Детские коляски</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="clear"></li>
+                        <li class="fleft">
+                            <a data-id="538" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskie-avtokresla/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                <span class="link block category-name">
+                                    <span>Детские автокресла</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="fleft">
+                            <a data-id="69" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-mebel/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                <span class="link block category-name">
+                                    <span>Детская мебель</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="fleft">
+                            <a data-id="543" data-category-id="36" href="https://www.site.ua/detskiy-mir/igrushki/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                <span class="link block category-name">
+                                    <span>Игрушки</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="clear"></li>
+                        <li class="fleft">
+                            <a data-id="889" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskiy-transport/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                <span class="link block category-name">
+                                    <span>Детский транспорт</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="fleft">
+                            <a data-id="544" data-category-id="36" href="https://www.site.ua/detskiy-mir/kormlenie/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                <span class="link block category-name">
+                                    <span>Товары для кормления</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="fleft">
+                            <a data-id="545" data-category-id="36" href="https://www.site.ua/detskiy-mir/tovary-dlya-shkolnikov/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                <span class="link block category-name">
+                                    <span>Товары для школьников</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="clear"></li>
+                        <li class="fleft">
+                            <a data-id="71" data-category-id="36" href="https://www.site.ua/detskiy-mir/prochie-detskie-tovary/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                <span class="link block category-name">
+                                    <span>Прочие детские товары</span>
+                                </span>
+                            </a>
+                        </li>
+                        <li class="clear"></li>
+                    </ul>
+                </div>
+
+                <div class="maincategories-list clr">
+
+                    <?php for ($i = 1; $i <= 4; $i++) { ?>
+                    <div class="li fleft">
+                        <div class="item">
+                            <a href="https://www.site.ua/rabota/" data-id="6" class="link parent   ">
+                                <span>Работа</span>
+                                <span class="cat-icon cat-icon-circle cat-icon-i">Р</span>
+                            </a>
+                        </div>
+                    </div>
+                    <?php
+                    }
+                    ?>
+
+                </div>
+
+                <div class="maincategories-list clr">
+
+                    <?php for ($i = 1; $i <= 4; $i++) { ?>
+                    <div class="li fleft">
+                        <div class="item">
+                            <a href="https://www.site.ua/rabota/" data-id="6" class="link parent   ">
+                                <span>Работа</span>
+                                <span class="cat-icon cat-icon-circle cat-icon-i">Р</span>
+                            </a>
+                        </div>
+                    </div>
+                    <?php
+                    }
+                    ?>
+
+                </div>
+
+                <!--orstyp-->
+                <div class="maincategories-list clr"><div id="div-gpt-dsk-hp-vc2-new"><div></div></div></div>
+
+            </div>
 
         </div>
+    </section>
 
-    </body>
+
+{% block body %}{% endblock %}
+
+
+<div align="center" class="copyright">
+    <hr width="225px" />
+
+    {% if app.user %}
+        <a href="{{ path('security_user_logout') }}">Copyright © 2017. Вихід</a>
+    {% else %}
+        <a href="{{ path('security_user_login') }}">Copyright © 2017.</a>
+    {% endif %}    
+
+</div>
+
+</div>
+
+</body>
 </html>

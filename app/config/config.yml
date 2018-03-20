@@ -77,9 +77,10 @@ swiftmailer:
     transport:  smtp
     encryption: ssl
     auth_mode:  login
-    host:       mail.test.com.ua
-    username:   test@test.com.ua
-    password:   test
+    host:       mail.autostopdrg.com.ua
+    username:   _mainaccount@autostopdrg.com.ua
+    password:   iYuU89kHsd
+    
     #transport: '%mailer_transport%'
     #host: '%mailer_host%'
     #username: '%mailer_user%'

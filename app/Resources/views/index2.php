@@ -24,7 +24,9 @@
 
         <link rel="stylesheet" type="text/css" href="/css/site3.css?i=<?php echo rand(0, 1000000); ?>">
 
-
+        <link rel="stylesheet" type="text/css" href="/css/them.css">
+        
+        
     </head>
     <body class="homepage">
 
@@ -50,26 +52,20 @@
             <!--srch box 2-->
             <div class="searchbox">
                 <div class="wrapper searchbox">
-                    <form>
                         <div class="form-row align-items-center search_div">
-                            <div class="col-10">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text wight_background"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
-                                    </div>
+                            <form class="form-inline">
+                                <div class="input-group col-10">
+                                    <span class="input-group-addon wight_background"> <span class="glyphicon glyphicon-search "></span></span>
                                     <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
                                 </div>
-                            </div>
-
-                            <div class="col-auto">
-                                <button type="button" class="btn btn-primary mb-2"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp; <b>ПОШУК</b></button>
-                            </div>
+                                 
+                                <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp; <b>ПОШУК</b></button>                                
+                            </form>   
                         </div>
-                    </form>
                 </div>
             </div>
 
-
+           
             <!--serch options -->
             <div id="tabs-container">
                 <div class="wrapper clr">
@@ -283,23 +279,19 @@
             <section id="searchmain-container">
                 <div class="wrapper">
 
-                    <form>
-                        <div class="form-row align-items-center search_div searchmain">
-                            <div class="col-10 ml-2">
-                                <div class="input-group mb-2">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text wight_background"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
-                                    </div>
+                    
+                        <div class="form-row align-items-center search_div searchmain">     
+                              <form class="form-inline">
+                                <div class="input-group col-10">
+                                    <span class="input-group-addon wight_background height37"><span class="glyphicon glyphicon-search"></span></span>
                                     <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
                                 </div>
-                            </div>
-
-                            <div class="col-auto">
-                                <button type="button" class="btn btn-light mb-2"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp; <b>ПОШУК</b></button>
-                            </div>
+                                 
+                                <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp; <b>ПОШУК</b></button>                                
+                            </form>   
                         </div>
-                    </form>
-
+             
+                    
                     <div class="maincategories">
 
                         <div class="maincategories-list clr">
@@ -545,7 +537,7 @@
                                                                     </a>
                                                                 </h3>
                                                                 <p class="color-9 lheight16 margintop5">
-                                                                    <small class="breadcrumb x-normal">
+                                                                    <small class="x-normal">
                                                                         Тварини » Коти
                                                                     </small>
                                                                 </p>
@@ -601,20 +593,20 @@
             <!--ogolochennja-->
             <br/>
             <div class="wrapper">
-                
-                        <div class="offer-sidebar">
-                            <div class="price-label">
-                                <strong class="xxxx-large">3 000 грн.</strong>
-                            </div>
-                        </div>
-                
+
+                <div class="offer-sidebar">
+                    <div class="price-label">
+                        <strong class="xxxx-large">3 000 грн.</strong>
+                    </div>
+                </div>
+
                 sfdfsdf<br/>
                 sdfsfsfd<br/>
                 sdfsdfs<br/>
                 sfdfsdf<br/>
                 sdfsfsfd<br/>
                 sdfsdfs<br/>
-                
+
                 <br/>
             </div>
 

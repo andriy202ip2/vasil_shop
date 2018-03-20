@@ -1,4 +1,3 @@
-
 shop_menu_homepage:
     path:     /
     defaults: { _controller: ShopMenuBundle:Default:index }
@@ -18,6 +17,10 @@ products:
 shop_mobil:
     path:     /mobil
     defaults: { _controller: ShopMenuBundle:Default:mobile }
+    
+#shop_toper:
+#    path:     /shop_toper
+#    defaults: { _controller: ShopMenuBundle:Default:shop_toper }        
         
 shop_delivery:
     path:     /delivery

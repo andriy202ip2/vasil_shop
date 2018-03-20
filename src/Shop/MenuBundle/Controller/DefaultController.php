@@ -125,6 +125,17 @@ class DefaultController extends Controller {
         );
     }
 
+    //147
+    /*
+    public function shop_toperAction(Request $request) {
+        
+        return $this->render('ShopMenuBundle:Default:shop_toper.html.twig');
+        
+    }
+    {{ render(url('shop_toper')) }}
+     */
+    
+    
     public function deliveryAction(Request $request) {
 
         $em = $this->getDoctrine()->getManager();
