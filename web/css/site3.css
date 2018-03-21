@@ -4,6 +4,11 @@
     background-color: #0098d0;
 }
 
+#boody-container{
+    background:#f7f7f7;
+    /*border-bottom:1px solid #f0f0f0;*/
+}
+
 .copyright_line{
     border-top: 1px solid #f0f0f0;    
 }
@@ -27,12 +32,12 @@
     
 }
 
-
-
-
 .text-marning{
     font-size:22px;
     line-height: 1.5em;
+    margin-left: 25px;
+    margin-right: 25px;
+    min-height: 700px;     
 }
 
 
@@ -106,7 +111,7 @@
     border-bottom:1px solid #f0f0f0;
     position:relative;
     left:0px;
-    top:115px;
+    top:110px;
 }
 
 .meny_position_a{
@@ -497,7 +502,7 @@ form.searchmain [data-icon=search]{
 
 #searchmain-container{
     background:#f7f7f7;
-    border-bottom:1px solid #f0f0f0;
+    /*border-bottom:1px solid #f0f0f0;*/
     padding:20px 0
 }
 
