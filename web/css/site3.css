@@ -4,8 +4,13 @@
     background-color: #0098d0;
 }
 
-.font-x{ 
-    font-size:12px;
+.copyright_line{
+    border-top: 1px solid #f0f0f0;    
+}
+
+.copyright{
+    padding:25px 0 25px;     
+    font-size:18px;    
 }
 
 .font-x2{ 
@@ -14,21 +19,49 @@
     margin-bottom: 5px;    
 } 
 
-.telefone{
-    position:relative;
-    left:0px;
-    top:-15px;    
+.text-center h1{
+    padding:35px 0 35px;    
+    font-size:32px; 
+    color: #0098d0;   
+    font-weight: bold;
+    
+}
+
+
+
+
+.text-marning{
+    font-size:22px;
+    line-height: 1.5em;
 }
 
 
 .call-smoll-input {
-    width:100px;
-    height:20px;
-    margin: 5px;
+    width:150px;
 }
 
 .error {
+    padding:15px 0 0px;    
     color: red;
+}
+
+.wight_mesage{
+    width:350px;    
+}
+
+.fix-wight{
+    width:800px;    
+}
+
+.font-x{ 
+    font-size:12px;
+}
+
+.telefone{
+    position:relative;
+    left:0px;
+    top:-15px;   
+    z-index: 12;
 }
 
 .wight_background{    
@@ -73,13 +106,20 @@
     border-bottom:1px solid #f0f0f0;
     position:relative;
     left:0px;
-    top:105px;
+    top:115px;
+}
+
+.meny_position_a{
+    position:relative;
+    height: 0px;
+    left: 0px;
+    top: 0px;
 }
 
 .meny_position{
     position:relative;
     left:0px;
-    top:-90px;
+    top:-110px;
 }
 
 .line_oll{
@@ -95,7 +135,7 @@
 
     position:relative;
     left:-10px;
-    top:28px;
+    top:38px;
     z-index:10;
 }
 
@@ -107,7 +147,7 @@
 
 .logo_txt{
     padding:15px 0 0px;
-    height:100px;
+    height:110px;
 }
 
 .link:hover > * {

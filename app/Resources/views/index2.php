@@ -278,7 +278,6 @@
             <!--serch and kategori-->
             <section id="searchmain-container">
                 <div class="wrapper">
-
                     
                         <div class="form-row align-items-center search_div searchmain">     
                               <form class="form-inline">

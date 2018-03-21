@@ -91,19 +91,26 @@
 
     <!-- ui-dialog contakt -->
     <div id="dialog_contakt" title="ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК" style="display: none">  
-
         <form onsubmit="return false" id="registerForm">
+            <div class="float-left text-left wight_mesage">
+                <div class="p-2">Ваше ім'я:</div>
+                <input id="call_name" maxlength="30" name="call_name" class="call-input form-control" value="" type="text" /><br/>
 
-            Ваше ім'я:<br/>
-            <input id="call_name" maxlength="30" name="call_name" class="call-input" value="" type="text" /><br/>
+                <div class="p-2">Телефон:</div>
+                <input id="call_mob" maxlength="14" name="call_mob" class="call-input required form-control" value="" type="text" data-msg="Поле Телефон обов'язкове." /><br/>
 
-            Телефон:<br/>
-            <input id="call_mob" maxlength="14" name="call_mob" class="call-input required" value="" type="text" data-msg="Поле Телефон обов'язкове." /><br/>
+                <div class="p-2">Зручний час:</div>
 
-            Зручний час:<br/>
-            <input id="call_time_b" maxlength="5" name="call_time_b" class="call-smoll-input" value="" placeholder="9:00" type="text" /> - 
-            <input id="call_time_e" maxlength="5" name="call_time_e" class="call-smoll-input" value="" placeholder="20:00" type="text" /><br/>
+                <div class="form-group row d-flex justify-content-center">
 
+                    <input id="call_time_b" maxlength="5" name="call_time_b" class="call-smoll-input form-control" value="" placeholder="9:00" type="text" />
+
+                    <div class="d-flex align-items-center justify-content-center" style="width:30px;"> - </div>  
+
+                    <input id="call_time_e" maxlength="5" name="call_time_e" class="call-smoll-input form-control" value="" placeholder="20:00" type="text" />
+
+                </div>
+            </div>
         </form>
     </div>    
     <div id="dialog_contakt_ok" title="Повідомлення відправлено" style="display: none">
@@ -126,7 +133,7 @@
             <div class="float-right">
                 <div class="telefone">
                     <center>
-                        <div class="font-x2">
+                        <div class="font-x2 contact_as">
                             {{ render(url('shop_mobil')) }}
                         </div>
                         <span class="badge badge-pill badge-primary contact_as font-x" style="cursor:pointer;">ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК</span>
@@ -139,222 +146,217 @@
         </div>
         <!--heder logo end-->
 
+        <div class="meny_position_a">
+            <div class="container meny_position fix-wight">
+                <div class="row justify-content-center pading_div fix-wight">
+                    <div>
+                        <a href="{{ path('shop_about') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Про нас</a>    
+                        <a href="{{ path('products_index') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Продукція</a>
+                        <a href="{{ path('shop_menu_homepage') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Каталоги</a>
+                        <a href="{{ path('shop_сontact') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Контакти</a>
+                    </div>
+                </div>
+                <div class="row justify-content-center fix-wight">
+                    <div>
+                        <a href="{{ path('shop_delivery') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Доставка</a>
+                        <a href="{{ path('shop_payment') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Оплата</a>
 
+                        {% if app.user and (app.user.role == 'ROLE_ADMIN' or app.user.role == 'ROLE_ROOT') %}
+                            <a href="{{ path('admin_homepage') }}" class="btn btn-outline-primary">Адмінка</a>
+                        {% endif %}
 
-
-
-<div class="container meny_position">
-  <div class="row justify-content-md-center pading_div">
-    
-      <div>
-            <a href="{{ path('shop_about') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Про нас</a>    
-            <a href="{{ path('products_index') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Продукція</a>
-            <a href="{{ path('shop_menu_homepage') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Каталоги</a>
-            <a href="{{ path('shop_сontact') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Контакти</a>
-
-      </div>
-
-      
-  </div>
-  <div class="row justify-content-md-center">
-    
-      <div>
-            <a href="{{ path('shop_delivery') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Доставка</a>
-            <a href="{{ path('shop_payment') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Оплата</a>
-          
-            {% if app.user and (app.user.role == 'ROLE_ADMIN' or app.user.role == 'ROLE_ROOT') %}
-                <a href="{{ path('admin_homepage') }}" class="btn btn-outline-primary">Адмінка</a>
-            {% endif %}
-
-            {% if app.user %}
-                <a href="{{ path('security_user_logout') }}" class="btn btn-outline-primary">Вихід</a>
-            {% else %}
-                <a href="{{ path('security_user_login') }}" class="btn btn-outline-primary">Вхід</a>
-            {% endif %}
+                        {% if app.user %}
+                            <a href="{{ path('security_user_logout') }}" class="btn btn-outline-primary">Вихід</a>
+                        {% else %}
+                            <a href="{{ path('security_user_login') }}" class="btn btn-outline-primary">Вхід</a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-  </div>
-</div>
-                
+        </div>
 
+        <!--serch and kategori-->
+        <section id="searchmain-container">
+            <div class="wrapper">
 
-    <!--serch and kategori-->
-    <section id="searchmain-container">
+                <div class="form-row align-items-center search_div searchmain">     
+                    <form class="form-inline">
+                        <div class="input-group col-10">
+                            <span class="input-group-addon wight_background height37"><span class="glyphicon glyphicon-search"></span></span>
+                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                        </div>
+
+                        <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp; <b>ПОШУК</b></button>                                
+                    </form>   
+                </div>            
+
+                <div class="maincategories">
+
+                    <div class="maincategories-list clr">
+
+                        <div class="li fleft">
+                            <div class="item">
+                                <a href="https://www.site.ua/detskiy-mir/" data-id="36" class="link parent   ">
+                                    <span><b>Детский мир</b></span>
+                                    <span class="cat-icon cat-icon-circle cat-icon-i">Д</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="li fleft">
+                            <div class="item">
+                                <a href="https://www.site.ua/nedvizhimost/" data-id="1" class="link parent   ">
+                                    <span><b>Недвижимость</b></span>
+                                    <span class="cat-icon cat-icon-circle cat-icon-i">Н</span>
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!--meny hide style="display:none"-->
+                    <div class="subcategories-list clr" style="" data-subcategory="36" id="bottom36">
+
+                        <div class="subcategories-title">
+                            <a href="https://www.site.ua/detskiy-mir/" data-id="36" class="link inlblk"><strong> Смотреть все объявления</strong></a> в Детский мир				</div>
+                        <ul>
+                            <li class="fleft">
+                                <a data-id="539" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-odezhda/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                    <span class="link block category-name">
+                                        <span>Детская одежда</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="fleft">
+                                <a data-id="542" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-obuv/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                    <span class="link block category-name">
+                                        <span>Детская обувь</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="fleft">
+                                <a data-id="68" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskie-kolyaski/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                    <span class="link block category-name">
+                                        <span>Детские коляски</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="clear"></li>
+                            <li class="fleft">
+                                <a data-id="538" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskie-avtokresla/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                    <span class="link block category-name">
+                                        <span>Детские автокресла</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="fleft">
+                                <a data-id="69" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-mebel/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                    <span class="link block category-name">
+                                        <span>Детская мебель</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="fleft">
+                                <a data-id="543" data-category-id="36" href="https://www.site.ua/detskiy-mir/igrushki/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                    <span class="link block category-name">
+                                        <span>Игрушки</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="clear"></li>
+                            <li class="fleft">
+                                <a data-id="889" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskiy-transport/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                    <span class="link block category-name">
+                                        <span>Детский транспорт</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="fleft">
+                                <a data-id="544" data-category-id="36" href="https://www.site.ua/detskiy-mir/kormlenie/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                    <span class="link block category-name">
+                                        <span>Товары для кормления</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="fleft">
+                                <a data-id="545" data-category-id="36" href="https://www.site.ua/detskiy-mir/tovary-dlya-shkolnikov/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                    <span class="link block category-name">
+                                        <span>Товары для школьников</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="clear"></li>
+                            <li class="fleft">
+                                <a data-id="71" data-category-id="36" href="https://www.site.ua/detskiy-mir/prochie-detskie-tovary/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                    <span class="link block category-name">
+                                        <span>Прочие детские товары</span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="clear"></li>
+                        </ul>
+                    </div>
+
+                    <div class="maincategories-list clr">
+
+                        <?php for ($i = 1; $i <= 4; $i++) { ?>
+                        <div class="li fleft">
+                            <div class="item">
+                                <a href="https://www.site.ua/rabota/" data-id="6" class="link parent   ">
+                                    <span>Работа</span>
+                                    <span class="cat-icon cat-icon-circle cat-icon-i">Р</span>
+                                </a>
+                            </div>
+                        </div>
+                        <?php
+                        }
+                        ?>
+
+                    </div>
+
+                    <div class="maincategories-list clr">
+
+                        <?php for ($i = 1; $i <= 4; $i++) { ?>
+                        <div class="li fleft">
+                            <div class="item">
+                                <a href="https://www.site.ua/rabota/" data-id="6" class="link parent   ">
+                                    <span>Работа</span>
+                                    <span class="cat-icon cat-icon-circle cat-icon-i">Р</span>
+                                </a>
+                            </div>
+                        </div>
+                        <?php
+                        }
+                        ?>
+
+                    </div>
+
+                    <!--orstyp-->
+                    <div class="maincategories-list clr"><div id="div-gpt-dsk-hp-vc2-new"><div></div></div></div>
+
+                </div>
+
+            </div>
+        </section>
+
         <div class="wrapper">
+            {% block body %}{% endblock %}
+        </div>
 
-            <div class="form-row align-items-center search_div searchmain">     
-                <form class="form-inline">
-                    <div class="input-group col-10">
-                        <span class="input-group-addon wight_background height37"><span class="glyphicon glyphicon-search"></span></span>
-                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
-                    </div>
 
-                    <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp; <b>ПОШУК</b></button>                                
-                </form>   
-            </div>            
-
-            <div class="maincategories">
-
-                <div class="maincategories-list clr">
-
-                    <div class="li fleft">
-                        <div class="item">
-                            <a href="https://www.site.ua/detskiy-mir/" data-id="36" class="link parent   ">
-                                <span><b>Детский мир</b></span>
-                                <span class="cat-icon cat-icon-circle cat-icon-i">Д</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="li fleft">
-                        <div class="item">
-                            <a href="https://www.site.ua/nedvizhimost/" data-id="1" class="link parent   ">
-                                <span><b>Недвижимость</b></span>
-                                <span class="cat-icon cat-icon-circle cat-icon-i">Н</span>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!--meny hide style="display:none"-->
-                <div class="subcategories-list clr" style="" data-subcategory="36" id="bottom36">
-
-                    <div class="subcategories-title">
-                        <a href="https://www.site.ua/detskiy-mir/" data-id="36" class="link inlblk"><strong> Смотреть все объявления</strong></a> в Детский мир				</div>
-                    <ul>
-                        <li class="fleft">
-                            <a data-id="539" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-odezhda/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                <span class="link block category-name">
-                                    <span>Детская одежда</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="542" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-obuv/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                <span class="link block category-name">
-                                    <span>Детская обувь</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="68" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskie-kolyaski/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                <span class="link block category-name">
-                                    <span>Детские коляски</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="clear"></li>
-                        <li class="fleft">
-                            <a data-id="538" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskie-avtokresla/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                <span class="link block category-name">
-                                    <span>Детские автокресла</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="69" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-mebel/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                <span class="link block category-name">
-                                    <span>Детская мебель</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="543" data-category-id="36" href="https://www.site.ua/detskiy-mir/igrushki/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                <span class="link block category-name">
-                                    <span>Игрушки</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="clear"></li>
-                        <li class="fleft">
-                            <a data-id="889" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskiy-transport/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                <span class="link block category-name">
-                                    <span>Детский транспорт</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="544" data-category-id="36" href="https://www.site.ua/detskiy-mir/kormlenie/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                <span class="link block category-name">
-                                    <span>Товары для кормления</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="545" data-category-id="36" href="https://www.site.ua/detskiy-mir/tovary-dlya-shkolnikov/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                <span class="link block category-name">
-                                    <span>Товары для школьников</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="clear"></li>
-                        <li class="fleft">
-                            <a data-id="71" data-category-id="36" href="https://www.site.ua/detskiy-mir/prochie-detskie-tovary/" class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                <span class="link block category-name">
-                                    <span>Прочие детские товары</span>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="clear"></li>
-                    </ul>
-                </div>
-
-                <div class="maincategories-list clr">
-
-                    <?php for ($i = 1; $i <= 4; $i++) { ?>
-                    <div class="li fleft">
-                        <div class="item">
-                            <a href="https://www.site.ua/rabota/" data-id="6" class="link parent   ">
-                                <span>Работа</span>
-                                <span class="cat-icon cat-icon-circle cat-icon-i">Р</span>
-                            </a>
-                        </div>
-                    </div>
-                    <?php
-                    }
-                    ?>
-
-                </div>
-
-                <div class="maincategories-list clr">
-
-                    <?php for ($i = 1; $i <= 4; $i++) { ?>
-                    <div class="li fleft">
-                        <div class="item">
-                            <a href="https://www.site.ua/rabota/" data-id="6" class="link parent   ">
-                                <span>Работа</span>
-                                <span class="cat-icon cat-icon-circle cat-icon-i">Р</span>
-                            </a>
-                        </div>
-                    </div>
-                    <?php
-                    }
-                    ?>
-
-                </div>
-
-                <!--orstyp-->
-                <div class="maincategories-list clr"><div id="div-gpt-dsk-hp-vc2-new"><div></div></div></div>
-
-            </div>
+    <div class="copyright_line"> </div>     
+    <div class="wrapper">
+        <div align="center" class="copyright">
+            
+            {% if app.user %}
+                <a href="{{ path('security_user_logout') }}">Copyright © 2018.</a>
+            {% else %}
+                <a href="{{ path('security_user_login') }}">Copyright © 2018.</a>
+            {% endif %}    
 
         </div>
-    </section>
+    </div>
 
-
-{% block body %}{% endblock %}
-
-
-<div align="center" class="copyright">
-    <hr width="225px" />
-
-    {% if app.user %}
-        <a href="{{ path('security_user_logout') }}">Copyright © 2017. Вихід</a>
-    {% else %}
-        <a href="{{ path('security_user_login') }}">Copyright © 2017.</a>
-    {% endif %}    
-
-</div>
 
 </div>
 
