@@ -16,7 +16,7 @@ class ThreeRubric
     /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="ThreeRubric")
      */    
-    private $product;
+    private $products;
     
     /**
      * @ORM\ManyToOne(targetEntity="TwoRubric", inversedBy="three_rubric")
@@ -62,12 +62,12 @@ class ThreeRubric
 
     public function __construct()
     {
-        $this->product = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }    
     
-    public function getProduct()
+    public function getProducts()
     {
-        return $this->product;
+        return $this->products;
     }
     
     public function getTwoRubric()

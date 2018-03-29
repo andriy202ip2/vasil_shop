@@ -106,11 +106,11 @@ class OneRubricController extends Controller {
             $ThreeRubrics = $TwoRubric->getThreeRubrics();            
             foreach ($ThreeRubrics as $ThreeRubric) {
 
-                $Items = $ThreeRubric->getItems();                
-                foreach ($Items as $item) {
+                $Products = $ThreeRubric->getProducts();                
+                foreach ($Products as $Product) {
 
-                    $item->removeImg($item->getImg(), $this->getParameter('img_directory'));
-                    $em->remove($item);
+                    $Product->removeImg($Product->getImg(), $this->getParameter('img_directory'));
+                    $em->remove($Product);
                 }
 
                 $em->remove($ThreeRubric);
