@@ -29,7 +29,7 @@ class TwoRubric
     /**
      * @var integer
      *
-     * @ORM\Column(name="one_rubric_id", type="integer", nullable=false)
+     * @ORM\Column(name="one_rubric_id", type="integer", nullable=true)
      */
     private $oneRubricId;
 

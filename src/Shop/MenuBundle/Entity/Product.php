@@ -50,14 +50,14 @@ class Product
     /**
      * @var integer
      *
-     * @ORM\Column(name="two_rubric_id", type="integer", nullable=false)
+     * @ORM\Column(name="two_rubric_id", type="integer", nullable=true)
      */
     private $twoRubricId;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="three_rubric_id", type="integer", nullable=false)
+     * @ORM\Column(name="three_rubric_id", type="integer", nullable=true)
      */
     private $threeRubricId;
 

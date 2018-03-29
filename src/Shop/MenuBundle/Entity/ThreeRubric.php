@@ -33,14 +33,14 @@ class ThreeRubric
     /**
      * @var integer
      *
-     * @ORM\Column(name="one_rubric_id", type="integer", nullable=false)
+     * @ORM\Column(name="one_rubric_id", type="integer", nullable=true)
      */
     private $oneRubricId;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="two_rubric_id", type="integer", nullable=false)
+     * @ORM\Column(name="two_rubric_id", type="integer", nullable=true)
      */
     private $twoRubricId;
 
