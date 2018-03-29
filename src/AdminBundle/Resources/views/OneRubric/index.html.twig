@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="text-center">    
+
+        <h1>Модель Меню</h1>
+
+        <a href="{{ path('onerubric_new') }}">Створити нову модель</a><br/><br/>
+
+        <div class="count">
+            Всього результатів: {{ OneRubrics.getTotalItemCount }}
+        </div><br/>
+
+        <div class="navigation">
+            {{ knp_pagination_render(OneRubrics) }}
+        </div><br/>
+
+        <table align="center" class="admin-table">
+            <thead>
+                <tr>
+                    <th>{{ knp_pagination_sortable(OneRubrics, 'Імя', 'a.name') }}</th>
+                    <th>{{ knp_pagination_sortable(OneRubrics, 'Id', 'a.id') }}</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for OneRubric in OneRubrics %}
+                    <tr>
+                        <td><a href="{{ path('onerubric_show', { 'id': OneRubric.id }) }}">{{ OneRubric.name }}</a></td>
+                        <td>{{ OneRubric.id }}</td>
+                        <td>
+                            <br/>
+                            <a href="{{ path('onerubric_show', { 'id': OneRubric.id }) }}">Показати</a>
+                            <br/>
+                            <a href="{{ path('onerubric_edit', { 'id': OneRubric.id }) }}">Редагувати</a>
+                            <br/><br/>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <br/><div class="navigation">
+            {{ knp_pagination_render(OneRubrics) }}
+        </div>
+
+        <br/><a href="{{ path('onerubric_new') }}">Створити нову модель</a><br/><br/>
+
+    </div>
+
+{% endblock %}

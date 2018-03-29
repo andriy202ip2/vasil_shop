@@ -1,0 +1,25 @@
+onerubric_index:
+    path:     /
+    defaults: { _controller: "AdminBundle:OneRubric:index" }
+    methods:  GET
+
+onerubric_show:
+    path:     /{id}/show
+    defaults: { _controller: "AdminBundle:OneRubric:show" }
+    methods:  GET
+
+onerubric_new:
+    path:     /new
+    defaults: { _controller: "AdminBundle:OneRubric:new" }
+    methods:  [GET, POST]
+
+onerubric_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AdminBundle:OneRubric:edit" }
+    methods:  [GET, POST]
+
+onerubric_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AdminBundle:OneRubric:delete" }
+    methods:  [GET]
+#DELETE
