@@ -14,9 +14,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 class ThreeRubric
 {
     /**
-     * @ORM\OneToMany(targetEntity="Items", mappedBy="ThreeRubric")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="ThreeRubric")
      */    
-    private $items;
+    private $product;
     
     /**
      * @ORM\ManyToOne(targetEntity="TwoRubric", inversedBy="three_rubric")
@@ -62,12 +62,12 @@ class ThreeRubric
 
     public function __construct()
     {
-        $this->items = new ArrayCollection();
+        $this->product = new ArrayCollection();
     }    
     
-    public function getItems()
+    public function getProduct()
     {
-        return $this->items;
+        return $this->product;
     }
     
     public function getTwoRubric()
