@@ -14,7 +14,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class ThreeRubric
 {
     /**
-     * @ORM\OneToMany(targetEntity="Product", mappedBy="ThreeRubric")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="three_rubric")
      */    
     private $products;
     

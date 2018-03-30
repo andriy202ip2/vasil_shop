@@ -1,3 +1,15 @@
+.admin-widht-id{
+    width: 100px;    
+}
+
+.admin-widht-action{
+    width: 100px;           
+}
+
+.admin-padding a{
+   margin: 5px;
+}
+
 .test{
     /*min-width: 890px;*/
     /*border-bottom:1px solid #f0f0f0;*/

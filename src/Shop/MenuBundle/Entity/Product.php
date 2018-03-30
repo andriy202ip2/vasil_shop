@@ -85,9 +85,9 @@ class Product
     /**
      * @var string
      *
-     * @ORM\Column(name="item_id", type="string", length=256, nullable=false)
+     * @ORM\Column(name="product_id", type="string", length=256, nullable=false)
      */
-    private $itemId;
+    private $productId;
 
     /**
      * @var string
@@ -317,25 +317,25 @@ class Product
     }
 
     /**
-     * Set itemId
+     * Set productId
      *
-     * @param string $itemId
+     * @param string $productId
      *
      * @return Products
      */
-    public function setProductId($itemId) {
-        $this->itemId = $itemId;
+    public function setProductId($productId) {
+        $this->productId = $productId;
 
         return $this;
     }
 
     /**
-     * Get itemId
+     * Get productId
      *
      * @return string
      */
     public function getProductId() {
-        return $this->itemId;
+        return $this->productId;
     }
 
     /**
@@ -435,9 +435,9 @@ class Product
         return $this->id;
     }
 
-    public function saveImg(Products $item, $img_directory, $img = NULL) {
+    public function saveImg(Product $product, $img_directory, $img = NULL) {
 
-        $file = $item->getImg();
+        $file = $product->getImg();
 
         if ($img != NULL && strlen($img) > 1) {
             $fileName = $img;
@@ -449,9 +449,9 @@ class Product
                 $img_directory, $fileName
         );
 
-        $item->setImg($fileName);
+        $product->setImg($fileName);
 
-        return $item;
+        return $product;
     }
     
     public function removeImg($img, $img_directory) {
