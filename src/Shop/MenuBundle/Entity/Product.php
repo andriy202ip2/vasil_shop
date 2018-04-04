@@ -16,19 +16,19 @@ use Money\Money;
 class Product
 {
     /**
-     * @ORM\ManyToOne(targetEntity="ThreeRubric", inversedBy="product")
+     * @ORM\ManyToOne(targetEntity="ThreeRubric", inversedBy="products")
      * @ORM\JoinColumn(name="three_rubric_id", referencedColumnName="id")
      */
     private $threeRubric;
 
     /**
-     * @ORM\ManyToOne(targetEntity="TwoRubric", inversedBy="three_rubric")
+     * @ORM\ManyToOne(targetEntity="TwoRubric", inversedBy="threeRubrics")
      * @ORM\JoinColumn(name="two_rubric_id", referencedColumnName="id")
      */
     private $twoRubric;
 
     /**
-     * @ORM\ManyToOne(targetEntity="OneRubric", inversedBy="two_rubric")
+     * @ORM\ManyToOne(targetEntity="OneRubric", inversedBy="twoRubrics")
      * @ORM\JoinColumn(name="one_rubric_id", referencedColumnName="id")
      */
     private $oneRubric;
