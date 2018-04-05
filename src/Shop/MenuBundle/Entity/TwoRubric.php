@@ -14,14 +14,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 class TwoRubric
 {
     /**
-     * @ORM\ManyToOne(targetEntity="OneRubric", inversedBy="two_rubric")
+     * @ORM\ManyToOne(targetEntity="OneRubric", inversedBy="twoRubrics")
      * @ORM\JoinColumn(name="one_rubric_id", referencedColumnName="id")
      */
     private $oneRubric;
     
     
     /**
-     * @ORM\OneToMany(targetEntity="ThreeRubric", mappedBy="two_rubric")
+     * @ORM\OneToMany(targetEntity="ThreeRubric", mappedBy="twoRubric")
      */    
     private $threeRubrics;
 
