@@ -1,3 +1,14 @@
+
+.text-center .form-control-label{
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.text-center input{
+    margin: 0 auto;
+    max-width: 800px;
+}
+
 .admin-widht-id{
     width: 100px;    
 }
@@ -41,8 +52,9 @@
     font-size:32px; 
     color: #0098d0;   
     font-weight: bold;
-    
 }
+
+
 
 .admin-font, .text-marning{
     font-size:22px;
