@@ -1,19 +1,20 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Рубрика 1 редагування{% endblock %}
 {% block body %}
     <div class="text-center"> 
         
-    <h1>Модель Меню редагування</h1>
+    <h1>Рубрика 1 редагування</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}        
-        <br/><button class="ui-button ui-corner-all ui-widget">Редагувати</button>
+        <br/><button class="btn btn-outline-primary">Редагувати</button>
     {{ form_end(edit_form) }}
     
     
-        <br/> <a href="{{ path('modelmenu_index') }}"><button class="ui-button ui-corner-all ui-widget">Вернутись назад</button></a><br/><br/>
+        <br/> <a href="{{ path('modelmenu_index') }}"><button class="btn btn-outline-primary">Вернутись назад</button></a><br/><br/>
         
-        <a class="btn btn-danger" href="{{ path('modelmenu_delete', {'id': modelMenu.id}) }}"><button class="ui-button ui-corner-all ui-widget">Видалити</button></a><br/>
+        <a class="btn btn-outline-danger" href="{{ path('modelmenu_delete', {'id': modelMenu.id}) }}">Видалити</a><br/><br/>
                 
     </div>
 {% endblock %}

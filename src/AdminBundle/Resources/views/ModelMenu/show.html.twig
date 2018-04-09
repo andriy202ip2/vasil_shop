@@ -1,29 +1,30 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Рубрика 1 перегляд{% endblock %}
 {% block body %}
     
     <div class="text-center"> 
     
-    <h1>Модель Меню</h1>
+    <h1>Рубрика 1 перегляд</h1>
 
-    <table align="center" class="admin-table">
+    <table align="center" class="admin-table table table-bordered table-hover h6">
         <tbody>
             <tr>
-                <th>Імя</th>
+                <th class="table-success admin-widht-action">Імя</th>
                 <td>{{ modelMenu.name }}</td>
             </tr>
             <tr>
-                <th>Id</th>
+                <th class="table-success">Id</th>
                 <td>{{ modelMenu.id }}</td>
             </tr>
         </tbody>
     </table>
 
-    <br/><a href="{{ path('modelmenu_index') }}">Вернутись назад</a><br/><br/>
-    <a href="{{ path('modelmenu_edit', { 'id': modelMenu.id }) }}">Редагувати</a><br/><br/>
+    <br/><a href="{{ path('modelmenu_index') }}" class="btn btn-outline-primary">Вернутись назад</a><br/><br/>
+    <a href="{{ path('modelmenu_edit', { 'id': modelMenu.id }) }}" class="btn btn-outline-primary">Редагувати</a><br/><br/>
     
-    <a class="btn btn-danger" href="{{ path('modelmenu_delete', {'id': modelMenu.id}) }}">Видалити</a>
-    
-            
-   </div>
+    <a class="btn btn-outline-danger" href="{{ path('modelmenu_delete', {'id': modelMenu.id}) }}">Видалити</a>
+        <br/><br/>
+
+    </div>
 {% endblock %}
