@@ -58,7 +58,3 @@ admin_add_prices:
     path:     /add_prices
     defaults: { _controller: AdminBundle:Default:add_prices }
 
-#==============================
-#admin_onerubric:
-#    resource: "@AdminBundle/Resources/config/routing/onerubric.yml"
-#    prefix:   /onerubric
