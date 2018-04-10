@@ -5,6 +5,7 @@ namespace AdminBundle\Controller;
 use Shop\MenuBundle\Entity\AutoMenu;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Automenu controller.
@@ -121,10 +122,10 @@ class AutoMenuController extends Controller {
      *
      */
     public function deleteAction(Request $request, AutoMenu $autoMenu) {
-        $form = $this->createDeleteForm($autoMenu);
-        $form->handleRequest($request);
+        //$form = $this->createDeleteForm($autoMenu);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
             $Datas = $autoMenu->getDatas();            
@@ -142,9 +143,10 @@ class AutoMenuController extends Controller {
 
             $em->remove($autoMenu);
             $em->flush();
-        }
-
+        //}
+        //$request->isMethod('GET')
         return $this->redirectToRoute('automenu_index');
+        //return new Response("test");
     }
 
     /**

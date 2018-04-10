@@ -1,68 +1,73 @@
 {% extends 'base.html.twig' %}
+{% block title %}Рубрика 2{% endblock %}
 
 {% block body %}
 
     <div class="text-center">
-        
-        <h1>Авто Меню</h1>
-        
+
+        <h1><span class="admin-sabrubric-color">Рубрика 1 &gt;</span> Рубрика 2</h1>
+
         <form id="form_item" method="GET">
-        Пшук по моделям: 
-        <select name="mid" id="mid" class="cat">
-            <option value="0" {{ model_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
-            {% for modelMenu in modelMenus %}
-                <option value="{{ modelMenu.id }}" {{ model_id == modelMenu.id  ? 'selected=""' : '' }}>
-                    {{ modelMenu.name }}
-                </option>                                          
-            {% endfor %}
-        </select>
+                <div class="admin-txt-font"> Пошук по Рубриці 1: &nbsp </div>
+                <select name="mid" id="mid" class="cat form-control admin-input">
+                    <option value="0" {{ model_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
+                    {% for modelMenu in modelMenus %}
+                        <option value="{{ modelMenu.id }}" {{ model_id == modelMenu.id  ? 'selected=""' : '' }}>
+                            {{ modelMenu.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
         </form>
-        
-        <br/><a href="{{ path('automenu_new') }}">Створити нове авто</a><br/><br/>
 
-        <div class="count">
+        <br/><a href="{{ path('automenu_new') }}" class="btn btn-outline-primary">Створити нову Рубрику 2</a><br/><br/>
+
+        <div class="count h6">
             Всього результатів: {{ autoMenus.getTotalItemCount }}
-        </div><br/>
+        </div>
+        <br/>
 
-        <div class="navigation">
+        <div class="navigation row justify-content-center align-items-center">
             {{ knp_pagination_render(autoMenus) }}
-        </div><br/>
+        </div>
+        <br/><br/>
 
 
-        <table align="center" class="admin-table admin-table-width">
+        <table align="center" class="admin-table1 table table-bordered table-hover h6">
             <thead>
-                <tr>
-                    <th>{{ knp_pagination_sortable(autoMenus, 'Модель', 'a.modelMenuId') }}</th>
-                    <th>{{ knp_pagination_sortable(autoMenus, 'Імя', 'a.name') }}</th>
-                    <th>{{ knp_pagination_sortable(autoMenus, 'Id', 'a.id') }}</th>
-                    <th>Дії</th>
-                </tr>
+            <tr>
+                <th>{{ knp_pagination_sortable(autoMenus, 'Рубрика 1', 'a.modelMenuId') }}</th>
+                <th>{{ knp_pagination_sortable(autoMenus, 'Рубрика 2 Імя', 'a.name') }}</th>
+                <th class="admin-widht-id">{{ knp_pagination_sortable(autoMenus, 'Id', 'a.id') }}</th>
+                <th class="align-middle admin-widht-action">Дії</th>
+            </tr>
             </thead>
             <tbody>
-                {% for autoMenu in autoMenus %}
-                    <tr>
-                        <td>
-                            <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}">{{ autoMenu.model.name }}</a>                                                        
-                        </td>
-                        <td>{{ autoMenu.name }}</td>
-                        <td>{{ autoMenu.id }}</td>
-                        <td>
-                            <br/>
-                            <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}">Показати</a>
-                            <br/>
-                            <a href="{{ path('automenu_edit', { 'id': autoMenu.id }) }}">Редагувати</a>
-                            <br/><br/>
-                        </td>
-                    </tr>
-                {% endfor %}
+            {% for autoMenu in autoMenus %}
+                <tr>
+                    <td>
+                        <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}">{{ autoMenu.model.name }}</a>
+                    </td>
+                    <td>{{ autoMenu.name }}</td>
+                    <td>{{ autoMenu.id }}</td>
+                    <td class="admin-padding">
+
+                        <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}" class="btn btn-outline-primary btn-sm">Показати</a>
+                        <a href="{{ path('automenu_edit', { 'id': autoMenu.id }) }}" class="btn btn-outline-primary btn-sm">Редагувати</a>
+                        <a class="btn btn-outline-danger btn-sm" href="{{ path('automenu_delete', {'id': autoMenu.id}) }}">Видалити</a>
+
+                    </td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
 
-        <br/><div class="navigation">
+        <br/>
+        <div class="navigation row justify-content-center align-items-center">
             {{ knp_pagination_render(autoMenus) }}
         </div>
 
-        <br/><a href="{{ path('automenu_new') }}">Створити нове авто</a><br/><br/>
+        <br/><a href="{{ path('automenu_new') }}" class="btn btn-outline-primary">Створити нову Рубрику 2</a><br/><br/><br/>
 
     </div>
 
@@ -72,11 +77,11 @@
     <script>
         $(document).ready(function () {
 
-             $("#mid").change(function () {
+            $("#mid").change(function () {
                 $("#form_item").submit();
             });
 
 
         });
-    </script>    
+    </script>
 {% endblock %}

@@ -27,7 +27,7 @@ class AutoMenuType extends AbstractType {
             'attr'=>array(
                     'class'=> 'admin-selekt cat'
                 ),    
-            'label' => 'Модель: '
+            'label' => 'Рубрика 1: '
         ));
         //->add('modelMenuId')
     }

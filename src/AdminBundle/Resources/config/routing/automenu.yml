@@ -21,4 +21,4 @@ automenu_edit:
 automenu_delete:
     path:     /{id}/delete
     defaults: { _controller: "AdminBundle:AutoMenu:delete" }
-    methods:  DELETE
+    methods:  [GET, DELETE]

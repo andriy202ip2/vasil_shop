@@ -1,7 +1,22 @@
 
+.admin-sabrubric-color {
+    color: #000;
+    font-size: 14px;
+}
+
 .text-center .form-control-label{
     font-size: 24px;
     margin-bottom: 15px;
+}
+
+.admin-txt-font{
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.admin-input, .admin-selekt{
+    margin: 0 auto;
+    max-width: 700px;
 }
 
 .text-center input{
@@ -15,6 +30,10 @@
 
 .admin-widht-action{
     width: 100px;           
+}
+
+.admin-widht-action2{
+    width: 150px;
 }
 
 .admin-padding a{
