@@ -1,5 +1,5 @@
 <a{% for attr, value in options %}{% if attr != 'title' %} {{ attr }}="{{ value }}"{% endif %}{% endfor %}>
-<span class="btn btn-outline-primary">
+<span class="btn btn-outline-primary sortable">
 {{ title }}    
 {% if options.class == 'asc' %}
     <span class="ui-state-default ui-corner-all"><span class="ui-icon ui-icon-caret-1-n"></span></span>

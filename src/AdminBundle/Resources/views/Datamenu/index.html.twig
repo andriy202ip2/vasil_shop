@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
+{% block title %}Рубрика 3{% endblock %}
 
 {% block body %}
 
     <div class="text-center">
-        <h1>Рока Меню</h1>
+        <h1><span class="admin-sabrubric-color">Рубрика 1 &gt; Рубрика 2 &gt;</span> Рубрика 3</h1>
 
         <form id="form_item" method="GET">
-            Пшук: 
-            <select name="mid" id="mid" class="cat">
+            <div class="admin-txt-font"> Пошук по Рубриці 1: &nbsp </div>
+            <select name="mid" id="mid" class="cat form-control admin-input">
                 <option value="0" {{ model_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
                 {% for modelMenu in modelMenus %}
                     <option value="{{ modelMenu.id }}" {{ model_id == modelMenu.id  ? 'selected=""' : '' }}>
@@ -16,7 +17,8 @@
                 {% endfor %}
             </select>
 
-            <select name="aid" id="aid" class="cat" {{ model_id == 0  ? 'disabled="" style="background: transparent;"' : '' }}>
+            <div class="admin-txt-font2"> Пошук по Рубриці 2: &nbsp </div>
+            <select name="aid" id="aid" class="cat form-control admin-input" {{ model_id == 0  ? 'disabled="" style="background: transparent;"' : '' }}>
                 <option value="0" {{ auto_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
                 {% for auto in autoMenu %}
                     <option value="{{ auto.id }}" {{ auto_id == auto.id  ? 'selected=""' : '' }}>
@@ -26,52 +28,56 @@
             </select>
         </form>
 
-        <br/><a href="{{ path('datamenu_new') }}">Створити нову дату</a><br/><br/>
+        <br/><a href="{{ path('datamenu_new') }}" class="btn btn-outline-primary">Створити нову Рубрику 3</a><br/><br/>
 
-        <div class="count">
+        <div class="count h6">
             Всього результатів: {{ dataMenus.getTotalItemCount }}
         </div><br/>
 
-        <div class="navigation">
+        <div class="navigation row justify-content-center align-items-center">
             {{ knp_pagination_render(dataMenus) }}
         </div><br/>
 
-        <table align="center" class="admin-table admin-table-width">
+        <table align="center" class="admin-table table table-bordered table-hover h6">
             <thead>
                 <tr>
-                    <th>{{ knp_pagination_sortable(dataMenus, 'Модель', 'a.modelMenuId') }}</th>
-                    <th>{{ knp_pagination_sortable(dataMenus, 'Авто', 'a.autoMenuId') }}</th>
-                    <th>{{ knp_pagination_sortable(dataMenus, 'Рока', 'a.name') }}</th>
-                    <th>{{ knp_pagination_sortable(dataMenus, 'Id', 'a.id') }}</th>
-                    <th>Дії</th>
+                    <th class="align-middle text-center admin-azer-data">
+                        Інші дані:
+                    </th>
+                    <!--<th>&nbsp;</th>-->
+                    <th class="align-middle">{{ knp_pagination_sortable(dataMenus, 'Рубрика 3 Імя', 'a.name') }}</th>
+                    <th class="admin-widht-id align-middle">{{ knp_pagination_sortable(dataMenus, 'Id', 'a.id') }}</th>
+                    <th class="align-middle text-center admin-widht-action">Дії</th>
                 </tr>
             </thead>
             <tbody>
                 {% for dataMenu in dataMenus %}
                     <tr>
-                        <td>
-                            <a href="{{ path('datamenu_show', { 'id': dataMenu.id }) }}">{{ dataMenu.model.name }}</a>                            
+                        <td class="admin-oll-data admin-padding">
+                            {{ knp_pagination_sortable(dataMenus, 'Рубрика 1', 'a.modelMenuId') }}<br/>
+                            {{ dataMenu.model.name }}<br/>
+                            {{ knp_pagination_sortable(dataMenus, 'Рубрика 2', 'a.autoMenuId') }}<br/>
+                            {{ dataMenu.auto.name }}
                         </td>
-                        <td>{{ dataMenu.auto.name }}</td>
+                        <!--<td>{{ dataMenu.auto.name }}</td>-->
                         <td>{{ dataMenu.name }}</td>
                         <td>{{ dataMenu.id }}</td>
-                        <td>
-                            <br/>
-                            <a href="{{ path('datamenu_show', { 'id': dataMenu.id }) }}">Показати</a>
-                            <br/>
-                            <a href="{{ path('datamenu_edit', { 'id': dataMenu.id }) }}">Редагувати</a>
-                            <br/><br/>
+                        <td class="admin-padding">
+
+                            <a href="{{ path('datamenu_show', { 'id': dataMenu.id }) }}" class="btn btn-outline-primary btn-sm">Показати</a>
+                            <a href="{{ path('datamenu_edit', { 'id': dataMenu.id }) }}" class="btn btn-outline-primary btn-sm">Редагувати</a>
+
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-        <br/><div class="navigation">
+        <br/><div class="navigation row justify-content-center align-items-center">
             {{ knp_pagination_render(dataMenus) }}
         </div>
 
-        <br/><a href="{{  path('datamenu_new') }}">Створити нову дату</a><br/><br/>
+        <br/><a href="{{  path('datamenu_new') }}" class="btn btn-outline-primary">Створити нову Рубрику 3</a><br/><br/><br/>
 
     </div>
 

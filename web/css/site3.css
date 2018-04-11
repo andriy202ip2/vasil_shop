@@ -9,9 +9,13 @@
     margin-bottom: 15px;
 }
 
-.admin-txt-font{
+.admin-txt-font, .admin-txt-font2{
     font-size: 20px;
     margin-bottom: 15px;
+}
+
+.admin-txt-font2{
+    margin-top: 15px;
 }
 
 .admin-input, .admin-selekt{
@@ -36,8 +40,26 @@
     width: 150px;
 }
 
-.admin-padding a{
+.admin-azer-data{
+    width: 300px;
+}
+
+.admin-padding .sortable, .admin-padding a{
    margin: 5px;
+}
+
+/*btn-sm*/
+.admin-padding .sortable{
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    border-radius: 0.2rem;
+}
+
+.admin-oll-data{
+    line-height: 1.5em;
+}
+.admin-oll-data span{
+    color: #0000ff;
 }
 
 .test{
