@@ -36,7 +36,7 @@
 
         <div class="navigation row justify-content-center align-items-center">
             {{ knp_pagination_render(dataMenus) }}
-        </div><br/>
+        </div><br/><br/>
 
         <table align="center" class="admin-table table table-bordered table-hover h6">
             <thead>
@@ -66,6 +66,7 @@
 
                             <a href="{{ path('datamenu_show', { 'id': dataMenu.id }) }}" class="btn btn-outline-primary btn-sm">Показати</a>
                             <a href="{{ path('datamenu_edit', { 'id': dataMenu.id }) }}" class="btn btn-outline-primary btn-sm">Редагувати</a>
+                            <a class="btn btn-outline-danger btn-sm" href="{{ path('datamenu_delete', {'id': dataMenu.id}) }}">Видалити</a><br/><br/>
 
                         </td>
                     </tr>

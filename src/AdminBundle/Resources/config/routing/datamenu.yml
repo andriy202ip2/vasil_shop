@@ -21,4 +21,4 @@ datamenu_edit:
 datamenu_delete:
     path:     /{id}/delete
     defaults: { _controller: "AdminBundle:DataMenu:delete" }
-    methods:  DELETE
+    methods:  [DELETE, GET]

@@ -29,7 +29,7 @@ class DataMenuType extends AbstractType {
                     'attr' => array(
                         'class' => 'admin-selekt cat mid'
                     ),
-                    'label' => 'Модель: '
+                    'label' => 'Рубрика 1: '
                 ))
                 ->add('auto', EntityType::class, array(
                     'class' => 'ShopMenuBundle:AutoMenu',
@@ -37,13 +37,13 @@ class DataMenuType extends AbstractType {
                     'attr' => array(
                         'class' => 'admin-selekt cat'
                     ),
-                    'label' => 'Авто: '
+                    'label' => 'Рубрика 2: '
                 ))
                 ->add('name', TextType::class, array(
                     'attr' => array(
                         'class' => 'admin-input'
                     ),
-                    'label' => 'Рік: '
+                    'label' => 'Назва Рубрики 3: '
         ));
 
         $formModifier = function (FormEvent $event) {
@@ -73,7 +73,7 @@ class DataMenuType extends AbstractType {
                 'attr' => array(
                     'class' => 'admin-selekt cat'
                 ),
-                'label' => 'Авто: '
+                'label' => 'Рубрика 2: '
             ));
         };
 

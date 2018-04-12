@@ -141,10 +141,10 @@ class DataMenuController extends Controller {
      *
      */
     public function deleteAction(Request $request, DataMenu $dataMenu) {
-        $form = $this->createDeleteForm($dataMenu);
-        $form->handleRequest($request);
+        //$form = $this->createDeleteForm($dataMenu);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //if ($form->isSubmitted() && $form->isValid()) {
             
             $em = $this->getDoctrine()->getManager();
             
@@ -156,7 +156,7 @@ class DataMenuController extends Controller {
             
             $em->remove($dataMenu);
             $em->flush();
-        }
+        //}
 
         return $this->redirectToRoute('datamenu_index');
     }

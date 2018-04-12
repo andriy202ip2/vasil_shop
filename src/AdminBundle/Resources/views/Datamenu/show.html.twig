@@ -1,40 +1,41 @@
 {% extends 'base.html.twig' %}
+{% block title %}Рубрика 3 перегляд{% endblock %}
 
 {% block body %}
 
     <div class="text-center"> 
 
-        <h1>Рока Меню</h1>
+        <h1><span class="admin-sabrubric-color">Рубрика 1 &gt; Рубрика 2 &gt;</span> Рубрика 3 перегляд</h1>
 
-        <table align="center" class="admin-table">
+        <table align="center" class="admin-table table table-bordered table-hover h6">
             <tbody>
                 <tr>
-                    <th>Модель</th>
+                    <th class="table-success admin-widht-action2">Рубрика 1</th>
                     <td>{{ dataMenu.model.name }}</td>
                 </tr>
                 <tr>
-                    <th>Авто</th>
+                    <th class="table-success">Рубрика 2</th>
                     <td>{{ dataMenu.auto.name }}</td>
                 </tr>
                 <tr>
-                    <th>Рока</th>
+                    <th class="table-success bloo">Рубрика 3 назва</th>
                     <td>{{ dataMenu.name }}</td>
                 </tr>
                 <tr>
-                    <th>Id</th>
+                    <th class="table-success">Id</th>
                     <td>{{ dataMenu.id }}</td>
                 </tr>
             </tbody>
         </table>
 
-        <br/><a href="{{ path('datamenu_index') }}"><button class="ui-button ui-corner-all ui-widget">Вернутись назад</button></a><br/><br/>
-        <a href="{{ path('datamenu_edit', { 'id': dataMenu.id }) }}"><button class="ui-button ui-corner-all ui-widget">Редагувати</button></a><br/><br/>
+        <br/><a href="{{ path('datamenu_index') }}"><button class="btn btn-outline-primary">Вернутись назад</button></a><br/><br/>
+        <a href="{{ path('datamenu_edit', { 'id': dataMenu.id }) }}"><button class="btn btn-outline-primary">Редагувати</button></a><br/><br/>
 
         {{ form_start(delete_form) }}
-        <button class="ui-button ui-corner-all ui-widget">Видалити</button>
+        <button class="btn btn-outline-danger">Видалити</button>
         {{ form_end(delete_form) }}
 
-
+        <br/><br/><br/>
     </div>
 
 {% endblock %}
