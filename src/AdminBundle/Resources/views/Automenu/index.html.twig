@@ -48,13 +48,13 @@
                     <td>
                         <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}">{{ autoMenu.model.name }}</a>
                     </td>
-                    <td>{{ autoMenu.name }}</td>
+                    <td class="delete-modal-info">{{ autoMenu.name }}</td>
                     <td>{{ autoMenu.id }}</td>
                     <td class="admin-padding">
 
                         <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}" class="btn btn-outline-primary btn-sm">Показати</a>
                         <a href="{{ path('automenu_edit', { 'id': autoMenu.id }) }}" class="btn btn-outline-primary btn-sm">Редагувати</a>
-                        <a class="btn btn-outline-danger btn-sm" href="{{ path('automenu_delete', {'id': autoMenu.id}) }}">Видалити</a>
+                        <a class="btn btn-outline-danger btn-sm is-delete" href="{{ path('automenu_delete', {'id': autoMenu.id}) }}">Видалити</a>
 
                     </td>
                 </tr>

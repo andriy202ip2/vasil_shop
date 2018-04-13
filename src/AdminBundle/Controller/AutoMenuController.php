@@ -87,11 +87,11 @@ class AutoMenuController extends Controller {
      *
      */
     public function showAction(AutoMenu $autoMenu) {
-        $deleteForm = $this->createDeleteForm($autoMenu);
+        //$deleteForm = $this->createDeleteForm($autoMenu);
 
         return $this->render('AdminBundle:Automenu:show.html.twig', array(
                     'autoMenu' => $autoMenu,
-                    'delete_form' => $deleteForm->createView(),
+                    //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -100,7 +100,7 @@ class AutoMenuController extends Controller {
      *
      */
     public function editAction(Request $request, AutoMenu $autoMenu) {
-        $deleteForm = $this->createDeleteForm($autoMenu);
+        //$deleteForm = $this->createDeleteForm($autoMenu);
         $editForm = $this->createForm('AdminBundle\Form\AutoMenuType', $autoMenu);
         $editForm->handleRequest($request);
 
@@ -113,7 +113,7 @@ class AutoMenuController extends Controller {
         return $this->render('AdminBundle:Automenu:edit.html.twig', array(
                     'autoMenu' => $autoMenu,
                     'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+                    //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -156,12 +156,14 @@ class AutoMenuController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
+    /*
     private function createDeleteForm(AutoMenu $autoMenu) {
         return $this->createFormBuilder()
                         ->setAction($this->generateUrl('automenu_delete', array('id' => $autoMenu->getId())))
                         ->setMethod('DELETE')
                         ->getForm()
         ;
-    }
+    }*/
+
 
 }

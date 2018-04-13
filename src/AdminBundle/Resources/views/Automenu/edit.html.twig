@@ -14,9 +14,7 @@
 
         <br/> <a href="{{ path('automenu_index') }}"><button class="btn btn-outline-primary">Вернутись назад</button></a><br/><br/>
 
-        {{ form_start(delete_form) }}
-        <button class="btn btn-outline-danger">Видалити</button>
-        {{ form_end(delete_form) }}
+        <a href="{{ path('automenu_delete', { 'id': autoMenu.id }) }}" class="btn btn-outline-danger is-delete">Видалити</a>
         <br/><br/><br/>
     </div>
 
