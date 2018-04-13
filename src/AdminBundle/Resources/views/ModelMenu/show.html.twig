@@ -11,7 +11,7 @@
         <tbody>
             <tr>
                 <th class="table-success admin-widht-action bloo">Імя</th>
-                <td>{{ modelMenu.name }}</td>
+                <td class="delete-modal-info">{{ modelMenu.name }}</td>
             </tr>
             <tr>
                 <th class="table-success">Id</th>
@@ -23,7 +23,7 @@
     <br/><a href="{{ path('modelmenu_index') }}" class="btn btn-outline-primary">Вернутись назад</a><br/><br/>
     <a href="{{ path('modelmenu_edit', { 'id': modelMenu.id }) }}" class="btn btn-outline-primary">Редагувати</a><br/><br/>
     
-    <a class="btn btn-outline-danger" href="{{ path('modelmenu_delete', {'id': modelMenu.id}) }}">Видалити</a>
+    <a class="btn btn-outline-danger is-delete" href="{{ path('modelmenu_delete', {'id': modelMenu.id}) }}">Видалити</a>
         <br/><br/>
 
     </div>

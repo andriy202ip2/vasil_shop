@@ -32,92 +32,15 @@
 
         <script language="JavaScript" src="/js/jquery.mockjax.js" type="text/JavaScript"></script>
         <script language="JavaScript" src="/js/jquery.validate.js" type="text/JavaScript"></script>
-        <script language="JavaScript" src="/js/jquery.maskedinput.js" type="text/JavaScript"></script>        
+        <script language="JavaScript" src="/js/jquery.maskedinput.js" type="text/JavaScript"></script>
 
+        <script language="JavaScript" src="/js/site.js" type="text/JavaScript"></script>
 
     {% block stylesheets %}{% endblock %}
 {% block javascripts %}{% endblock %}
 
-<script>
-    $(document).ready(function () {
-
-        $("#registerForm").validate();
-
-        $("#dialog_contakt").dialog({
-            autoOpen: false,
-            width: 400,
-            buttons: {
-                "Відправити": function () {
-                    if ($("#registerForm").valid()) {
-
-                        $("#dialog_contakt").dialog("close");
-                        $.ajax({
-                            method: "GET",
-                            url: "/sendemale",
-                            data: {call_name: $("#call_name").val(),
-                                call_mob: $("#call_mob").val(),
-                                call_time_b: $("#call_time_b").val(),
-                                call_time_e: $("#call_time_e").val()}
-                        })
-                                .done(function (msg) {
-                                    var data = eval('(' + msg + ')');
-                                    if (data.Result) {
-                                        $("#dialog_contakt_ok").dialog();
-
-                                        //alert(data.Result);     
-                                    }
-                                });
-                    }
-                }
-            }
-        });
-
-        $(".contact_as").click(function () {
-            $("#dialog_contakt").dialog("open");
-            return false;
-        });
-
-        $("#call_mob").mask("(999) 999-9999");
-        $("#call_time_b").mask("99:99");
-        $("#call_time_e").mask("99:99");
-
-        $("#container").height($(document).height());
-
-    });
-</script>   
-
 </head>
 <body class="homepage">
-
-    <!-- ui-dialog contakt -->
-    <div id="dialog_contakt" title="ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК" style="display: none">  
-        <form onsubmit="return false" id="registerForm">
-            <div class="float-left text-left wight_mesage">
-                <div class="p-2">Ваше ім'я:</div>
-                <input id="call_name" maxlength="30" name="call_name" class="call-input form-control" value="" type="text" /><br/>
-
-                <div class="p-2">Телефон:</div>
-                <input id="call_mob" maxlength="14" name="call_mob" class="call-input required form-control" value="" type="text" data-msg="Поле Телефон обов'язкове." /><br/>
-
-                <div class="p-2">Зручний час:</div>
-
-                <div class="form-group row d-flex justify-content-center">
-
-                    <input id="call_time_b" maxlength="5" name="call_time_b" class="call-smoll-input form-control" value="" placeholder="9:00" type="text" />
-
-                    <div class="d-flex align-items-center justify-content-center" style="width:30px;"> - </div>  
-
-                    <input id="call_time_e" maxlength="5" name="call_time_e" class="call-smoll-input form-control" value="" placeholder="20:00" type="text" />
-
-                </div>
-            </div>
-        </form>
-    </div>    
-    <div id="dialog_contakt_ok" title="Повідомлення відправлено" style="display: none">
-        <p>Повідомлення відправлено !<br/>
-            Cкоро ми вам зателефонуємо !
-        </p>
-    </div>    
 
     <div>
         <div></div>
@@ -194,9 +117,9 @@
         
         <section id="boody-container">
             <div class="wrapper wight_background copyright_line">
-            {% block body %}{% endblock %}
-        </div>
-    </section>
+                {% block body %}{% endblock %}
+            </div>
+        </section>
 
 
     <section id="boody-container">          
@@ -214,6 +137,58 @@
     </section>
 
 </div>
+
+
+    <!-- ui-dialog contakt -->
+    <div id="dialog_contakt" title="ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК" style="display: none">
+        <form onsubmit="return false" id="registerForm">
+            <div class="float-left text-left wight_mesage">
+                <div class="p-2">Ваше ім'я:</div>
+                <input id="call_name" maxlength="30" name="call_name" class="call-input form-control" value="" type="text" /><br/>
+
+                <div class="p-2">Телефон:</div>
+                <input id="call_mob" maxlength="14" name="call_mob" class="call-input required form-control" value="" type="text" data-msg="Поле Телефон обов'язкове." /><br/>
+
+                <div class="p-2">Зручний час:</div>
+
+                <div class="form-group row d-flex justify-content-center">
+
+                    <input id="call_time_b" maxlength="5" name="call_time_b" class="call-smoll-input form-control" value="" placeholder="9:00" type="text" />
+
+                    <div class="d-flex align-items-center justify-content-center" style="width:30px;"> - </div>
+
+                    <input id="call_time_e" maxlength="5" name="call_time_e" class="call-smoll-input form-control" value="" placeholder="20:00" type="text" />
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div id="dialog_contakt_ok" title="Повідомлення відправлено" style="display: none">
+        <p>Повідомлення відправлено !<br/>
+            Cкоро ми вам зателефонуємо !
+        </p>
+    </div>
+
+    <!--delete dialog-->
+    <div class="modal" tabindex="-1" role="dialog" id="delete-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h6 class="modal-title font-modal red">Видалити ?</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body font-modal">
+                    <p>Ви дійсно хочете видалити <span class="delete-modal-info-show"></span> ?</p>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-outline-danger" href="#" id="save-delete-modal">Видалити</a>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>

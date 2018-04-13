@@ -9,6 +9,15 @@
     margin-bottom: 15px;
 }
 
+.delete-modal-info-show{
+    color: blue;
+}
+
+.font-modal{
+    font-size: 20px;
+    line-height: 1.2em;
+}
+
 .admin-txt-font, .admin-txt-font2{
     font-size: 20px;
     margin-bottom: 15px;
@@ -64,6 +73,10 @@
 
 .bloo{
     color: #00f;
+}
+
+.red{
+    color: red;
 }
 
 .test{

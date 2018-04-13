@@ -16,7 +16,7 @@ class ModelMenuType extends AbstractType
     {
         $builder->add('name',TextType::class,array(
                 'attr'=>array(
-                    'class'=> 'admin-input'
+                    'class'=> 'admin-input delete-info'
                 ),
                 'label' => 'Імя: '
             ));

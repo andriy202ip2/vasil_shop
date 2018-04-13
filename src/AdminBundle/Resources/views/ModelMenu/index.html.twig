@@ -3,6 +3,7 @@
 {% block title %}Рубрика 1{% endblock %}
 {% block body %}
 
+
     <div class="text-center">    
 
         <h1>Рубрика 1</h1>
@@ -17,7 +18,7 @@
             {{ knp_pagination_render(modelMenus) }}
         </div><br/><br/>
 
-        <table align="center" class="admin-table1 table table-bordered table-hover h6">
+        <table align="center" class="admin-table1 table table-bordered table-hover h6 data-modal">
             <thead>
                 <tr>
                     <th>{{ knp_pagination_sortable(modelMenus, 'Імя', 'a.name') }}</th>
@@ -28,13 +29,12 @@
             <tbody>
                 {% for modelMenu in modelMenus %}
                     <tr>
-                        <td><a href="{{ path('modelmenu_show', { 'id': modelMenu.id }) }}">{{ modelMenu.name }}</a></td>
+                        <td class="delete-modal-info"><a href="{{ path('modelmenu_show', { 'id': modelMenu.id }) }}"><span>{{ modelMenu.name }}</span></a></td>
                         <td>{{ modelMenu.id }}</td>
                         <td class="admin-padding">
-
                             <a href="{{ path('modelmenu_show', { 'id': modelMenu.id }) }}" class="btn btn-outline-primary btn-sm">Показати</a>
                             <a href="{{ path('modelmenu_edit', { 'id': modelMenu.id }) }}" class="btn btn-outline-primary btn-sm">Редагувати</a>
-                            <a class="btn btn-outline-danger btn-sm" href="{{ path('modelmenu_delete', {'id': modelMenu.id}) }}">Видалити</a>
+                            <a class="btn btn-outline-danger btn-sm is-delete" href="{{ path('modelmenu_delete', {'id': modelMenu.id}) }}">Видалити</a>
 
                         </td>
                     </tr>
