@@ -41,7 +41,7 @@ class DataMenuType extends AbstractType {
                 ))
                 ->add('name', TextType::class, array(
                     'attr' => array(
-                        'class' => 'admin-input'
+                        'class' => 'admin-input delete-info'
                     ),
                     'label' => 'Назва Рубрики 3: '
         ));

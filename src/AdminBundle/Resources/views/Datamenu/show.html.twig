@@ -19,7 +19,7 @@
                 </tr>
                 <tr>
                     <th class="table-success bloo">Рубрика 3 назва</th>
-                    <td>{{ dataMenu.name }}</td>
+                    <td class="delete-modal-info bloo">{{ dataMenu.name }}</td>
                 </tr>
                 <tr>
                     <th class="table-success">Id</th>
@@ -31,9 +31,7 @@
         <br/><a href="{{ path('datamenu_index') }}"><button class="btn btn-outline-primary">Вернутись назад</button></a><br/><br/>
         <a href="{{ path('datamenu_edit', { 'id': dataMenu.id }) }}"><button class="btn btn-outline-primary">Редагувати</button></a><br/><br/>
 
-        {{ form_start(delete_form) }}
-        <button class="btn btn-outline-danger">Видалити</button>
-        {{ form_end(delete_form) }}
+        <a href="{{ path('datamenu_delete', { 'id': dataMenu.id }) }}" class="btn btn-outline-danger is-delete">Видалити</a>
 
         <br/><br/><br/>
     </div>

@@ -60,13 +60,13 @@
                             {{ dataMenu.auto.name }}
                         </td>
                         <!--<td>{{ dataMenu.auto.name }}</td>-->
-                        <td>{{ dataMenu.name }}</td>
+                        <td class="delete-modal-info">{{ dataMenu.name }}</td>
                         <td>{{ dataMenu.id }}</td>
                         <td class="admin-padding">
 
                             <a href="{{ path('datamenu_show', { 'id': dataMenu.id }) }}" class="btn btn-outline-primary btn-sm">Показати</a>
                             <a href="{{ path('datamenu_edit', { 'id': dataMenu.id }) }}" class="btn btn-outline-primary btn-sm">Редагувати</a>
-                            <a class="btn btn-outline-danger btn-sm" href="{{ path('datamenu_delete', {'id': dataMenu.id}) }}">Видалити</a><br/><br/>
+                            <a class="btn btn-outline-danger btn-sm is-delete" href="{{ path('datamenu_delete', {'id': dataMenu.id}) }}">Видалити</a><br/><br/>
 
                         </td>
                     </tr>

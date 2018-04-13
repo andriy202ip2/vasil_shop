@@ -102,11 +102,11 @@ class DataMenuController extends Controller {
      *
      */
     public function showAction(DataMenu $dataMenu) {
-        $deleteForm = $this->createDeleteForm($dataMenu);
+        //$deleteForm = $this->createDeleteForm($dataMenu);
 
         return $this->render('AdminBundle:Datamenu:show.html.twig', array(
                     'dataMenu' => $dataMenu,
-                    'delete_form' => $deleteForm->createView(),
+                    //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -119,7 +119,7 @@ class DataMenuController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $no_submit = $request->request->getInt('no_submit', 0);
         
-        $deleteForm = $this->createDeleteForm($dataMenu);
+        //$deleteForm = $this->createDeleteForm($dataMenu);
         $editForm = $this->createForm('AdminBundle\Form\DataMenuType', $dataMenu, array('em' => $em, 'no_submit' => $no_submit));
         $editForm->handleRequest($request);
 
@@ -132,7 +132,7 @@ class DataMenuController extends Controller {
         return $this->render('AdminBundle:Datamenu:edit.html.twig', array(
                     'dataMenu' => $dataMenu,
                     'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+                    //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -168,12 +168,13 @@ class DataMenuController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
+    /*
     private function createDeleteForm(DataMenu $dataMenu) {
         return $this->createFormBuilder()
                         ->setAction($this->generateUrl('datamenu_delete', array('id' => $dataMenu->getId())))
                         ->setMethod('DELETE')
                         ->getForm()
         ;
-    }
+    }*/
 
 }

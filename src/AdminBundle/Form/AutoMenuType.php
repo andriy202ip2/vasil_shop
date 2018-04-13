@@ -16,7 +16,7 @@ class AutoMenuType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder->add('name',TextType::class,array(
                 'attr'=>array(
-                    'class'=> 'admin-input'
+                    'class'=> 'admin-input delete-info'
                 ),
                 'label' => 'Імя: '
             ))
