@@ -50,6 +50,16 @@ class DataMenuController extends Controller {
             }
         }
 
+        $serch = $request->query->get("serch", "");
+        $serch = strip_tags($serch);
+        $serch = strtr($serch, array('<' => " ", '>' => " "));
+        $IsSerch = strlen($serch) > 1;
+        if ($IsSerch) {
+
+            $dql = $dql->andWhere('a.name LIKE :serch')
+                ->setParameter('serch', '%' . $serch . '%');
+        }
+
         $query = $dql->getQuery();
 
         $paginator = $this->get('knp_paginator');
@@ -64,6 +74,7 @@ class DataMenuController extends Controller {
                     'model_id' => $model_id,
                     'autoMenu' => $autoMenu,
                     'auto_id' => $auto_id,
+                    'serch' => $serch,
         ));
     }
 
