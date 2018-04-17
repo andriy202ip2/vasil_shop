@@ -28,14 +28,22 @@ class AutoMenuController extends Controller {
         $modelMenus = $em->getRepository('ShopMenuBundle:ModelMenu')
                 ->findAllOrderedByName();
 
-
-
         $em = $this->getDoctrine()->getManager();
         //$autoMenus = $em->getRepository('ShopMenuBundle:AutoMenu')->findAll();
 
         $dql = $em->getRepository('ShopMenuBundle:AutoMenu')->createQueryBuilder('a');
         if ($model_id > 0) {
             $dql = $dql->where('a.modelMenuId = :mid')->setParameter('mid', $model_id);
+        }
+
+        $serch = $request->query->get("serch", "");
+        $serch = strip_tags($serch);
+        $serch = strtr($serch, array('<' => " ", '>' => " "));
+        $IsSerch = strlen($serch) > 1;
+        if ($IsSerch) {
+
+            $dql = $dql->andWhere('a.name LIKE :serch')
+                ->setParameter('serch', '%' . $serch . '%');
         }
 
         $query = $dql->getQuery();
@@ -51,6 +59,7 @@ class AutoMenuController extends Controller {
                     'autoMenus' => $autoMenus,
                     'modelMenus' => $modelMenus,
                     'model_id' => $model_id,
+                    'serch' => $serch,
         ));
     }
 

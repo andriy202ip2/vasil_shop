@@ -7,14 +7,17 @@
 
         <h1>Рубрика 1</h1>
 
-        <div class="admin-sherch d-flex justify-content-center">
-            <form class="form-inline">
-                <div class="form-group mx-sm-3 mb-2">
-                    <input type="text" class="form-control admin-input-sherch" id="item-serch" name="serch" placeholder="Пошук">
+        <form id="item-serch-form">
+            <div class="admin-sherch d-flex justify-content-center">
+                <div class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input type="text" class="form-control admin-input-sherch" id="item-serch" name="serch"
+                               value="{{ serch }}" placeholder="Пошук">
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mb-2">Пошук</button>
                 </div>
-                <button type="submit" class="btn btn-outline-primary mb-2">Пошук</button>
-            </form>
-        </div>
+            </div>
+        </form>
 
         <a href="{{ path('modelmenu_new') }}" class="btn btn-outline-primary">Створити нову Рубрику 1</a><br/><br/>
 

@@ -8,16 +8,27 @@
         <h1><span class="admin-sabrubric-color">Рубрика 1 &gt;</span> Рубрика 2</h1>
 
         <form id="form_item" method="GET">
-                <div class="admin-txt-font"> Пошук по Рубриці 1: &nbsp </div>
-                <select name="mid" id="mid" class="cat form-control admin-input">
-                    <option value="0" {{ model_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
-                    {% for modelMenu in modelMenus %}
-                        <option value="{{ modelMenu.id }}" {{ model_id == modelMenu.id  ? 'selected=""' : '' }}>
-                            {{ modelMenu.name }}
-                        </option>
-                    {% endfor %}
-                </select>
+            <div class="admin-sherch d-flex justify-content-center">
+                <div class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input type="text" class="form-control admin-input-sherch" id="item-serch" name="serch"
+                               value="{{ serch }}" placeholder="Пошук">
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mb-2">Пошук</button>
+                </div>
+            </div>
+        <!--</form>-->
 
+        <!--<form id="form_item" method="GET">-->
+            <div class="admin-txt-font"> Пошук по Рубриці 1: &nbsp</div>
+            <select name="mid" id="mid" class="cat form-control admin-input">
+                <option value="0" {{ model_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
+                {% for modelMenu in modelMenus %}
+                    <option value="{{ modelMenu.id }}" {{ model_id == modelMenu.id  ? 'selected=""' : '' }}>
+                        {{ modelMenu.name }}
+                    </option>
+                {% endfor %}
+            </select>
         </form>
 
         <br/><a href="{{ path('automenu_new') }}" class="btn btn-outline-primary">Створити нову Рубрику 2</a><br/><br/>
@@ -46,15 +57,18 @@
             {% for autoMenu in autoMenus %}
                 <tr>
                     <td>
-                        <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}">{{ autoMenu.model.name }}</a>
+                        {{ autoMenu.model.name }}
                     </td>
-                    <td class="delete-modal-info">{{ autoMenu.name }}</td>
+                    <td class="delete-modal-info bloo">{{ autoMenu.name }}</td>
                     <td>{{ autoMenu.id }}</td>
                     <td class="admin-padding">
 
-                        <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}" class="btn btn-outline-primary btn-sm">Показати</a>
-                        <a href="{{ path('automenu_edit', { 'id': autoMenu.id }) }}" class="btn btn-outline-primary btn-sm">Редагувати</a>
-                        <a class="btn btn-outline-danger btn-sm is-delete" href="{{ path('automenu_delete', {'id': autoMenu.id}) }}">Видалити</a>
+                        <a href="{{ path('automenu_show', { 'id': autoMenu.id }) }}"
+                           class="btn btn-outline-primary btn-sm">Показати</a>
+                        <a href="{{ path('automenu_edit', { 'id': autoMenu.id }) }}"
+                           class="btn btn-outline-primary btn-sm">Редагувати</a>
+                        <a class="btn btn-outline-danger btn-sm is-delete"
+                           href="{{ path('automenu_delete', {'id': autoMenu.id}) }}">Видалити</a>
 
                     </td>
                 </tr>
@@ -67,7 +81,8 @@
             {{ knp_pagination_render(autoMenus) }}
         </div>
 
-        <br/><a href="{{ path('automenu_new') }}" class="btn btn-outline-primary">Створити нову Рубрику 2</a><br/><br/><br/>
+        <br/><a href="{{ path('automenu_new') }}" class="btn btn-outline-primary">Створити нову Рубрику
+            2</a><br/><br/><br/>
 
     </div>
 

@@ -1,5 +1,17 @@
 $(document).ready(function () {
 
+//admin serch
+    //$( "#item-serch-form" ).submit(function( event ) {
+        //event.preventDefault();
+
+        //alert($(this).serialize());
+        //console.log(  );
+        //$(this).attr('action', "?tt=rr").submit();
+
+        //
+    //});
+//admin serch end
+
 //delete dialog
     $('.is-delete').click(function () {
         $('#delete-modal').modal('show');
