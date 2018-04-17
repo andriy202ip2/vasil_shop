@@ -17,11 +17,23 @@ class ModelMenuController extends Controller {
      *
      */
     public function indexAction(Request $request) {
+
         $em = $this->getDoctrine()->getManager();
         //$modelMenus = $em->getRepository('ShopMenuBundle:ModelMenu')->findAll();
 
         $dql = $em->getRepository('ShopMenuBundle:ModelMenu')->createQueryBuilder('a');
-        $query = $em->createQuery($dql);
+
+
+        $serch = $request->query->get("serch", "");
+        $IsSerch = strlen($serch) > 1;
+        if ($IsSerch) {
+
+            $dql = $dql->where('a.name LIKE :serch')
+                ->setParameter('serch', '%' . $serch . '%');
+        }
+
+        $query = $dql->getQuery();
+        //$query = $em->createQuery($dql);
 
         $paginator = $this->get('knp_paginator');
         $modelMenus = $paginator->paginate(

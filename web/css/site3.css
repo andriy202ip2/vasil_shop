@@ -1,4 +1,12 @@
 
+.admin-sherch{
+    margin-bottom: 15px;
+}
+
+.admin-input-sherch{
+    min-width: 500px;
+}
+
 .admin-sabrubric-color {
     color: #000;
     font-size: 14px;
