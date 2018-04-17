@@ -4,12 +4,19 @@
 
     <div class="text-center">
         <h1>Запчастини</h1>
-
-            <form id="form_serch" method="GET">
-                <h3>Код GH пошук: <input type="text" name="serch" id="datepicker" class="cat" /> <samp class="ui-icon ui-icon-search" style="cursor:pointer;" id="serch_btn"></samp></h3>
-            </form>            
         
-            <form id="form_item" method="GET">
+        <form id="form_item" method="GET">
+            <div class="admin-sherch d-flex justify-content-center">
+                <div class="form-inline">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input type="text" class="form-control admin-input-sherch" id="item-serch" name="serch"
+                               value="{{ serch }}" placeholder="Пошук">
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mb-2">Пошук</button>
+                </div>
+            </div>
+
+            <form id="form_item" method="GET">#}
                 <select name="mid" id="mid" class="cat">
                     <option value="0" {{ model_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
                     {% for modelMenu in modelMenus %}
@@ -39,24 +46,6 @@
                 <br>
 
                 <br>
-
-                <table border="0" align="center" style="text-align:center">
-                    <tbody>
-                        <tr><td><img style="cursor:pointer;" src="/img/front_on.png" id="si1"></td>
-                            <td><img style="cursor:pointer; border-left: solid" src="/img/back_on.png" id="si2"></td>
-                            <td width="30"></td>
-                            <td><img align="left" src="/img/shock_on.png"></td>
-                        </tr>
-
-                        <tr><td style="font-size:11px">
-                                передня  <input type="checkbox" name="s1" id="s1" value="1" {{ s1  ? 'checked=""' : '' }}> 
-                            </td><td style="font-size:11px">
-                                задня  <input type="checkbox" name="s2" id="s2" value="2" {{ s2  ? 'checked=""' : '' }}>
-                            </td><td></td>
-                            <td>Амортизатор </td>
-                        </tr>
-                    </tbody>
-                </table>
 
             </form>
 
@@ -201,19 +190,10 @@
                 $("#form_item").submit();
             });
 
-            $("#did, #s1, #s2").change(function () {               
+            $("#did").change(function () {
                 $("#form_item").submit();
             });
 
-            $("#si1").click(function () {
-                $('#s1').prop('checked', !$('#s1').prop('checked'));
-                $("#form_item").submit();
-            });
-
-            $("#si2").click(function () {
-                $('#s2').prop('checked', !$('#s2').prop('checked'));
-                $("#form_item").submit();
-            });
 
             $("#dialog").dialog({
                 autoOpen: false,

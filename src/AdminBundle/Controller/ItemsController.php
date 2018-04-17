@@ -33,18 +33,6 @@ class ItemsController extends Controller {
             $data_id = 0;
         }
 
-        $s1 = $request->query->getInt('s1', 0);
-        $s1 = $s1 >= 1 ? 1 : 0;
-
-        $s2 = $request->query->getInt('s2', 0);
-        $s2 = $s2 >= 1 ? 2 : 0;
-
-        $side = ($s1 + $s2) % 3;
-        if (!$side) {
-            $s1 = 1;
-            $s2 = 2;
-        }
-
         $em = $this->getDoctrine()->getManager();
         $modelMenus = $em->getRepository('ShopMenuBundle:ModelMenu')
                 ->findAllOrderedByName();
@@ -63,21 +51,6 @@ class ItemsController extends Controller {
                     ->findByIdOrderedByName($model_id, $auto_id);
         }
 
-
-        $serch = $request->query->get("serch", "");
-        $IsSerch = strlen($serch) > 1;
-        if ($IsSerch) {
-
-            $em = $this->getDoctrine()->getManager();
-            $dql = $em->getRepository('ShopMenuBundle:Items')->createQueryBuilder('i');
-
-            $dql = $dql->where('i.itemId LIKE :serch')
-                    ->setParameter('serch', '%' . $serch . '%');
-
-        } else {
-
-
-
             $em = $this->getDoctrine()->getManager();
 
             //$items = $em->getRepository('ShopMenuBundle:Items')->findAll();
@@ -95,11 +68,16 @@ class ItemsController extends Controller {
                 }
             }
 
-            if ($side) {
-                $dql = $dql->andWhere('a.sideId = :side')->setParameter('side', $side);
-            }
+        $serch = $request->query->get("serch", "");
+        $serch = strip_tags($serch);
+        $serch = strtr($serch, array('<' => " ", '>' => " "));
+        $IsSerch = strlen($serch) > 1;
+        if ($IsSerch) {
+
+            $dql = $dql->andWhere('a.name LIKE :serch')
+                ->setParameter('serch', '%' . $serch . '%');
         }
-        
+
         $query = $dql->getQuery();
 
         $paginator = $this->get('knp_paginator');
@@ -117,8 +95,7 @@ class ItemsController extends Controller {
                     'auto_id' => $auto_id,
                     'dataMenu' => $dataMenu,
                     'data_id' => $data_id,
-                    's1' => $s1,
-                    's2' => $s2,
+                    'serch' => $serch,
         ));
     }
 
