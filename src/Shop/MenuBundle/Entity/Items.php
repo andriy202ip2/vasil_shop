@@ -86,7 +86,7 @@ class Items {
      * )
      */
     private $img;
-    
+
     /**
      * @var integer
      *

@@ -103,10 +103,13 @@ knp_paginator:
         filtration: '@KnpPaginator/Pagination/filtration.html.twig'  # filters template
 
 tbbc_money:
-    currencies: ["UAH", "PLN"]
-    reference_currency: "PLN"
+    currencies: ["UAH", "USD", "EUR", "PLN"]
+    reference_currency: "UAH"
     decimals: 2
+    storage: doctrine
+    #ratio_provider: tbbc_money.ratio_provider.yahoo_finance
     ratio_provider: tbbc_money.ratio_provider.google
+
 
 assetic:
     debug:          '%kernel.debug%'
