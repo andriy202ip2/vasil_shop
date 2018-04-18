@@ -18,11 +18,9 @@
         
         <br/> <a href="{{ path('items_index') }}"><button class="ui-button ui-corner-all ui-widget">Вернутись назад</button></a><br/><br/>
 
-        {{ form_start(delete_form) }}
-        <button class="ui-button ui-corner-all ui-widget">Видалити</button>
-        {{ form_end(delete_form) }}
+        <a class="btn btn-outline-danger is-delete"
+           href="{{ path('items_delete', {'id': item.id}) }}">Видалити</a><br/><br/><br/>
 
-        <br/><br/>
     </div>
 
 {% endblock %}

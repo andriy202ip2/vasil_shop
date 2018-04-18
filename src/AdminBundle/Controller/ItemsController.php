@@ -137,11 +137,11 @@ class ItemsController extends Controller {
      *
      */
     public function showAction(Items $item) {
-        $deleteForm = $this->createDeleteForm($item);
+        //$deleteForm = $this->createDeleteForm($item);
 
         return $this->render('AdminBundle:Items:show.html.twig', array(
                     'Item' => $item,
-                    'delete_form' => $deleteForm->createView(),
+                    //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -156,7 +156,7 @@ class ItemsController extends Controller {
 
         $no_submit = $request->request->getInt('no_submit', 0);
 
-        $deleteForm = $this->createDeleteForm($item);
+        //$deleteForm = $this->createDeleteForm($item);
         $editForm = $this->createForm('AdminBundle\Form\ItemsType', $item, array('em' => $em, 'no_submit' => $no_submit));
         $editForm->handleRequest($request);
 
@@ -175,7 +175,7 @@ class ItemsController extends Controller {
         return $this->render('AdminBundle:Items:edit.html.twig', array(
                     'item' => $item,
                     'edit_form' => $editForm->createView(),
-                    'delete_form' => $deleteForm->createView(),
+                    //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -184,17 +184,17 @@ class ItemsController extends Controller {
      *
      */
     public function deleteAction(Request $request, Items $item) {
-        $form = $this->createDeleteForm($item);
-        $form->handleRequest($request);
+        //$form = $this->createDeleteForm($item);
+        //$form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        //if ($form->isSubmitted() && $form->isValid()) {
 
             $item->removeImg($item->getImg(), $this->getParameter('img_directory'));
 
             $em = $this->getDoctrine()->getManager();
             $em->remove($item);
             $em->flush();
-        }
+        //}
 
         return $this->redirectToRoute('items_index');
     }
@@ -206,6 +206,7 @@ class ItemsController extends Controller {
      *
      * @return \Symfony\Component\Form\Form The form
      */
+    /*
     private function createDeleteForm(Items $item) {
 
         return $this->createFormBuilder()
@@ -213,6 +214,6 @@ class ItemsController extends Controller {
                         ->setMethod('DELETE')
                         ->getForm()
         ;
-    }
+    }*/
 
 }

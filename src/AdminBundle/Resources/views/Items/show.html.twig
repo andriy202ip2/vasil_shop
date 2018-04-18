@@ -87,9 +87,7 @@
                         <br/><a href="{{ path('items_index') }}"><button class="ui-button ui-corner-all ui-widget">Вернутись назад</button></a><br/><br/>
                         <a href="{{ path('items_edit', { 'id': Item.id }) }}"><button class="ui-button ui-corner-all ui-widget">Редагувати</button></a><br/><br/>
 
-                        {{ form_start(delete_form) }}
-                        <button class="ui-button ui-corner-all ui-widget">Видалити</button>
-                        {{ form_end(delete_form) }}
+
 
                     </td>
                 </tr>
@@ -115,17 +113,8 @@
             </tbody>
         </table>
 
-        <!-- ui-dialog -->
-        <div id="dialog" title="Dialog Title">            
-            <table style="width:100%">
-                <tr>
-                    <th><div id="dialog_data" style="width: 650px">dialog data</div></th>
-                    <th><div id="dialog_img" style="width: 500px">dialog img</div></th>
-                </tr>
-            </table> 
-        </div>
-
-        <br/><br/>
+        <a class="btn btn-outline-danger is-delete"
+           href="{{ path('items_delete', {'id': Item.id}) }}">Видалити</a><br/><br/><br/>
 
     </div>         
 
@@ -134,50 +123,6 @@
 {% block javascripts %}
     <script>
         $(document).ready(function () {
-
-            $("#dialog").dialog({
-                autoOpen: false,
-                width: 1200,
-                buttons: []
-            });
-
-            $(".item_dialog").each(function () {
-                $(this).click(function () {
-                    var id = $(this).attr('val');
-
-                    var html = $("." + id).html();
-                    var html2 = $("." + id + "i").html();
-                    var html3 = $("." + id + "t").html();
-
-                    $("#dialog_data").html(html);
-                    $("#dialog_img").html(html2);
-
-                    $(".ui-dialog-title").html(html3);
-
-                    $("#dialog").dialog("open");
-
-                    return false;
-                });
-            });
-
-            $(".item_element").each(function () {
-
-                var obj = $(this);
-
-                obj.find(".item_on").click(function () {
-                    $(this).css("display", "none");
-                    obj.find(".item_off").css("display", "block");
-                    obj.find(".item_info").css("display", "block");
-
-                });
-
-                obj.find(".item_off").click(function () {
-                    $(this).css("display", "none");
-                    obj.find(".item_on").css("display", "block");
-                    obj.find(".item_info").css("display", "none");
-                });
-
-            });
 
         });
     </script>    

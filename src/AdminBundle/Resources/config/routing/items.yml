@@ -21,4 +21,4 @@ items_edit:
 items_delete:
     path:     /{id}/delete
     defaults: { _controller: "AdminBundle:Items:delete" }
-    methods:  DELETE
+    methods:  [GET]
