@@ -59,6 +59,10 @@ class ItemsType extends AbstractType
                 ),
                 'label' => 'Рока: '
             ))
+            ->add('price', MoneyType::class, [
+                'attr' => array(
+                    'class' => 'admin-input'
+                ), 'label' => 'Ціна: '])
             ->add('img', FileType::class, array(
                 'data_class' => null,
                 'required' => false,
@@ -67,11 +71,6 @@ class ItemsType extends AbstractType
                 ),
                 'label' => 'Малюнок: '
             ))
-            ->add('price', MoneyType::class, array(
-                'attr' => array(
-                    'class' => 'admin-input'
-                ),
-                'label' => 'Ціна: '))
             ->add('details', CKEditorType::class, array(
                 'config' => array(
                     'width' => '885px',

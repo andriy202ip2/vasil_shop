@@ -5,6 +5,7 @@ namespace Shop\MenuBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Money\Money;
+use Money\Currency;
 
 /**
  * Items
@@ -33,12 +34,20 @@ class Items {
     private $model;
 
     /**
-     * @var Money
+     * @var integer
      *
-     * @ORM\Column(name="price", type="money", nullable=true)
+     * @ORM\Column(name="price_amount", type="integer")
      */
-    private $price;    
-    
+    private $priceAmount;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="price_currency", type="string", length=64)
+     */
+    private $priceCurrency;
+
+
     /**
      * @var integer
      *
@@ -103,7 +112,13 @@ class Items {
      */
     public function getPrice()
     {
-        return $this->price;
+        if (!$this->priceCurrency) {
+            return null;
+        }
+        if (!$this->priceAmount) {
+            return new Money(0, new Currency($this->priceCurrency));
+        }
+        return new Money($this->priceAmount, new Currency($this->priceCurrency));
     }
 
     /**
@@ -114,9 +129,11 @@ class Items {
      */
     public function setPrice(Money $price)
     {
-        $this->price = $price;
+        $this->priceAmount = $price->getAmount();
+        $this->priceCurrency = $price->getCurrency()->getCode();
+
         return $this;
-    }    
+    }
     
     public function getData() {
         return $this->data;

@@ -1,0 +1,23 @@
+{% block tbbc_money_widget %}
+    {% spaceless %}
+        <div class="money-text">Ціна:</div>
+        <table class="money-teble">
+            <tr>
+
+                {% set i = 0 %}
+                {% for child in form %}
+                    {% set i = i + 1 %}
+                    <th {% if i == 1 %}class="money-teble-price"{% else %}class="money-teble-careci"{% endif %}>{{ form_widget(child) }}</th>
+                {% endfor %}
+
+            </tr>
+        </table>
+    {% endspaceless %}
+{% endblock %}
+{% block tbbc_currency_widget %}
+    {% spaceless %}
+        {% for child in form %}
+            {{ form_widget(child) }}
+        {% endfor %}
+    {% endspaceless %}
+{% endblock %}
