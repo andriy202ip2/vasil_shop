@@ -14,6 +14,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Tbbc\MoneyBundle\Form\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+//use AdminBundle\Form\FilesType;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class ItemsType extends AbstractType
 {
@@ -63,14 +66,20 @@ class ItemsType extends AbstractType
                 'attr' => array(
                     'class' => 'admin-input'
                 ), 'label' => 'Ціна: '])
-            ->add('img', FileType::class, array(
-                'data_class' => null,
+//            ->add('files', CollectionType::class,array(
+//                'entry_type' => FilesType::class,
+//                'allow_add' => true,
+//                'by_reference' => false,
+//            ))
+            ->add('imageFile', VichImageType::class, [
                 'required' => false,
-                'attr' => array(
-                    'class' => 'admin-input'
-                ),
-                'label' => 'Малюнок: '
-            ))
+                'allow_delete' => true,
+                'delete_label' => "Видалити малюнок",
+                'download_uri' => false,
+                'image_uri' => true,
+
+            ])
+            //'imagine_pattern' => 'items_photo_admin',
             ->add('details', CKEditorType::class, array(
                 'config' => array(
                     'width' => '885px',

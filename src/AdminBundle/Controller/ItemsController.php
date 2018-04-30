@@ -115,9 +115,10 @@ class ItemsController extends Controller {
 
         if ($form->isSubmitted() && $form->isValid() && $no_submit >= 2) {
 
+            /*
             if ($item->getImg() != NULL) {
                 $item = $item->saveImg($item, $this->getParameter('img_directory'));
-            }
+            }*/
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($item);
@@ -152,7 +153,7 @@ class ItemsController extends Controller {
     public function editAction(Request $request, Items $item) {
 
         $em = $this->getDoctrine()->getManager();
-        $db_item = $em->getRepository('ShopMenuBundle:Items')->findOneBy(["id" => $item->getId()])->getImg();
+        //$db_item = $em->getRepository('ShopMenuBundle:Items')->findOneBy(["id" => $item->getId()])->getImg();
 
         $no_submit = $request->request->getInt('no_submit', 0);
 
@@ -162,11 +163,12 @@ class ItemsController extends Controller {
 
         if ($editForm->isSubmitted() && $editForm->isValid() && $no_submit >= 2) {
 
+            /*
             if ($item->getImg() == NULL) {
                 $item->setImg($db_item);
             } else {
                 $item = $item->saveImg($item, $this->getParameter('img_directory'), $db_item);
-            }
+            }*/
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('items_edit', array('id' => $item->getId()));

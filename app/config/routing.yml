@@ -9,3 +9,6 @@ shop_user:
 shop_menu:
     resource: "@ShopMenuBundle/Resources/config/routing.yml"
     prefix:   /
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.yaml"

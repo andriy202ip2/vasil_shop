@@ -110,6 +110,47 @@ tbbc_money:
     #ratio_provider: tbbc_money.ratio_provider.yahoo_finance
     ratio_provider: tbbc_money.ratio_provider.google
 
+vich_uploader:
+    db_driver: orm # or mongodb or propel or phpcr
+
+    mappings:
+        product_image:
+            uri_prefix: "/img/upload"
+            upload_destination: '%kernel.root_dir%/../web/img/upload'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+
+            inject_on_load: false
+            delete_on_update: true
+            delete_on_remove: true
+
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path:
+                web_root: "%kernel.root_dir%/../web"
+                cache_prefix: "media/cache"
+
+    filter_sets:
+        cache: ~
+
+        items_photo_admin:
+            quality: 75
+            filters:
+                thumbnail: { size: [300, 300], mode: outbound }
+                background: { size: [308, 308], position: center, color: '#ffffff' }
+                background: { size: [316, 316], position: center, color: '#000000' }
+
+        # the name of the "filter set"
+        my_thumb:
+
+            # adjust the image quality to 75%
+            quality: 75
+
+            # list of transformations to apply (the "filters")
+            filters:
+                thumbnail: { size: [500, 500], mode: outbound }
+                background: { size: [504, 504], position: center, color: '#00ff00' }
 
 assetic:
     debug:          '%kernel.debug%'
