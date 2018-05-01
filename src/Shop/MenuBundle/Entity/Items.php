@@ -21,6 +21,14 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Items {
 
     /**
+     * @var Pictures
+     *
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="item", cascade={"persist"})
+     *
+     */
+    private $pictures;
+
+    /**
      * @ORM\ManyToOne(targetEntity="DataMenu", inversedBy="items")
      * @ORM\JoinColumn(name="data_menu_id", referencedColumnName="id")
      */
@@ -96,36 +104,6 @@ class Items {
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
-     * @Vich\UploadableField(mapping="product_image", fileNameProperty="imageName", size="imageSize")
-     *
-     * @var File
-     */
-    private $imageFile;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @var string
-     */
-    private $imageName;
-
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
-     */
-    private $imageSize;
-
-    /**
-     * @ORM\Column(type="datetime")
-     *
-     * @var \DateTime
-     */
-    private $updatedAt;
 
     /**
      * get Money
@@ -359,49 +337,48 @@ class Items {
         return $this->priceCurrency;
     }
 
+
     /**
-     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
-     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
-     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
-     * must be able to accept an instance of 'File' as the bundle will inject one here
-     * during Doctrine hydration.
-     *
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     * Constructor
      */
-    public function setImageFile(File $image = null)
+    public function __construct()
     {
-        $this->imageFile = $image;
-
-        if (null !== $image) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
-        }
+        $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function getImageFile()
+    /**
+     * Add picture.
+     *
+     * @param \Shop\MenuBundle\Entity\Picture $picture
+     *
+     * @return Items
+     */
+    public function addPicture(\Shop\MenuBundle\Entity\Picture $picture)
     {
-        return $this->imageFile;
+        $this->pictures[] = $picture;
+
+        return $this;
     }
 
-    public function setImageName($imageName)
+    /**
+     * Remove picture.
+     *
+     * @param \Shop\MenuBundle\Entity\Picture $picture
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePicture(\Shop\MenuBundle\Entity\Picture $picture)
     {
-        $this->imageName = $imageName;
+        return $this->pictures->removeElement($picture);
     }
 
-    public function getImageName()
+    /**
+     * Get pictures.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPictures()
     {
-        return $this->imageName;
+        return $this->pictures;
     }
-
-    public function setImageSize($imageSize)
-    {
-        $this->imageSize = $imageSize;
-    }
-
-    public function getImageSize()
-    {
-        return $this->imageSize;
-    }
-
 }

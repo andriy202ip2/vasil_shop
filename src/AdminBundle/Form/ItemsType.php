@@ -66,19 +66,26 @@ class ItemsType extends AbstractType
                 'attr' => array(
                     'class' => 'admin-input'
                 ), 'label' => 'Ціна: '])
-//            ->add('files', CollectionType::class,array(
-//                'entry_type' => FilesType::class,
+            ->add('pictures', FileType::class, [
+                'multiple' => true,
+                'attr'     => [
+                    'accept' => 'image/*',
+                    'multiple' => 'multiple'
+                ]
+            ])
+//            ->add('pictures', CollectionType::class,array(
+//                'entry_type' => PictureType::class,
 //                'allow_add' => true,
+//                'allow_delete' => true,
 //                'by_reference' => false,
 //            ))
-            ->add('imageFile', VichImageType::class, [
-                'required' => false,
-                'allow_delete' => true,
-                'delete_label' => "Видалити малюнок",
-                'download_uri' => false,
-                'image_uri' => true,
-
-            ])
+//            ->add('imageFile', VichImageType::class, [
+//                'required' => false,
+//                'allow_delete' => true,
+//                'delete_label' => "Видалити малюнок",
+//                'download_uri' => false,
+//                'image_uri' => true,
+//            ])
             //'imagine_pattern' => 'items_photo_admin',
             ->add('details', CKEditorType::class, array(
                 'config' => array(
