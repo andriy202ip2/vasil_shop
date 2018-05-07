@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 
 class PictureType extends AbstractType
 {
@@ -21,7 +24,14 @@ class PictureType extends AbstractType
             'download_uri' => false,
             'image_uri' => true,
         ]);
-    }/**
+//            ->add('imageName', TextType::class, array(
+//            'attr' => array(
+//                'class' => 'admin-input delete-info'
+//            ),
+//            'label' => 'Імя: '));
+
+    }
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)

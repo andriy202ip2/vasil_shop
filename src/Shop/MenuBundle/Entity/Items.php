@@ -29,6 +29,12 @@ class Items {
     private $pictures;
 
     /**
+     * @var ArrayCollection
+     *
+     */
+    private $picturesMultiple;
+
+    /**
      * @ORM\ManyToOne(targetEntity="DataMenu", inversedBy="items")
      * @ORM\JoinColumn(name="data_menu_id", referencedColumnName="id")
      */
@@ -344,6 +350,33 @@ class Items {
     public function __construct()
     {
         $this->pictures = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->picturesMultiple = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function setPicturesMultiple($picturesMultiple){
+
+        /*
+        $this->picturesMultiple = new \Doctrine\Common\Collections\ArrayCollection();
+
+
+        foreach($picturesMultiple as $uploadedImg)
+        {
+
+            $picture = new Picture();
+            $picture->setItemId($this->getId());
+            $picture->getImageFile($uploadedImg);
+
+            //var_dump($picture);
+            //$this->addPicture($picture);
+            $this->picturesMultiple->add($picture);
+        }*/
+
+        return $this->picturesMultiple = $picturesMultiple;
+    }
+
+    public function getPicturesMultiple(){
+
+        return $this->picturesMultiple;
     }
 
     /**

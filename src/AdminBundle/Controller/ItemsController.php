@@ -5,6 +5,7 @@ namespace AdminBundle\Controller;
 use Shop\MenuBundle\Entity\Items;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Shop\MenuBundle\Entity\Picture;
 
 /**
  * Item controller.
@@ -163,13 +164,40 @@ class ItemsController extends Controller {
 
         if ($editForm->isSubmitted() && $editForm->isValid() && $no_submit >= 2) {
 
+            $this->getDoctrine()->getManager()->flush();
+
+            $pictures = $item->getPicturesMultiple();
+            $em=$this->getDoctrine()->getManager();
+
+            foreach ($pictures as $img){
+
+                $picture = new Picture();
+                $picture->setItem($item);
+                $picture->setItemId($item->getId());
+                $picture->setImageSize(0);
+                $picture->setImageFile($img);
+
+                $pictureForm = $this->createForm('AdminBundle\Form\PictureType', $picture);
+                $pictureForm->get('imageFile')->setData($img);
+
+
+                //$picture->getImageFile($img);
+
+                //var_dump($picture);
+
+                $em->persist($pictureForm->getData());
+                $em->flush();
+            }
+
+
+
             /*
             if ($item->getImg() == NULL) {
                 $item->setImg($db_item);
             } else {
                 $item = $item->saveImg($item, $this->getParameter('img_directory'), $db_item);
             }*/
-            $this->getDoctrine()->getManager()->flush();
+
 
             return $this->redirectToRoute('items_edit', array('id' => $item->getId()));
         }

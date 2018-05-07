@@ -17,6 +17,9 @@ use Tbbc\MoneyBundle\Form\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 //use AdminBundle\Form\FilesType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Shop\MenuBundle\Entity\Picture;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 class ItemsType extends AbstractType
 {
@@ -66,20 +69,22 @@ class ItemsType extends AbstractType
                 'attr' => array(
                     'class' => 'admin-input'
                 ), 'label' => 'Ціна: '])
-            ->add('pictures', FileType::class, [
+            ->add('picturesMultiple', FileType::class, [
                 'multiple' => true,
+                'required' => false,
                 'attr'     => [
                     'accept' => 'image/*',
                     'multiple' => 'multiple'
                 ]
             ])
-//            ->add('pictures', CollectionType::class,array(
-//                'entry_type' => PictureType::class,
-//                'allow_add' => true,
-//                'allow_delete' => true,
-//                'by_reference' => false,
-//            ))
-//            ->add('imageFile', VichImageType::class, [
+            ->add('pictures', CollectionType::class,
+                array(
+                    'entry_type' => PictureType::class,
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'by_reference' => false,
+                ))
+//            ->add('pictures', VichImageType::class, [
 //                'required' => false,
 //                'allow_delete' => true,
 //                'delete_label' => "Видалити малюнок",
