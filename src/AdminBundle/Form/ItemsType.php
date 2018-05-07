@@ -47,7 +47,7 @@ class ItemsType extends AbstractType
                 'attr' => array(
                     'class' => 'admin-selekt cat mid'
                 ),
-                'label' => 'Модель: '
+                'label' => 'Рубрика 1: '
             ))
             ->add('auto', EntityType::class, array(
                 'class' => 'ShopMenuBundle:AutoMenu',
@@ -55,7 +55,7 @@ class ItemsType extends AbstractType
                 'attr' => array(
                     'class' => 'admin-selekt cat aid'
                 ),
-                'label' => 'Авто: '
+                'label' => 'Рубрика 2: '
             ))
             ->add('data', EntityType::class, array(
                 'class' => 'ShopMenuBundle:DataMenu',
@@ -63,7 +63,7 @@ class ItemsType extends AbstractType
                 'attr' => array(
                     'class' => 'admin-selekt cat'
                 ),
-                'label' => 'Рока: '
+                'label' => 'Рубрика 3: '
             ))
             ->add('price', MoneyType::class, [
                 'attr' => array(
@@ -95,7 +95,7 @@ class ItemsType extends AbstractType
                 'attr' => array(
                     'class' => 'admin-textrea'
                 ),
-                'label' => 'Деталі: ',
+                'label' => 'Опис: ',
                 'label_attr' => array('class' => 'admin-text-lebel')
             ));
 
@@ -144,7 +144,7 @@ class ItemsType extends AbstractType
                 'attr' => array(
                     'class' => 'admin-selekt cat aid'
                 ),
-                'label' => 'Авто: '
+                'label' => 'Рубрика 2: '
             ))->add('data', EntityType::class, array(
                 'class' => 'ShopMenuBundle:DataMenu',
                 'choices' => $datas,
@@ -152,7 +152,7 @@ class ItemsType extends AbstractType
                 'attr' => array(
                     'class' => 'admin-selekt cat'
                 ),
-                'label' => 'Рока: '
+                'label' => 'Рубрика 3: '
             ));
         };
 
