@@ -11,13 +11,15 @@ use Shop\MenuBundle\Entity\Picture;
  * Item controller.
  *
  */
-class ItemsController extends Controller {
+class ItemsController extends Controller
+{
 
     /**
      * Lists all item entities.
      *
      */
-    public function indexAction(Request $request) {
+    public function indexAction(Request $request)
+    {
 
         $model_id = $request->query->getInt('mid', 0);
         if ($model_id < 0) {
@@ -36,38 +38,38 @@ class ItemsController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $modelMenus = $em->getRepository('ShopMenuBundle:ModelMenu')
-                ->findAllOrderedByName();
+            ->findAllOrderedByName();
 
         $autoMenu = null;
         if ($model_id) {
             $em = $this->getDoctrine()->getManager();
             $autoMenu = $em->getRepository('ShopMenuBundle:AutoMenu')
-                    ->findByIdOrderedByName($model_id);
+                ->findByIdOrderedByName($model_id);
         }
 
         $dataMenu = null;
         if ($auto_id) {
             $em = $this->getDoctrine()->getManager();
             $dataMenu = $em->getRepository('ShopMenuBundle:DataMenu')
-                    ->findByIdOrderedByName($model_id, $auto_id);
+                ->findByIdOrderedByName($model_id, $auto_id);
         }
 
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-            //$items = $em->getRepository('ShopMenuBundle:Items')->findAll();
+        //$items = $em->getRepository('ShopMenuBundle:Items')->findAll();
 
-            $dql = $em->getRepository('ShopMenuBundle:Items')->createQueryBuilder('a');
-            if ($model_id > 0) {
-                $dql = $dql->where('a.modelMenuId = :mid')->setParameter('mid', $model_id);
+        $dql = $em->getRepository('ShopMenuBundle:Items')->createQueryBuilder('a');
+        if ($model_id > 0) {
+            $dql = $dql->where('a.modelMenuId = :mid')->setParameter('mid', $model_id);
 
-                if ($auto_id > 0) {
-                    $dql = $dql->andWhere('a.autoMenuId = :aid')->setParameter('aid', $auto_id);
+            if ($auto_id > 0) {
+                $dql = $dql->andWhere('a.autoMenuId = :aid')->setParameter('aid', $auto_id);
 
-                    if ($data_id > 0) {
-                        $dql = $dql->andWhere('a.dataMenuId = :did')->setParameter('did', $data_id);
-                    }
+                if ($data_id > 0) {
+                    $dql = $dql->andWhere('a.dataMenuId = :did')->setParameter('did', $data_id);
                 }
             }
+        }
 
         $serch = $request->query->get("serch", "");
         $serch = strip_tags($serch);
@@ -83,20 +85,21 @@ class ItemsController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $items = $paginator->paginate(
-                $query, /* query NOT result */ $request->query->getInt('page', 1)/* page number */, 10/* limit per page */
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/* page number */, 10/* limit per page */
         );
 
 
         return $this->render('AdminBundle:Items:index.html.twig', array(
-                    'IsSerch' => $IsSerch,
-                    'items' => $items,
-                    'modelMenus' => $modelMenus,
-                    'model_id' => $model_id,
-                    'autoMenu' => $autoMenu,
-                    'auto_id' => $auto_id,
-                    'dataMenu' => $dataMenu,
-                    'data_id' => $data_id,
-                    'serch' => $serch,
+            'IsSerch' => $IsSerch,
+            'items' => $items,
+            'modelMenus' => $modelMenus,
+            'model_id' => $model_id,
+            'autoMenu' => $autoMenu,
+            'auto_id' => $auto_id,
+            'dataMenu' => $dataMenu,
+            'data_id' => $data_id,
+            'serch' => $serch,
         ));
     }
 
@@ -104,7 +107,8 @@ class ItemsController extends Controller {
      * Creates a new item entity.
      *
      */
-    public function newAction(Request $request) {
+    public function newAction(Request $request)
+    {
 
         $em = $this->getDoctrine()->getManager();
         $no_submit = $request->request->getInt('no_submit', 0);
@@ -125,12 +129,31 @@ class ItemsController extends Controller {
             $em->persist($item);
             $em->flush();
 
+            //add myltipl pikture
+            $pictures = $item->getPicturesMultiple();
+//            $em=$this->getDoctrine()->getManager();
+
+            foreach ($pictures as $img) {
+
+                $picture = new Picture();
+                $picture->setItem($item);
+                $picture->setItemId($item->getId());
+                $picture->setImageSize(0);
+                $picture->setImageFile($img);
+
+                $pictureForm = $this->createForm('AdminBundle\Form\PictureType', $picture);
+                $pictureForm->get('imageFile')->setData($img);
+
+                $em->persist($pictureForm->getData());
+                $em->flush();
+            }
+
             return $this->redirectToRoute('items_show', array('id' => $item->getId()));
         }
 
         return $this->render('AdminBundle:Items:new.html.twig', array(
-                    'item' => $item,
-                    'form' => $form->createView(),
+            'item' => $item,
+            'form' => $form->createView(),
         ));
     }
 
@@ -138,12 +161,13 @@ class ItemsController extends Controller {
      * Finds and displays a item entity.
      *
      */
-    public function showAction(Items $item) {
+    public function showAction(Items $item)
+    {
         //$deleteForm = $this->createDeleteForm($item);
 
         return $this->render('AdminBundle:Items:show.html.twig', array(
-                    'Item' => $item,
-                    //'delete_form' => $deleteForm->createView(),
+            'Item' => $item,
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -151,7 +175,8 @@ class ItemsController extends Controller {
      * Displays a form to edit an existing item entity.
      *
      */
-    public function editAction(Request $request, Items $item) {
+    public function editAction(Request $request, Items $item)
+    {
 
         $em = $this->getDoctrine()->getManager();
         //$db_item = $em->getRepository('ShopMenuBundle:Items')->findOneBy(["id" => $item->getId()])->getImg();
@@ -166,10 +191,11 @@ class ItemsController extends Controller {
 
             $this->getDoctrine()->getManager()->flush();
 
+            //add myltipl pikture
             $pictures = $item->getPicturesMultiple();
-            $em=$this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();
 
-            foreach ($pictures as $img){
+            foreach ($pictures as $img) {
 
                 $picture = new Picture();
                 $picture->setItem($item);
@@ -180,32 +206,27 @@ class ItemsController extends Controller {
                 $pictureForm = $this->createForm('AdminBundle\Form\PictureType', $picture);
                 $pictureForm->get('imageFile')->setData($img);
 
-
-                //$picture->getImageFile($img);
-
-                //var_dump($picture);
-
                 $em->persist($pictureForm->getData());
                 $em->flush();
             }
 
-
-
-            /*
-            if ($item->getImg() == NULL) {
-                $item->setImg($db_item);
-            } else {
-                $item = $item->saveImg($item, $this->getParameter('img_directory'), $db_item);
-            }*/
-
+            //delete empti pictures
+            $pic = $item->getPictures();
+            foreach ($pic as $img) {
+                $name = $img->getImageName();
+                if ($name == null) {
+                    $em->remove($img);
+                    $em->flush();
+                }
+            }
 
             return $this->redirectToRoute('items_edit', array('id' => $item->getId()));
         }
 
         return $this->render('AdminBundle:Items:edit.html.twig', array(
-                    'item' => $item,
-                    'edit_form' => $editForm->createView(),
-                    //'delete_form' => $deleteForm->createView(),
+            'item' => $item,
+            'edit_form' => $editForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -213,17 +234,24 @@ class ItemsController extends Controller {
      * Deletes a item entity.
      *
      */
-    public function deleteAction(Request $request, Items $item) {
+    public function deleteAction(Request $request, Items $item)
+    {
         //$form = $this->createDeleteForm($item);
         //$form->handleRequest($request);
 
         //if ($form->isSubmitted() && $form->isValid()) {
 
-            $item->removeImg($item->getImg(), $this->getParameter('img_directory'));
-
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($item);
+        //delete pictures
+        $em = $this->getDoctrine()->getManager();
+        $pic = $item->getPictures();
+        foreach ($pic as $img) {
+            $em->remove($img);
             $em->flush();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($item);
+        $em->flush();
         //}
 
         return $this->redirectToRoute('items_index');

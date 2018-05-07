@@ -74,8 +74,10 @@ class ItemsType extends AbstractType
                 'required' => false,
                 'attr'     => [
                     'accept' => 'image/*',
-                    'multiple' => 'multiple'
-                ]
+                    'multiple' => 'multiple',
+                    'class' => 'admin-pictures-multiple'
+                ],
+                'label' => 'Додати багато малюнків: '
             ])
             ->add('pictures', CollectionType::class,
                 array(
@@ -84,13 +86,6 @@ class ItemsType extends AbstractType
                     'allow_delete' => true,
                     'by_reference' => false,
                 ))
-//            ->add('pictures', VichImageType::class, [
-//                'required' => false,
-//                'allow_delete' => true,
-//                'delete_label' => "Видалити малюнок",
-//                'download_uri' => false,
-//                'image_uri' => true,
-//            ])
             //'imagine_pattern' => 'items_photo_admin',
             ->add('details', CKEditorType::class, array(
                 'config' => array(

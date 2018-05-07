@@ -6,6 +6,14 @@
     width: 300px;
 }
 
+.vich-image{
+    border-top: 2px solid #f0f0f0;
+}
+
+.vich-image input{
+    padding-top: 15px;
+}
+
 .money-teble {
     width: 700px;
     margin-left: auto;
