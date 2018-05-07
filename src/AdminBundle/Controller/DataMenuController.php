@@ -160,8 +160,15 @@ class DataMenuController extends Controller {
             $em = $this->getDoctrine()->getManager();
             
             $Items = $dataMenu->getItems();
-            foreach ($Items as $item){                
-                $item->removeImg($item->getImg(), $this->getParameter('img_directory'));                
+            foreach ($Items as $item){
+
+                //delete img
+                $pic = $item->getPictures();
+                foreach ($pic as $img) {
+                    $em->remove($img);
+                    $em->flush();
+                }
+                //$item->removeImg($item->getImg(), $this->getParameter('img_directory'));
                 $em->remove($item);                
             }
             
