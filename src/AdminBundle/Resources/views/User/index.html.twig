@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Користувачі{% endblock %}
 {% block body %}
 
     <div class="text-center">
 
         <h1>Користувачі</h1>
 
-        <a href="{{ path('user_new') }}">Створити новаго користувача</a><br/><br/>
+        <a href="{{ path('user_new') }}" class="btn btn-outline-primary">Створити новаго користувача</a><br/><br/>
         
-        <table align="center" class="admin-table admin-table-width">
+        <table align="center" class="admin-table table table-bordered table-hover h6">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -29,18 +29,18 @@
                         <td>{{ user.name }}</td>
                         <td>{{ user.surname }}</td>
                         <td>{{ user.roles|join(',') }}</td>
-                        <td>
-                            <br/>
-                            <a href="{{ path('user_show', { 'id': user.id }) }}">Показати</a>
-                            <br/>
-                            <a href="{{ path('user_edit', { 'id': user.id }) }}">Редагувати</a>
-                            <br/><br/>
+                        <td class="admin-padding" style="width: 130px">
+
+                            <a href="{{ path('user_show', { 'id': user.id }) }}" class="btn btn-outline-primary btn-sm">Показати</a>
+                            <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-outline-primary btn-sm">Редагувати</a>
+                            <a href="{{ path('user_delete', { 'id': user.id }) }}" class="btn btn-outline-danger btn-sm is-delete">Видалити</a>
+
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-         <br/><a href="{{ path('user_new') }}">Створити новаго користувача</a><br/><br/>
+         <br/><a href="{{ path('user_new') }}" class="btn btn-outline-primary">Створити новаго користувача</a><br/><br/><br/>
     </div>
 {% endblock %}

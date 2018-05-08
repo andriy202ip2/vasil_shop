@@ -1,34 +1,32 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Заказ перегляд{% endblock %}
 {% block body %}
 
     <div class="text-center">
         <h1>Заказ</h1>
 
-        <table align="center" class="admin-table admin-table-width">
+        <table align="center" class="admin-table table table-bordered table-hover h6">
             <tbody>
                 <tr>
-                    <th style="width: 60px">Id</th>
+                    <th class="table-success">Id</th>
                     <td>{{ oderemale.id }}</td>
                 </tr>
                 <tr>
-                    <th>Заказ</th>
+                    <th class="table-success">Заказ</th>
                     <td>{{ oderemale.oderemale | raw}}</td>
                 </tr>
                 <tr>
-                    <th>Час</th>
+                    <th class="table-success">Час</th>
                     <td>{{ oderemale.data |date("Y-m-d H:i:s")}}</td>
                 </tr>
             </tbody>
         </table>
         
         <br/><br/>
-        <a href="{{ path('oderemale_index') }}"><button class="ui-button ui-corner-all ui-widget">Вернутись назад</button></a>
+        <a href="{{ path('oderemale_index') }}" class="btn btn-outline-primary">Вернутись назад</a>
         <br/><br/>
-        {{ form_start(delete_form) }}
-        <button class="ui-button ui-corner-all ui-widget">Видалити</button>
-        {{ form_end(delete_form) }}
-        <br/><br/>
+        <a href="{{ path('oderemale_delete', { 'id': oderemale.id }) }}" class="btn btn-outline-danger is-delete">Видалити</a>
+        <br/><br/><br/>
     </div>
 
 {% endblock %}

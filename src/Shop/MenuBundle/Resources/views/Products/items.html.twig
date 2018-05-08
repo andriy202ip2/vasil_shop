@@ -21,8 +21,8 @@
                             <a href="#" class="item_dialog" val="item{{ Item.id }}">
                                 <img src="/img/info-small.png" style="border:0"></a>
                         </td>
-                        <td>{{ Item.side | raw}}</td>
-                        <td>{{ Item.fit | raw}}</td>
+                        <td>Item.side</td>
+                        <td>Item.fit</td>
                         <td>
                             {% if Item.price == null %}
                                 Під заказ
@@ -34,14 +34,14 @@
                         </td>
                         <td>
 
-                            <a href="#" class="item_dialog" val="item{{ Item.id }}" title="&lt;img src=&#39;/img/upload/{{ Item.img }}&#39; class=&#39;img_big&#39;&gt;{{ Item.imgData }}">
+                            <a href="#" class="item_dialog" val="item{{ Item.id }}" title="&lt;img src=&#39;/img/upload/&#39; class=&#39;img_big&#39;&gt;">
                                 <img src="/img/camera.png"></a>   
                             <div class="item{{ Item.id }}i" style="display:none;">
-                                <img src="/img/upload/{{ Item.img }}" class="img_big">
-                                {{ Item.imgData | raw}}
+                                <img src="/img/upload/" class="img_big">
+                                Item.imgData
                             </div>
                             <div class="item{{ Item.id }}t" style="display:none;">                                       
-                                {{ Item.imgData | raw}}
+                                Item.imgData
                             </div>
                         </td>
                     </tr>

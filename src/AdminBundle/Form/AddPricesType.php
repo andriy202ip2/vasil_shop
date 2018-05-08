@@ -26,7 +26,7 @@ class AddPricesType extends AbstractType {
                 ))
                 ->add('list', TextareaType::class, array(                    
                     'attr' => array(
-                        'class' => 'admin-textrea'
+                        'class' => 'admin-textrea-prises'
                     ),
                     'label' => 'Дані: ',
                     'label_attr' => array('class' => 'admin-text-lebel')

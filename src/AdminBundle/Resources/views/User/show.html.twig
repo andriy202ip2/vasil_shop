@@ -1,59 +1,57 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Користувач{% endblock %}
 {% block body %}
     
     <div class="text-center"> 
         
     <h1>Користувач</h1>
 
-    <table align="center" class="admin-table">
+    <table align="center" class="admin-table table table-bordered table-hover h6">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th class="table-success" style="width: 200px">Id</th>
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
-                <th>Username</th>
+                <th class="table-success">Username</th>
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
-                <th>Пароль зашифрований</th>
+                <th class="table-success">Пароль зашифрований</th>
                 <td>{{ user.password }}</td>
             </tr>
             <tr>
-                <th>Email</th>
+                <th class="table-success">Email</th>
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
-                <th>Імя</th>
+                <th class="table-success">Імя</th>
                 <td>{{ user.name }}</td>
             </tr>
             <tr>
-                <th>Фамілія</th>
+                <th class="table-success">Фамілія</th>
                 <td>{{ user.surname }}</td>
             </tr>
             <tr>
-                <th>Чи активований</th>
+                <th class="table-success">Чи активований</th>
                 <td>{% if user.isActive %}Так{% else %}Ні{% endif %}</td>
             </tr>
             <tr>
-                <th>Роль</th>
+                <th class="table-success">Роль</th>
                 <td>{{ user.roles|join(',') }}</td>
             </tr>
             <tr>
-                <th>Сіль Паролю</th>
+                <th class="table-success">Сіль Паролю</th>
                 <td>{{ user.salt }}</td>
             </tr>
         </tbody>
     </table>
 
-        <br/><a href="{{ path('user_index') }}"><button class="ui-button ui-corner-all ui-widget">Вернутись назад</button></a><br/><br/>
-        <a href="{{ path('user_edit', { 'id': user.id }) }}"><button class="ui-button ui-corner-all ui-widget">Редагувати</button></a><br/><br/>            
-         
-            {{ form_start(delete_form) }}
-                <button class="ui-button ui-corner-all ui-widget">Видалити</button><br/><br/>
-            {{ form_end(delete_form) }}
+        <br/><a href="{{ path('user_index') }}" class="btn btn-outline-primary">Вернутись назад</a><br/><br/>
+        <a href="{{ path('user_edit', { 'id': user.id }) }}"  class="btn btn-outline-primary">Редагувати</a><br/><br/>
 
-            
+        <a href="{{ path('user_delete', { 'id': user.id }) }}" class="btn btn-outline-danger is-delete">Видалити</a>
+
+        <br/><br/><br/>
     </div>
 {% endblock %}

@@ -1,28 +1,28 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}Список заказів{% endblock %}
 {% block body %}
 
     <div class="text-center">
 
         <h1>Список заказів</h1>
 
-        <a href="{{ path('oderemale_delete_all') }}"><button class="ui-button ui-corner-all ui-widget">Видалити Все</button></a><br/><br/>
+        <a href="{{ path('oderemale_delete_all') }}" class="btn btn-outline-danger is-delete">Видалити Все</a><br/><br/>
         
-        <div class="count">
+        <div class="count h6">
             Всього результатів: {{ oderemales.getTotalItemCount }}
         </div><br/>
 
-        <div class="navigation">
+        <div class="navigation row justify-content-center align-items-center">
             {{ knp_pagination_render(oderemales) }}
         </div><br/>
         
-        <table align="center" class="admin-table admin-table-width">
+        <table align="center" class="admin-table table table-bordered table-hover h6">
             <thead>
                 <tr>
-                    <th>{{ knp_pagination_sortable(oderemales, 'Id', 'a.id') }}</th>
-                    <th>Заказ</th>
-                    <th>{{ knp_pagination_sortable(oderemales, 'Час', 'a.data') }}</th>
-                    <th>Дії</th>
+                    <th class="align-middle">{{ knp_pagination_sortable(oderemales, 'Id', 'a.id') }}</th>
+                    <th class="align-middle">Заказ</th>
+                    <th class="align-middle">{{ knp_pagination_sortable(oderemales, 'Час', 'a.data') }}</th>
+                    <th class="align-middle">Дії</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,21 +31,19 @@
                         <td><a href="{{ path('oderemale_show', { 'id': oderemale.id }) }}">{{ oderemale.id }}</a></td>
                         <td>{{ oderemale.oderemale |striptags |slice(0, 50)}}...</td>
                         <td style="width: 190px;">{{ oderemale.data |date("Y-m-d H:i:s")}}</td>
-                        <td style="width: 120px;">
+                        <td class="admin-padding">
                             
-                            <br/>
-                            <a href="{{ path('oderemale_show', { 'id': oderemale.id }) }}">Показати</a><br/>
-                            <a href="{{ path('oderemale_delete', { 'id': oderemale.id }) }}">Видалити</a>
-                            
-                            <br/><br/>
-                            
+
+                            <a href="{{ path('oderemale_show', { 'id': oderemale.id }) }}" class="btn btn-outline-primary btn-sm">Показати</a><br/>
+                            <a href="{{ path('oderemale_delete', { 'id': oderemale.id }) }}" class="btn btn-outline-danger btn-sm is-delete">Видалити</a>
+
                         </td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
 
-        <br/><div class="navigation">
+        <br/><div class="navigation row justify-content-center align-items-center">
             {{ knp_pagination_render(oderemales) }}
         </div><br/>
             
