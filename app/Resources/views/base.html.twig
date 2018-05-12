@@ -1,133 +1,148 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>{% block title %}автозапчастин!{% endblock %}</title>
+<head>
+    <title>{% block title %}автозапчастин!{% endblock %}</title>
 
-        <meta name="description" content="{% block description %}description!{% endblock %}" />
-        <meta name="keywords" content="{% block keywords %}keywords!{% endblock %}" />
+    <meta name="description" content="{% block description %}description!{% endblock %}"/>
+    <meta name="keywords" content="{% block keywords %}keywords!{% endblock %}"/>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <link rel="icon" type="image/x-icon" href="/img/opel73.ico">
+    <link rel="icon" type="image/x-icon" href="/img/opel73.ico">
 
-        <link href="/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="/css/glyphicons.css" rel="stylesheet" />
-        <!--<link href="/css/bootstrap-theme.min.css" rel="stylesheet" />-->
+    <link href="/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="/css/glyphicons.css" rel="stylesheet"/>
+    <!--<link href="/css/bootstrap-theme.min.css" rel="stylesheet" />-->
 
 
-        <!--<script src="/js/jquery-slim.min.js"></script>-->
-        <script language="JavaScript" src="/js/jquery.min.js" type="text/JavaScript"></script>
-        <script src="/js/popper.min.js"></script>
-        <script src="/js/bootstrap.min.js"></script>
+    <!--<script src="/js/jquery-slim.min.js"></script>-->
+    <script language="JavaScript" src="/js/jquery.min.js" type="text/JavaScript"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
 
-        <link href="/css/jquery-ui.css" rel="stylesheet" />
-        <script language="JavaScript" src="/js/jquery-ui.js" type="text/JavaScript"></script>
+    <link href="/css/jquery-ui.css" rel="stylesheet"/>
+    <script language="JavaScript" src="/js/jquery-ui.js" type="text/JavaScript"></script>
 
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
 
-        <link rel="stylesheet" type="text/css" href="/css/site3.css">
-        <link rel="stylesheet" type="text/css" href="/css/them.css">
+    <link rel="stylesheet" type="text/css" href="/css/site3.css">
+    <link rel="stylesheet" type="text/css" href="/css/them.css">
 
-        <!--<script language="JavaScript" src="/js/qTip.js" type="text/JavaScript"></script>-->
+    <!--<script language="JavaScript" src="/js/qTip.js" type="text/JavaScript"></script>-->
 
-        <script language="JavaScript" src="/js/jquery.mockjax.js" type="text/JavaScript"></script>
-        <script language="JavaScript" src="/js/jquery.validate.js" type="text/JavaScript"></script>
-        <script language="JavaScript" src="/js/jquery.maskedinput.js" type="text/JavaScript"></script>
+    <script language="JavaScript" src="/js/jquery.mockjax.js" type="text/JavaScript"></script>
+    <script language="JavaScript" src="/js/jquery.validate.js" type="text/JavaScript"></script>
+    <script language="JavaScript" src="/js/jquery.maskedinput.js" type="text/JavaScript"></script>
 
-        <script language="JavaScript" src="/js/site.js" type="text/JavaScript"></script>
+    <script language="JavaScript" src="/js/site.js" type="text/JavaScript"></script>
 
-        <script type='text/javascript' src='/js/unitegallery.min.js'></script>
-        <link rel='stylesheet' href='/css/unite-gallery.css' type='text/css' />
-        <script type='text/javascript' src='/themes/default/ug-theme-default.js'></script>
-        <link rel='stylesheet' href='/themes/default/ug-theme-default.css' type='text/css' />
+    <script type='text/javascript' src='/js/unitegallery.min.js'></script>
+    <link rel='stylesheet' href='/css/unite-gallery.css' type='text/css'/>
+    <script type='text/javascript' src='/themes/default/ug-theme-default.js'></script>
+    <link rel='stylesheet' href='/themes/default/ug-theme-default.css' type='text/css'/>
 
-        {% block stylesheets %}{% endblock %}
-{% block javascripts %}{% endblock %}
+    {% block stylesheets %}{% endblock %}
+    {% block javascripts %}{% endblock %}
 
 </head>
 <body class="homepage">
 
-    <div>
-        <div></div>
-        <div></div>
+<div>
+    <div></div>
+    <div></div>
 
-        <div></div>
-        <div></div>
+    <div></div>
+    <div></div>
 
-        <!--heder logo-->
-        <div class="logo_line"> </div>
-        <div class="wrapper clr rel logo_txt">
+    <!--heder logo-->
+    <div class="logo_line"></div>
+    <div class="wrapper clr rel logo_txt">
 
-            <div class="float-right">
-                <div class="telefone">
-                    <center>
-                        <div class="font-x2 contact_as">
-                            {{ render(url('shop_mobil')) }}
-                        </div>
-                        <span class="badge badge-pill badge-primary contact_as font-x" style="cursor:pointer;">ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК</span>
-                    </center>                    
-                </div>
-            </div>
-            <h1>
-                <a href="/" class="icon icon_logo">На главную {{ app.request.getSchemeAndHttpHost() }} объявления</a>
-            </h1>
-        </div>
-        <!--heder logo end-->
-
-        <div class="meny_position_a">
-            <div class="container meny_position fix-wight">
-                <div class="row justify-content-center pading_div fix-wight">
-                    <div>
-                        <a href="{{ path('shop_about') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Про нас</a>    
-                        <a href="{{ path('products_index') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Продукція</a>
-                        <a href="{{ path('shop_menu_homepage') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Каталоги</a>
-                        <a href="{{ path('shop_сontact') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Контакти</a>
+        <div class="float-right">
+            <div class="telefone">
+                <center>
+                    <div class="font-x2 contact_as">
+                        {{ render(url('shop_mobil')) }}
                     </div>
-                </div>
-                <div class="row justify-content-center fix-wight">
-                    <div>
-                        <a href="{{ path('shop_delivery') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Доставка</a>
-                        <a href="{{ path('shop_payment') }}" class="btn btn-outline-primary" role="button" aria-disabled="true">Оплата</a>
-
-                        {% if app.user and (app.user.role == 'ROLE_ADMIN' or app.user.role == 'ROLE_ROOT') %}
-                            <a href="{{ path('admin_homepage') }}" class="btn btn-outline-primary">Адмінка</a>
-                        {% endif %}
-
-                        {% if app.user %}
-                            <a href="{{ path('security_user_logout') }}" class="btn btn-outline-primary">Вихід</a>
-                        {% else %}
-                            <a href="{{ path('security_user_login') }}" class="btn btn-outline-primary">Вхід</a>
-                        {% endif %}
-                    </div>
-                </div>
+                    <span class="badge badge-pill badge-primary contact_as font-x" style="cursor:pointer;">ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК</span>
+                </center>
             </div>
         </div>
+        <h1>
+            <a href="/" class="icon icon_logo">На главную {{ app.request.getSchemeAndHttpHost() }} объявления</a>
+        </h1>
+    </div>
+    <!--heder logo end-->
 
-        <!--serch and kategori-->
-        <section id="searchmain-container">
-            <div class="wrapper">
-
-                <div class="form-row align-items-center search_div searchmain">     
-                    <form class="form-inline">
-                        <div class="input-group col-10">
-                            <span class="input-group-addon wight_background height37"><span class="glyphicon glyphicon-search"></span></span>
-                            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
-                        </div>
-
-                        <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> &nbsp; <b>ПОШУК</b></button>                                
-                    </form>   
-                </div>            
-            </div>            
-        </section>
-        
-        <section id="boody-container">
-            <div class="wrapper wight_background copyright_line">
-                {% block body %}{% endblock %}
+    <div class="meny_position_a">
+        <div class="container meny_position fix-wight">
+            <div class="row justify-content-center pading_div fix-wight">
+                <div>
+                    <a href="{{ path('shop_about') }}" class="btn btn-outline-primary" role="button"
+                       aria-disabled="true">Про нас</a>
+                    <a href="{{ path('products_index') }}" class="btn btn-outline-primary" role="button"
+                       aria-disabled="true">Товари</a>
+                    <a href="{{ path('shop_menu_homepage') }}" class="btn btn-outline-primary" role="button"
+                       aria-disabled="true">Найдешевші</a>
+                    <a href="{{ path('shop_сontact') }}" class="btn btn-outline-primary" role="button"
+                       aria-disabled="true">Контакти</a>
+                </div>
             </div>
-        </section>
+            <div class="row justify-content-center fix-wight">
+                <div>
+                    <a href="{{ path('shop_delivery') }}" class="btn btn-outline-primary" role="button"
+                       aria-disabled="true">Доставка</a>
+                    <a href="{{ path('shop_payment') }}" class="btn btn-outline-primary" role="button"
+                       aria-disabled="true">Оплата</a>
+
+                    {% if app.user and (app.user.role == 'ROLE_ADMIN' or app.user.role == 'ROLE_ROOT') %}
+                        <a href="{{ path('admin_homepage') }}" class="btn btn-outline-primary">Адмінка</a>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <a href="{{ path('security_user_logout') }}" class="btn btn-outline-primary">Вихід</a>
+                    {% else %}
+                        <a href="{{ path('security_user_login') }}" class="btn btn-outline-primary">Вхід</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block serch %}
+    <!--serch and kategori-->
+    <section id="searchmain-container">
+        <div class="wrapper">
+
+            <div class="form-row align-items-center search_div searchmain">
+                <form class="form-inline">
+                    <div class="input-group col-10">
+                        <span class="input-group-addon wight_background height37"><span
+                                    class="glyphicon glyphicon-search"></span></span>
+                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                    </div>
+
+                    <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search"
+                                                                      aria-hidden="true"></span> &nbsp; <b>ПОШУК</b>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    {% endblock %}
+
+    {% block body_up %}
+    <section id="boody-container">
+        <div class="wrapper wight_background copyright_line">
+            {% endblock %}
+            {% block body %}{% endblock %}
+            {% block body_down %}
+        </div>
+    </section>
+    {% endblock %}
 
 
-    <section id="boody-container">          
+    <section id="boody-container">
         <div class="wrapper copyright_line">
             <div align="center" class="copyright">
 
@@ -135,7 +150,7 @@
                     <a href="{{ path('security_user_logout') }}">Copyright © 2018.</a>
                 {% else %}
                     <a href="{{ path('security_user_login') }}">Copyright © 2018.</a>
-                {% endif %}    
+                {% endif %}
 
             </div>
         </div>
@@ -144,56 +159,59 @@
 </div>
 
 
-    <!-- ui-dialog contakt -->
-    <div id="dialog_contakt" title="ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК" style="display: none">
-        <form onsubmit="return false" id="registerForm">
-            <div class="float-left text-left wight_mesage">
-                <div class="p-2">Ваше ім'я:</div>
-                <input id="call_name" maxlength="30" name="call_name" class="call-input form-control" value="" type="text" /><br/>
+<!-- ui-dialog contakt -->
+<div id="dialog_contakt" title="ЗАМОВИТИ ЗВОРОТНІЙ ДЗВІНОК" style="display: none">
+    <form onsubmit="return false" id="registerForm">
+        <div class="float-left text-left wight_mesage">
+            <div class="p-2">Ваше ім'я:</div>
+            <input id="call_name" maxlength="30" name="call_name" class="call-input form-control" value="" type="text"/><br/>
 
-                <div class="p-2">Телефон:</div>
-                <input id="call_mob" maxlength="14" name="call_mob" class="call-input required form-control" value="" type="text" data-msg="Поле Телефон обов'язкове." /><br/>
+            <div class="p-2">Телефон:</div>
+            <input id="call_mob" maxlength="14" name="call_mob" class="call-input required form-control" value=""
+                   type="text" data-msg="Поле Телефон обов'язкове."/><br/>
 
-                <div class="p-2">Зручний час:</div>
+            <div class="p-2">Зручний час:</div>
 
-                <div class="form-group row d-flex justify-content-center">
+            <div class="form-group row d-flex justify-content-center">
 
-                    <input id="call_time_b" maxlength="5" name="call_time_b" class="call-smoll-input form-control" value="" placeholder="9:00" type="text" />
+                <input id="call_time_b" maxlength="5" name="call_time_b" class="call-smoll-input form-control" value=""
+                       placeholder="9:00" type="text"/>
 
-                    <div class="d-flex align-items-center justify-content-center" style="width:30px;"> - </div>
+                <div class="d-flex align-items-center justify-content-center" style="width:30px;"> -</div>
 
-                    <input id="call_time_e" maxlength="5" name="call_time_e" class="call-smoll-input form-control" value="" placeholder="20:00" type="text" />
+                <input id="call_time_e" maxlength="5" name="call_time_e" class="call-smoll-input form-control" value=""
+                       placeholder="20:00" type="text"/>
 
-                </div>
             </div>
-        </form>
-    </div>
-    <div id="dialog_contakt_ok" title="Повідомлення відправлено" style="display: none">
-        <p>Повідомлення відправлено !<br/>
-            Cкоро ми вам зателефонуємо !
-        </p>
-    </div>
+        </div>
+    </form>
+</div>
+<div id="dialog_contakt_ok" title="Повідомлення відправлено" style="display: none">
+    <p>Повідомлення відправлено !<br/>
+        Cкоро ми вам зателефонуємо !
+    </p>
+</div>
 
-    <!--delete dialog-->
-    <div class="modal" tabindex="-1" role="dialog" id="delete-modal">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h6 class="modal-title font-modal red">Видалити ?</h6>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body font-modal">
-                    <p>Ви дійсно хочете видалити <span class="delete-modal-info-show"></span> ?</p>
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-outline-danger" href="#" id="save-delete-modal">Видалити</a>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
-                </div>
+<!--delete dialog-->
+<div class="modal" tabindex="-1" role="dialog" id="delete-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h6 class="modal-title font-modal red">Видалити ?</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body font-modal">
+                <p>Ви дійсно хочете видалити <span class="delete-modal-info-show"></span> ?</p>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-outline-danger" href="#" id="save-delete-modal">Видалити</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Відмінити</button>
             </div>
         </div>
     </div>
+</div>
 
 </body>
 </html>

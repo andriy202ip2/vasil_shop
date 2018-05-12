@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 class ProductsController extends Controller {
 
     public function indexAction() {
+
         $em = $this->getDoctrine()->getManager();
         $modelMenus = $em->getRepository('ShopMenuBundle:ModelMenu')
                 ->findAllOrderedByName();
