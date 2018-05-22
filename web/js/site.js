@@ -11,6 +11,21 @@ $(document).ready(function () {
 //     });
 //admin serch end
 
+
+    var pev_id = -1;
+    $('.klik').click(function () {
+
+        if (pev_id != -1) {
+            $("#botton"+pev_id).css("display", "none");
+        }
+
+        var id = $(this).attr( "tid" );
+        pev_id = id;
+        $("#botton"+id).css("display", "block");
+        
+        return false;
+    });
+
 //delete dialog
     $('.is-delete').click(function () {
         $('#delete-modal').modal('show');

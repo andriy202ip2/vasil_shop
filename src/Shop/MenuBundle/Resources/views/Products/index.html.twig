@@ -29,172 +29,106 @@
 
             <div class="maincategories">
 
+                {% set k = 0 %}
                 {% set i = 0 %}
-                {% for model in modelMenus %}
+                {% for key, model in modelMenus %}
 
                     {% if i % 4 == 0 %}<div class="maincategories-list clr">{% endif %}
 
 
+
                     <div class="li fleft">
                         <div class="item">
-                            <a href="{{ path('products_autos', { 'model_id': model.id }) }}" data-id="36" class="link parent   ">
-                                <span><b>{{ model.name  |replace({' ':'' , '  ':''}) |first }}</b></span>
-                                <span class="cat-icon cat-icon-circle cat-icon-i">Д</span>
+                            <a href="{{ path('products_autos', { 'model_id': model.id }) }}" data-id="36"
+                               class="link parent klik" tid="{{ key }}">
+                                <span><b>{{ model.name }}</b></span>
+                                <span class="cat-icon cat-icon-circle cat-icon-i">{{ model.name | first | upper }}</span>
                             </a>
                         </div>
                     </div>
 
 
-                    {% if i % 4 == 3 %}</div>{% endif %}
+                    {% if i % 4 == 3 %}
+                        </div>
 
+                        {% for j in key-3..key %}
+
+                            <div class="subcategories-list clr" style="display:none" data-subcategory="36"
+                                 id="botton{{ j }}">
+
+                                <div class="subcategories-title">
+                                    <a href="{{ path('products_autos', { 'model_id':  modelMenus[j].id }) }}"
+                                       data-id="36" class="link inlblk"><strong> Показати всі
+                                            оголошення</strong></a> - {{ modelMenus[j].name }}
+                                </div>
+                                <ul>
+                                    {% for key2, auto in modelMenus[j].autos %}
+
+                                        <li class="fleft">
+                                            <a data-id="539" data-category-id="36"
+                                               href="{{ path('products_data', { 'model_id': modelMenus[j].id, 'auto_id': auto.id }) }}"
+                                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                                        <span class="link block category-name">
+                                            <span>{{ auto.name }}</span>
+                                        </span>
+                                            </a>
+                                        </li>
+
+                                    {% endfor %}
+
+                                </ul>
+                            </div>
+
+                        {% endfor %}
+
+                    {% endif %}
+
+                    {% set k = key %}
                     {% set i = i + 1 %}
                 {% endfor %}
-                {% if i % 4 != 0 %}</div>{% endif %}
+                {% if i % 4 != 0 %}</div>
 
 
-                <!--meny hide style="display:none"-->
-                <div class="subcategories-list clr" style="" data-subcategory="36" id="bottom36">
+            {% for j in k-(i % 4)+1..k %}
+
+                <div class="subcategories-list clr" style="display:none" data-subcategory="36" id="botton{{ j }}">
 
                     <div class="subcategories-title">
-                        <a href="https://www.site.ua/detskiy-mir/" data-id="36" class="link inlblk"><strong> Смотреть
-                                все объявления</strong></a> в Детский мир
+                        <a href="{{ path('products_autos', { 'model_id':  modelMenus[j].id }) }}"
+                           data-id="36" class="link inlblk"><strong> Показати всі
+                                оголошення</strong></a> - {{ modelMenus[j].name }}
                     </div>
                     <ul>
-                        <li class="fleft">
-                            <a data-id="539" data-category-id="36"
-                               href="https://www.site.ua/detskiy-mir/detskaya-odezhda/"
-                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
+                        {% for key2, auto in modelMenus[j].autos %}
+
+                            <li class="fleft">
+                                <a data-id="539" data-category-id="36"
+                                   href="{{ path('products_data', { 'model_id': modelMenus[j].id, 'auto_id': auto.id }) }}"
+                                   class="link-relatedcategory cat-36 inlblk tdnone icon-link">
                                         <span class="link block category-name">
-                                            <span>Детская одежда</span>
+                                            <span>{{ auto.name }}</span>
                                         </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="542" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-obuv/"
-                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                        <span class="link block category-name">
-                                            <span>Детская обувь</span>
-                                        </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="68" data-category-id="36"
-                               href="https://www.site.ua/detskiy-mir/detskie-kolyaski/"
-                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                        <span class="link block category-name">
-                                            <span>Детские коляски</span>
-                                        </span>
-                            </a>
-                        </li>
-                        <li class="clear"></li>
-                        <li class="fleft">
-                            <a data-id="538" data-category-id="36"
-                               href="https://www.site.ua/detskiy-mir/detskie-avtokresla/"
-                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                        <span class="link block category-name">
-                                            <span>Детские автокресла</span>
-                                        </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="69" data-category-id="36" href="https://www.site.ua/detskiy-mir/detskaya-mebel/"
-                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                        <span class="link block category-name">
-                                            <span>Детская мебель</span>
-                                        </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="543" data-category-id="36" href="https://www.site.ua/detskiy-mir/igrushki/"
-                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                        <span class="link block category-name">
-                                            <span>Игрушки</span>
-                                        </span>
-                            </a>
-                        </li>
-                        <li class="clear"></li>
-                        <li class="fleft">
-                            <a data-id="889" data-category-id="36"
-                               href="https://www.site.ua/detskiy-mir/detskiy-transport/"
-                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                        <span class="link block category-name">
-                                            <span>Детский транспорт</span>
-                                        </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="544" data-category-id="36" href="https://www.site.ua/detskiy-mir/kormlenie/"
-                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                        <span class="link block category-name">
-                                            <span>Товары для кормления</span>
-                                        </span>
-                            </a>
-                        </li>
-                        <li class="fleft">
-                            <a data-id="545" data-category-id="36"
-                               href="https://www.site.ua/detskiy-mir/tovary-dlya-shkolnikov/"
-                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                        <span class="link block category-name">
-                                            <span>Товары для школьников</span>
-                                        </span>
-                            </a>
-                        </li>
-                        <li class="clear"></li>
-                        <li class="fleft">
-                            <a data-id="71" data-category-id="36"
-                               href="https://www.site.ua/detskiy-mir/prochie-detskie-tovary/"
-                               class="link-relatedcategory cat-36 inlblk tdnone icon-link">
-                                        <span class="link block category-name">
-                                            <span>Прочие детские товары</span>
-                                        </span>
-                            </a>
-                        </li>
-                        <li class="clear"></li>
+                                </a>
+                            </li>
+
+                        {% endfor %}
+
                     </ul>
                 </div>
 
-                <div class="maincategories-list clr">
+            {% endfor %}
 
-                    <?php for ($i = 1; $i <= 4; $i++) { ?>
-                    <div class="li fleft">
-                        <div class="item">
-                            <a href="https://www.site.ua/rabota/" data-id="6" class="link parent   ">
-                                <span>Работа</span>
-                                <span class="cat-icon cat-icon-circle cat-icon-i">Р</span>
-                            </a>
-                        </div>
-                    </div>
-                    <?php
-                            }
-                            ?>
+            {% endif %}
 
+
+            <!--orstyp-->
+            <div class="maincategories-list clr">
+                <div id="div-gpt-dsk-hp-vc2-new">
+                    <div></div>
                 </div>
-
-                <div class="maincategories-list clr">
-
-                    <?php for ($i = 1; $i <= 4; $i++) { ?>
-                    <div class="li fleft">
-                        <div class="item">
-                            <a href="https://www.site.ua/rabota/" data-id="6" class="link parent   ">
-                                <span>Работа</span>
-                                <span class="cat-icon cat-icon-circle cat-icon-i">Р</span>
-                            </a>
-                        </div>
-                    </div>
-                    <?php
-                            }
-                            ?>
-
-                </div>
-
-                <!--orstyp-->
-                <div class="maincategories-list clr">
-                    <div id="div-gpt-dsk-hp-vc2-new">
-                        <div></div>
-                    </div>
-                </div>
-
             </div>
+
+        </div>
 
         </div>
     </section>
