@@ -13,8 +13,12 @@ class ProductsController extends Controller {
         $modelMenus = $em->getRepository('ShopMenuBundle:ModelMenu')
                 ->findAllOrderedByName();
 
+        $Items = $em->getRepository('ShopMenuBundle:Items')
+            ->findTheLatestOnes(30);
+
         return $this->render('ShopMenuBundle:Products:index.html.twig', array(
                     'modelMenus' => $modelMenus,
+                    'Items' => $Items,
         ));
     }
 

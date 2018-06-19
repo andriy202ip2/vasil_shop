@@ -12,6 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemsRepository extends EntityRepository {
 
+    public function findTheLatestOnes($limit){
+
+        $query = $this->createQueryBuilder('i');
+        $query = $query->setMaxResults( $limit );
+        $query = $query->orderBy('i.id', 'DESC')
+            ->getQuery();
+
+        return $query->getResult();
+
+    }
+
     public function findBySerchCodeOrderedById($serch) {
                   
         //echo $serch;

@@ -22,7 +22,7 @@ $(document).ready(function () {
         var id = $(this).attr( "tid" );
         pev_id = id;
         $("#botton"+id).css("display", "block");
-        
+
         return false;
     });
 

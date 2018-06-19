@@ -133,19 +133,81 @@
         </div>
     </section>
 
-    <div class="text-center">
-        <h1>Моделі</h1>
-    </div>
+    <!--body conteyner-->
+    <section id="body-container">
+        <div></div>
+        <div></div>
 
-    <div class="text-marning">
+        <!--wrapper-->
+        <div class="wrapper">
 
-        {% for model in modelMenus %}
-            <div class="marning-smoll"><a
-                        href="{{ path('products_autos', { 'model_id': model.id }) }}">{{ model.name }}</a></div>
-        {% endfor %}
 
-    </div>
-    <br/><br/><br/><br/>
+            <!--top 30-->
+            <section class="mainpage-gallery clr" id="mainpageAds">
+
+                <header>
+                    <h3> Всі оголошення </h3>
+                </header>
+                <ul class="gallerywide clr normal" id="gallerywide">
+
+                    <!--max 30 -->
+                    {% for key, item in Items %}
+
+                    <li class="wrap tleft rel fleft ad_idvVjnO ">
+
+                        <div class="mheight tcenter">
+                            <a title="Smart Watch G5 Sport - Новинка 2018!" href="https://www.site.ua/obyavlenie/smart-watch-g5-sport-novinka-2018-IDvVjnO.html" class="thumb tdnone scale1 rel detailsLinkPromoted linkWithHash ">
+                                <img alt="{{ item.name |striptags}}"
+                                     src="/img/upload/{% if item.pictures|length > 0 %}{{ item.pictures[0].imageName}}{% else %}nofoto.jpg{% endif %}">
+                                <span class="inlblk icon paid  abs zi2" title="{{ item.name |striptags}}"></span>
+                            </a>
+                        </div>
+
+                        <div class="inner">
+
+                            <h4 class="normal">
+                                <a href="https://www.site.ua/obyavlenie/smart-watch-g5-sport-novinka-2018-IDvVjnO.html" title="Smart Watch G5 Sport - Новинка 2018!" class="link linkWithHash detailsLinkPromoted">
+                                    <strong>{{ item.name |striptags}}</strong>
+                                </a>
+                            </h4>
+                            <p class="lheight14 color-1 margintop2 brkword">
+                                            <span class="breadcrumb small">{{ item.details |striptags}}</span>
+                            </p>
+                        </div>
+                        <div class="price ">
+                            {% if item.price == null %}
+                                Під заказ
+                            {% elseif item.price | money_as_float == 0 %}
+                                Під заказ
+                            {% else %}
+                                {{ item.price | money_convert("UAH") | money_format }}
+                            {% endif %}
+                        </div>
+
+                    </li>
+                    {% endfor %}
+
+                </ul>
+
+                <div class="tright more-link">
+                    <a href="https://www.site.ua/list/?search%5Bad_homepage_to%3Afrom%5D=2018-01-25" id="homeShowAllAds" class="tdnone">
+                        <strong class="link large inlblk rel">
+                            <span>Посмотреть все</span>
+                        </strong>
+                        <i data-icon="raquo"></i>
+                    </a>
+                </div>
+
+            </section>
+
+
+
+            <div></div>
+        </div>
+
+
+
+    </section>
 
 
 {% endblock %}
