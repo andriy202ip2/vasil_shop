@@ -1,3 +1,57 @@
+.item-border{
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.item-batton-font{
+    font-size: 28px;
+}
+
+.item-kode-colore{
+    color: #0000F0;
+}
+
+.item-kode{
+    font-size: 18px;
+    position: relative;
+    top: 25px;
+    left: 25px;
+}
+
+.item-zacaz{
+    position: relative;
+    top: -10px;
+    left: 285px;
+}
+
+.item-prise{
+    min-height: 100px;
+}
+
+.item-title{
+    padding-top: 15px;
+    padding-bottom: 25px;
+}
+
+.item-deskription{
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.item-font{
+    font-size: 28px;
+}
+
+.min-size{
+    min-height: 150px;
+}
+
+.item-font-min{
+    font-size: 18px;
+    line-height: 1.5em;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
 .admin-textrea-prises{
     height: 500px;
 }
@@ -849,7 +903,6 @@ form.searchmain [data-icon=search] {
 
 .breadcrumb.offerslist {
     min-height: 18px;
-    border-bottom: 1px solid #f0f0f0;
     padding: 14px 235px 14px 0
 }
 
@@ -1093,6 +1146,7 @@ table.offers .offer {
     width: 252px;
     float: right;
     position: relative;
+    margin-right: 15px;
     z-index: 2
 }
 

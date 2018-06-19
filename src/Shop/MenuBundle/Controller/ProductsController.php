@@ -55,4 +55,26 @@ class ProductsController extends Controller {
         ));
     }
 
+    public function itemAction($product_id) {
+
+        $em = $this->getDoctrine()->getManager();
+        //$Item = $em->getRepository('ShopMenuBundle:Items')
+            //->getOneItemById($product_id);
+
+        $Item = $em->getRepository('ShopMenuBundle:Items')->findOneBy(["id" => $product_id]);
+
+        $id = $Item->getId();
+
+        $KodProdakt = "777";
+        for ($i = 1; $i <= 10 - strlen($id); $i++) {
+            $KodProdakt .= $i == 3 ? "3" : "0";
+        }
+        $KodProdakt .= $id;
+
+        return $this->render('ShopMenuBundle:Products:item.html.twig', array(
+            'Item' => $Item,
+            'KodProdakt' => $KodProdakt,
+        ));
+    }
+
 }

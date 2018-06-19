@@ -1,0 +1,228 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Запчастини{% endblock %}
+
+{% block serch %}{% endblock %}
+{% block body_up %}{% endblock %}
+{% block body_down %}{% endblock %}
+
+{% block body %}
+
+    <!--serch and kategori-->
+    <section id="searchmain-container">
+        <div class="wrapper">
+
+            <div class="form-row align-items-center search_div searchmain">
+                <form class="form-inline">
+                    <div class="input-group col-10">
+                        <span class="input-group-addon wight_background height37"><span
+                                    class="glyphicon glyphicon-search"></span></span>
+                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                    </div>
+
+                    <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search"
+                                                                      aria-hidden="true"></span> &nbsp; <b>ПОШУК</b>
+                    </button>
+                </form>
+            </div>
+
+
+            <!--orstyp-->
+            <div class="maincategories-list clr">
+                <div id="div-gpt-dsk-hp-vc2-new">
+                    <div></div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <!--ogolochennja-->
+    <section id="boody-container">
+        <div class="wrapper wight_background copyright_line">
+
+            <!--kategori list -->
+            <div class="clr offersnav rel">
+                <ul class="breadcrumb offerslist clr small xxxx item-border">
+                    <li class="inline">
+                        <span class="slash"></span>
+                        <a href="{{ path('products_index') }}" class="link" itemprop="url">
+                            <span itemprop="title">Всі оголошення</span>
+                        </a>
+                    </li>
+                    <li class="inline">
+                        <span class="slash"></span>
+                        <a href="" class="link" itemprop="url">
+                            <span itemprop="title">Электроника</span>
+                        </a>
+                    </li>
+                    <li class="inline">
+                        <span class="slash"></span>
+                        <a href="" class="link"
+                           itemprop="url">
+                            <span itemprop="title">Компьютеры и комплектующие</span>
+                        </a>
+                    </li>
+                    <li class="inline selected">
+                        <span class="slash"></span>
+                        <a href="" class="link"
+                           itemprop="url">
+                            <span itemprop="title">Комплектующие для ПК</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="text-center item-font item-title">
+                <b>{{ Item.name |striptags }}</b>
+            </div>
+
+            <div class="item-prise">
+
+                <div class="offer-sidebar">
+                    <div class="price-label">
+                        <strong class="xxxx-large">
+                            {% if Item.price == null %}
+                                Під заказ
+                            {% elseif Item.price | money_as_float == 0 %}
+                                Під заказ
+                            {% else %}
+                                {{ Item.price | money_convert("UAH") | money_format }}
+                            {% endif %}
+                        </strong>
+                    </div>
+                </div>
+
+                <div class="item-kode">
+                    <b>Код товару: <span class="item-kode-colore">{{ KodProdakt }}</span></b>
+                </div>
+
+                <div class="item-zacaz">
+                    <a href="#" class="btn btn-outline-primary item-batton-font" id="to_order_a">ЗАМОВИТИ ТОВАР</a>
+                </div>
+
+            </div>
+
+            <div style="width: 890px;">
+                <div id="gallery" style="display:none;">
+
+                    {% if Item.pictures|length > 0 %}
+
+                        {% for img in Item.pictures %}
+
+                            <img src="/img/upload/{{ img.imageName }}"
+                                 data-image="/img/upload/{{ img.imageName }}"/>
+
+                        {% endfor %}
+
+                    {% else %}
+
+                        <img src="/img/upload/nofoto.jpg"
+                             data-image="/img/upload/nofoto.jpg">
+
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="item-font-min item-deskription">
+                {{ Item.details |raw }}
+            </div>
+
+            <br/>
+            {% for img in Item.pictures %}
+
+                <img src="/img/upload/{{ img.imageName }}" width="887px;"/>
+
+            {% endfor %}
+            <br/><br/><br/>
+
+        </div>
+
+    </section>
+
+    <!-- ui-dialog to_order -->
+    <div id="dialog_to_order" title="ЗАМОВИТИ ТОВАР" style="display: none">
+
+        <form onsubmit="return false" id="registerOrderForm">
+            Ваше ім'я:<br/>
+            <input id="call_name_oder" maxlength="30" name="call_name_oder" class="call-input form-control" value=""
+                   type="text"/><br/>
+
+            Телефон:<br/>
+            <input id="call_mob_oder" maxlength="14" name="call_mob_oder" class="call-input form-control required" value=""
+                   type="text" data-msg="Поле Телефон обов'язкове."/><br/>
+
+            <br/><span id="diloge_oder_code">
+                Товар: {{ Item.name |striptags }}<br/><br/>
+                <b>Код товару: <span class="item-kode-colore">{{ KodProdakt }}</span></b>
+            </span>
+            <br/>
+            <br/>Ціна: <span id="diloge_oder_price">
+                                            {% if Item.price == null %}
+                                                Під заказ
+                                            {% elseif Item.price | money_as_float == 0 %}
+                                                Під заказ
+                                            {% else %}
+                                                {{ Item.price | money_convert("UAH") | money_format }}
+                                            {% endif %}
+            </span><br/>
+
+        </form>
+    </div>
+    <div id="dialog_to_order_ok" title="Повідомлення відправлено" style="display: none">
+        <p>Повідомлення відправлено !<br/>
+            Cкоро ми вам зателефонуємо !
+        </p>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            jQuery("#gallery").unitegallery({});
+
+            $("#dialog_to_order").dialog({
+                autoOpen: false,
+                width: 400,
+                buttons: {
+                    "Відправити": function () {
+                        if ($("#registerOrderForm").valid()) {
+
+                            $("#dialog_to_order").dialog("close");
+
+                            $.ajax({
+                                method: "GET",
+                                url: "/oderemale",
+                                data: {
+                                    call_name: $("#call_name_oder").val(),
+                                    call_mob: $("#call_mob_oder").val(),
+                                    oder_code: $("#diloge_oder_code").html(),
+                                    oder_price: $("#diloge_oder_price").html()
+                                }
+                            })
+                                .done(function (msg) {
+                                    var data = eval('(' + msg + ')');
+                                    if (data.Result) {
+                                        $("#dialog_to_order_ok").dialog();
+
+                                        //alert(data.Result);
+                                    }
+                                });
+                        }
+                    }
+                }
+            });
+
+            $("#to_order_a").click(function () {
+                $("#dialog_to_order").dialog("open");
+                return false;
+            });
+
+            $("#call_mob_oder").mask("(999) 999-9999");
+
+        });
+    </script>
+{% endblock %}

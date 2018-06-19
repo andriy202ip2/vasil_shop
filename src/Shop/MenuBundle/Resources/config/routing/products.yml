@@ -26,3 +26,10 @@ products_items:
         model_id: '\d+'
         auto_id: '\d+'         
         data_id: '\d+'
+
+products_product:
+    path:     /product/{product_id}/
+    defaults: { _controller: ShopMenuBundle:Products:item }
+    methods:  GET
+    requirements:
+        product_id: '\d+'

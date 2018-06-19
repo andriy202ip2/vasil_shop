@@ -12,6 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class ItemsRepository extends EntityRepository {
 
+    public function getOneItemById($Id){
+
+        $query = $this->createQueryBuilder('i')
+                        ->where('i.id = :Id')
+                        ->setParameter('Id', $Id);
+        $query = $query->setMaxResults( 1 );
+        $query = $query->getQuery();
+
+        return $query->getResult();
+
+    }
+
     public function findTheLatestOnes($limit){
 
         $query = $this->createQueryBuilder('i');
