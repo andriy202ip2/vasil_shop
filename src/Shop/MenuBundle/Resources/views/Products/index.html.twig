@@ -156,7 +156,7 @@
                     <li class="wrap tleft rel fleft ad_idvVjnO ">
 
                         <div class="mheight tcenter">
-                            <a title="Smart Watch G5 Sport - Новинка 2018!" href="{{ path('products_product', { 'product_id': item.id }) }}" class="thumb tdnone scale1 rel detailsLinkPromoted linkWithHash ">
+                            <a title="{{ item.name |striptags}}" href="{{ path('products_product', { 'product_id': item.id }) }}" class="thumb tdnone scale1 rel detailsLinkPromoted linkWithHash ">
                                 <img alt="{{ item.name |striptags}}"
                                      src="/img/upload/{% if item.pictures|length > 0 %}{{ item.pictures[0].imageName}}{% else %}nofoto.jpg{% endif %}">
                                 <span class="inlblk icon paid  abs zi2" title="{{ item.name |striptags}}"></span>

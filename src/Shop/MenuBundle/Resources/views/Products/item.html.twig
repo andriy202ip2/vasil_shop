@@ -52,26 +52,35 @@
                             <span itemprop="title">Всі оголошення</span>
                         </a>
                     </li>
+
+                    {% if Item.model != null %}
                     <li class="inline">
                         <span class="slash"></span>
-                        <a href="" class="link" itemprop="url">
-                            <span itemprop="title">Электроника</span>
+                        <a href="{{ path('products_autos', { 'model_id': Item.model.id }) }}" class="link" itemprop="url">
+                            <span itemprop="title">{{ Item.model.name }}</span>
                         </a>
                     </li>
+                    {% endif %}
+
+                    {% if Item.auto != null %}
                     <li class="inline">
                         <span class="slash"></span>
-                        <a href="" class="link"
+                        <a href="{{ path('products_data', { 'model_id': Item.model.id, 'auto_id': Item.auto.id }) }}" class="link"
                            itemprop="url">
-                            <span itemprop="title">Компьютеры и комплектующие</span>
+                            <span itemprop="title">{{ Item.auto.name }}</span>
                         </a>
                     </li>
+                    {% endif %}
+
+                    {% if Item.data != null %}
                     <li class="inline selected">
                         <span class="slash"></span>
-                        <a href="" class="link"
+                        <a href="{{ path('products_items', { 'model_id': Item.model.id, 'auto_id': Item.auto.id, 'data_id': Item.data.id }) }}" class="link"
                            itemprop="url">
-                            <span itemprop="title">Комплектующие для ПК</span>
+                            <span itemprop="title">{{ Item.data.name }}</span>
                         </a>
                     </li>
+                    {% endif %}
                 </ul>
             </div>
 

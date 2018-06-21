@@ -134,12 +134,10 @@ liip_imagine:
     filter_sets:
         cache: ~
 
-        items_photo_admin:
-            quality: 75
+        items_img_small:
+            quality: 100
             filters:
-                thumbnail: { size: [300, 300], mode: outbound }
-                background: { size: [308, 308], position: center, color: '#ffffff' }
-                background: { size: [316, 316], position: center, color: '#000000' }
+                thumbnail: { size: [88, 50], mode: outbound }
 
         # the name of the "filter set"
         my_thumb:
