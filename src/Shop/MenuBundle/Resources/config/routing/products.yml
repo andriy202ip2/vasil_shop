@@ -33,3 +33,8 @@ products_product:
     methods:  GET
     requirements:
         product_id: '\d+'
+
+products_all:
+    path:     /all/
+    defaults: { _controller: ShopMenuBundle:Products:all }
+    methods:  GET

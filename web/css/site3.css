@@ -1,5 +1,23 @@
+.overflow-item {
+    padding-top: 10px;
+    height: 85px;
+    margin: 0 0 2em 0;
+    /**
+     * Required properties to achieve text-overflow
+     */
+    white-space: revert;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    display: block
+}
+
 .item-border{
     border-bottom: 1px solid #f0f0f0;
+}
+
+.all-font{
+    font-size: 20px;
 }
 
 .item-batton-font{

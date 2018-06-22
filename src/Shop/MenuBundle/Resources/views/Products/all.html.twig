@@ -1,0 +1,349 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Запчастини{% endblock %}
+
+{% block serch %}{% endblock %}
+{% block body_up %}{% endblock %}
+{% block body_down %}{% endblock %}
+
+{% block body %}
+
+    <!--serch and kategori-->
+    <section id="searchmain-container">
+        <div class="wrapper">
+
+            <div class="form-row align-items-center search_div searchmain">
+                <form class="form-inline">
+                    <div class="input-group col-10">
+                        <span class="input-group-addon wight_background height37"><span
+                                    class="glyphicon glyphicon-search"></span></span>
+                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                    </div>
+
+                    <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search"
+                                                                      aria-hidden="true"></span> &nbsp; <b>ПОШУК</b>
+                    </button>
+                </form>
+            </div>
+
+
+            <!--orstyp-->
+            <div class="maincategories-list clr">
+                <div id="div-gpt-dsk-hp-vc2-new">
+                    <div></div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <!--serch options -->
+    <div id="tabs-container">
+        <div class="wrapper clr">
+
+            <div class="view-lists">
+                <ul class="order-select-gallery sort-order-type" id="order-select-gallery">
+                    <li class="list-label">
+                        Сортування:
+                    </li>
+
+                    {% if sorts == 0 %}
+
+                        <li>
+                            <span>Самі нові</span>
+                        </li>
+                        <li>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=1"><span>Самі дешеві</span></a>
+                        </li>
+                        <li>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=2"><span>Самі дорогі</span></a>
+                        </li>
+
+                    {% elseif sorts == 1 %}
+
+                        <li>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=0"><span>Самі нові</span></a>
+                        </li>
+                        <li>
+                            <span>Самі дешеві</span>
+                        </li>
+                        <li>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=2"><span>Самі дорогі</span></a>
+                        </li>
+
+                    {% else %}
+
+                        <li>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=0"><span>Самі нові</span></a>
+                        </li>
+                        <li>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=1"><span>Самі дешеві</span></a>
+                        </li>
+                        <li>
+                            <span>Самі дорогі</span>
+                        </li>
+
+                    {% endif %}
+
+                </ul>
+                <ul class="view" id="viewSelector">
+                    <li class="list-label">Вид списка:</li>
+
+                    {% if isGal == 0 %}
+                        <li>
+                            <span>Список</span>
+                        </li>
+                        <li>
+                            <a class="topTabView link"
+                               href="?page={{ page }}&isgal=1&currency={{ currency }}&sorts={{ sorts }}"><span>Галерея</span></a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a class="topTabView link"
+                               href="?page={{ page }}&isgal=0&currency={{ currency }}&sorts={{ sorts }}"><span>Список</span></a>
+                        </li>
+                        <li>
+                            <span>Галерея</span>
+                        </li>
+                    {% endif %}
+
+                </ul>
+                <ul class="view-currency currencySelector">
+                    <li class="list-label">Валюта:</li>
+
+                    {% if currency == 0 %}
+
+                        <li>
+                            <span>грн.</span>
+                        </li>
+                        <li>
+                            <a class="currency-link link"
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=1&sorts={{ sorts }}"><span>$</span></a>
+                        </li>
+                        <li>
+                            <a class="currency-link link"
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=2&sorts={{ sorts }}"><span>€</span></a>
+                        </li>
+
+                    {% elseif currency == 1 %}
+
+                        <li>
+                            <a class="currency-link link"
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=0&sorts={{ sorts }}"><span>грн.</span></a>
+
+                        </li>
+                        <li>
+                            <span>$</span>
+                        </li>
+                        <li>
+                            <a class="currency-link link"
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=2&sorts={{ sorts }}"><span>€</span></a>
+                        </li>
+
+                    {% else %}
+
+                        <li>
+                            <a class="currency-link link"
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=0&sorts={{ sorts }}"><span>грн.</span></a>
+
+                        </li>
+                        <li>
+                            <a class="currency-link link"
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=1&sorts={{ sorts }}"><span>$</span></a>
+                        </li>
+                        <li>
+                            <span>€</span>
+                        </li>
+
+                    {% endif %}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--body conteyner-->
+    <section id="body-container">
+        <div></div>
+        <div></div>
+
+        <!--wrapper-->
+        <div class="wrapper">
+
+
+            {% if Items.getTotalItemCount > MaxPagas %}
+                <br/>
+                <div class="navigation row justify-content-center align-items-center">
+                    {{ knp_pagination_render(Items) }}
+                </div>
+            {% else %}
+                <br/>
+            {% endif %}
+            <br/>
+
+            {% if isGal != 0 %}
+                <!--top 30-->
+                <section class="mainpage-gallery clr" id="mainpageAds">
+
+                    <ul class="gallerywide clr normal" id="gallerywide">
+
+                        <!--max 30 -->
+                        {% for key, item in Items %}
+
+                            <li class="wrap tleft rel fleft ad_idvVjnO ">
+
+                                <div class="mheight tcenter">
+                                    <a title="{{ item.name |striptags }}"
+                                       href="{{ path('products_product', { 'product_id': item.id }) }}"
+                                       class="thumb tdnone scale1 rel detailsLinkPromoted linkWithHash ">
+                                        <img alt="{{ item.name |striptags }}"
+                                             src="/img/upload/{% if item.pictures|length > 0 %}{{ item.pictures[0].imageName }}{% else %}nofoto.jpg{% endif %}">
+                                        <span class="inlblk icon paid  abs zi2"
+                                              title="{{ item.name |striptags }}"></span>
+                                    </a>
+                                </div>
+
+                                <div class="inner">
+
+                                    <h4 class="normal">
+                                        <a href="{{ path('products_product', { 'product_id': item.id }) }}"
+                                           title="{{ item.name |striptags }}"
+                                           class="link linkWithHash detailsLinkPromoted">
+                                            <strong>{{ item.name |striptags }}</strong>
+                                        </a>
+                                    </h4>
+                                    <p class="lheight14 color-1 margintop2 brkword">
+                                        <span class="breadcrumb small">{{ item.details |striptags }}</span>
+                                    </p>
+                                </div>
+                                <div class="price ">
+                                    {% if item.price == null %}
+                                        Під заказ
+                                    {% elseif item.price | money_as_float == 0 %}
+                                        Під заказ
+                                    {% else %}
+                                        {% if currency == 0 %}
+                                            {{ item.price | money_convert("UAH") | money_format }}
+                                        {% elseif currency == 1 %}
+                                            {{ item.price | money_convert("USD") | money_format }}
+                                        {% else %}
+                                            {{ item.price | money_convert("EUR") | money_format }}
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+
+                </section>
+
+            {% else %}
+
+                <!--standard ogoloshennja-->
+                <div class="rel listHandler ">
+
+                    <div class="border_one"></div>
+
+                    <table width="100%" cellspacing="0" cellpadding="0" class="fixed offers breakword  offers--top">
+                        <caption></caption>
+                        <tbody>
+
+                        {% for key, item in Items %}
+
+                            <tr class="wrap">
+                                <td class="offer ">
+                                    <table width="100%" cellspacing="0" cellpadding="0"
+                                           class="fixed breakword promoted-list ad_idxpIrs">
+                                        <tbody>
+                                        <tr>
+                                            <td width="168" rowspan="2">
+                                                <a class="thumb vtop inlblk rel tdnone linkWithHash scale4 detailsLink "
+                                                   href="{{ path('products_product', { 'product_id': item.id }) }}"
+                                                   title="{{ item.name |striptags }}">
+                                                    <img class="align-middle"
+                                                         src="/img/upload/{% if item.pictures|length > 0 %}{{ item.pictures[0].imageName }}{% else %}nofoto.jpg{% endif %}"
+                                                         alt="{{ item.name |striptags }}"/>
+                                                </a>
+                                            </td>
+                                            <td valign="top">
+                                                <div class="space rel">
+                                                    <h3 class="x-large lheight20 margintop5">
+
+                                                        <a href="{{ path('products_product', { 'product_id': item.id }) }}"
+                                                           class="marginright5 link linkWithHash detailsLink">
+                                                            <strong>{{ item.name |striptags }}</strong>
+                                                        </a>
+                                                    </h3>
+                                                    <p class="color-9 lheight16 margintop5">
+                                                    <div class="overflow-item">
+                                                        <small class="x-normal">
+                                                            {{ item.details |striptags }}
+                                                        </small>
+                                                    </div>
+                                                    </p>
+                                                </div>
+                                            </td>
+                                            <td width="200" class="wwnormal tright td-price" valign="top">
+                                                <div class="space inlblk rel">
+                                                    <p class="price">
+                                                        <strong>
+                                                            {% if item.price == null %}
+                                                                Під заказ
+                                                            {% elseif item.price | money_as_float == 0 %}
+                                                                Під заказ
+                                                            {% else %}
+                                                                {% if currency == 0 %}
+                                                                    {{ item.price | money_convert("UAH") | money_format }}
+                                                                {% elseif currency == 1 %}
+                                                                    {{ item.price | money_convert("USD") | money_format }}
+                                                                {% else %}
+                                                                    {{ item.price | money_convert("EUR") | money_format }}
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        </strong>
+                                                    </p>
+
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+                    </table>
+
+
+                </div>
+
+            {% endif %}
+
+            {% if Items.getTotalItemCount > MaxPagas %}
+                <br/>
+                <div class="navigation row justify-content-center align-items-center">
+                    {{ knp_pagination_render(Items) }}
+                </div>
+
+            {% endif %}
+            <br/><br/>
+
+            <div></div>
+        </div>
+
+
+    </section>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+
+{% endblock %}
