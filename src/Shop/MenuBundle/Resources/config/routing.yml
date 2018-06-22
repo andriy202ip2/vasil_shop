@@ -1,6 +1,12 @@
+#shop_menu_homepage:
+#    path:     /
+#    defaults: { _controller: ShopMenuBundle:Default:index }
+
 shop_menu_homepage:
     path:     /
-    defaults: { _controller: ShopMenuBundle:Default:index }
+    defaults: { _controller: ShopMenuBundle:Products:index }
+    methods:  GET
+
 
 shop_сontact:
     path:     /сontact
