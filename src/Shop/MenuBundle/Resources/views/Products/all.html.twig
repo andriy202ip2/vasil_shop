@@ -183,6 +183,11 @@
             {% endif %}
             <br/>
 
+            {% if Items|length == 0 %}
+                <div class="all-font text-center" style="color: #0000cc">Нажаль тут товарів не занайдено !</div>
+                <br/><br/><br/><br/>
+            {% endif %}
+
             {% if isGal != 0 %}
                 <!--top 30-->
                 <section class="mainpage-gallery clr" id="mainpageAds">

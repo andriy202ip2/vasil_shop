@@ -29,13 +29,81 @@ class ProductsController extends Controller
     public function autosAction(Request $request, $model_id)
     {
 
+        $page = $request->query->getInt('page', 1);
+        $isGal = $request->query->getInt('isgal', 0);
+        $currency = $request->query->getInt('currency', 0);
+        $sorts = $request->query->getInt('sorts', 0);
+
         $em = $this->getDoctrine()->getManager();
-        $autoMenu = $em->getRepository('ShopMenuBundle:AutoMenu')
+
+        $UrlData = $em->getRepository('ShopMenuBundle:ModelMenu')
+            ->findOneBy(["id" => $model_id]);
+
+        $SubCategori = $em->getRepository('ShopMenuBundle:AutoMenu')
             ->findByIdOrderedByName($model_id);
 
+
+        $pairManager = $this->get('tbbc_money.pair_manager');
+        $USD = $pairManager->convert(Money::USD(100), 'UAH')->getAmount() / 100;
+        $EUR = $pairManager->convert(Money::EUR(100), 'UAH')->getAmount() / 100;
+        $PLN = $pairManager->convert(Money::PLN(100), 'UAH')->getAmount() / 100;
+
+        $dql = $em->getRepository('ShopMenuBundle:Items')
+            ->createQueryBuilder('a');
+
+        $case_str = "case when a.priceCurrency = 'USD' then :USD else 
+                     case when a.priceCurrency = 'EUR' then :EUR else 
+                     case when a.priceCurrency = 'PLN' then :PLN else 1 end end end";
+
+        if ($sorts == 0) {
+
+            $dql = $dql->orderBy('a.id', 'DESC');
+
+            //chipest
+        } elseif ($sorts == 1) {
+
+            $dql = $dql->andWhere('a.priceAmount > 0');
+            $dql = $dql->orderBy('a.priceAmount * '.$case_str , 'ASC');
+
+            $dql = $dql->setParameter(':USD', $USD)
+                ->setParameter(':EUR', $EUR)
+                ->setParameter(':PLN', $PLN);
+
+            //expensive
+        } else {
+
+            $dql = $dql->andWhere('a.priceAmount > 0');
+            $dql = $dql->orderBy('a.priceAmount * '.$case_str , 'DESC');
+
+            $dql = $dql->setParameter(':USD', $USD)
+                ->setParameter(':EUR', $EUR)
+                ->setParameter(':PLN', $PLN);
+        }
+
+        $dql = $dql->andWhere('a.modelMenuId = :modelId')
+            ->setParameter(':modelId', $model_id);
+
+        $query = $dql->getQuery();
+
+        $paginator = $this->get('knp_paginator');
+
+        $MaxPagas = 30;
+        $Items = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/* page number */, $MaxPagas/* limit per page */
+        );
+
         return $this->render('ShopMenuBundle:Products:auto.html.twig', array(
-            'autoMenu' => $autoMenu,
+            'Items' => $Items,
+            'MaxPagas' => $MaxPagas,
+            'page' => $page,
+            'isGal' => $isGal,
+            'currency' => $currency,
+            'sorts' => $sorts,
+            'SubCategori' => $SubCategori,
+            'UrlData' => $UrlData,
         ));
+
     }
 
     public function dataAction($model_id, $auto_id)
@@ -102,9 +170,6 @@ class ProductsController extends Controller
         $EUR = $pairManager->convert(Money::EUR(100), 'UAH')->getAmount() / 100;
         $PLN = $pairManager->convert(Money::PLN(100), 'UAH')->getAmount() / 100;
 
-        //echo $USD.'<br>';
-        //echo $EUR;
-
         $dql = $em->getRepository('ShopMenuBundle:Items')
             ->createQueryBuilder('a');
 
@@ -119,7 +184,7 @@ class ProductsController extends Controller
             //chipest
         } elseif ($sorts == 1) {
 
-            $dql = $dql->where('a.priceAmount > 0');
+            $dql = $dql->andWhere('a.priceAmount > 0');
             $dql = $dql->orderBy('a.priceAmount * '.$case_str , 'ASC');
 
             $dql = $dql->setParameter(':USD', $USD)
@@ -129,7 +194,7 @@ class ProductsController extends Controller
             //expensive
         } else {
 
-            $dql = $dql->where('a.priceAmount > 0');
+            $dql = $dql->andWhere('a.priceAmount > 0');
             $dql = $dql->orderBy('a.priceAmount * '.$case_str , 'DESC');
 
             $dql = $dql->setParameter(':USD', $USD)
@@ -158,6 +223,7 @@ class ProductsController extends Controller
             'currency' => $currency,
             'sorts' => $sorts,
         ));
+
     }
 
 }
