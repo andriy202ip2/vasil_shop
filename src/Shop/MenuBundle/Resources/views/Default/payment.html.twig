@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Оплата{% endblock %}
 {% block description %}{{ payment.payment|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 300) }}{% endblock %}
+{% block keywords %}{{ payment.payment|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 777) }}{% endblock %}
 
 {% block body %}
 

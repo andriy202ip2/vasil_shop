@@ -4,20 +4,21 @@
 
     {% set description = "" %}
     {% for model in modelMenus %}
-        {% if description|length < 300 %}
+        {% if description|length < 777 %}
             {% set  description = description ~ model.name |striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) ~ ", " %}
         {% endif %}
     {% endfor %}
 
-    {% if description|length < 300 %}
+    {% if description|length < 777 %}
         {% for item in Items %}
-            {% if description|length < 300 %}
+            {% if description|length < 777 %}
                 {% set  description = description ~ item.name |striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) ~ ", " %}
             {% endif %}
         {% endfor %}
     {% endif %}
 
 {% block description %}{{ description|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 300) }}{% endblock %}
+{% block keywords %}{{ description|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 777) }}{% endblock %}
 
 {% block serch %}{% endblock %}
 {% block body_up %}{% endblock %}

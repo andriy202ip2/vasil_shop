@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block title %}Про нас{% endblock %}
 {% block description %}{{ abouts.about|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 300) }}{% endblock %}
+{% block keywords %}{{ abouts.about|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 777) }}{% endblock %}
 
 {% block body %}
 

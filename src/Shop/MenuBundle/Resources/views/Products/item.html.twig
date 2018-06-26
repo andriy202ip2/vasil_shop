@@ -2,8 +2,9 @@
 
 {% block title %} {{ Item.name |striptags }}{% endblock %}
 
-{% set description = (Item.name ~ ", " ~ Item.details)|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 300) %}
-{% block description %}{{description}}{% endblock %}
+{% set description = (Item.name ~ ", " ~ Item.details)|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) %}
+{% block description %}{{description|slice(0, 300)}}{% endblock %}
+{% block keywords %}{{description|slice(0, 777)}}{% endblock %}
 
 {% block serch %}{% endblock %}
 {% block body_up %}{% endblock %}
