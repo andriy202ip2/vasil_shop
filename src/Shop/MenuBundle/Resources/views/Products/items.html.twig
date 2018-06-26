@@ -2,6 +2,16 @@
 
 {% block title %}товари {{ UrlData.name |striptags }}{% endblock %}
 
+    {% set description = "" %}
+        {% for item in Items %}
+            {% if description|length < 300 %}
+                {% set  description = description ~ item.name |striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) ~ ", " %}
+            {% endif %}
+        {% endfor %}
+
+{% block description %}{{ description|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 300) }}{% endblock %}
+
+
 {% block serch %}{% endblock %}
 {% block body_up %}{% endblock %}
 {% block body_down %}{% endblock %}
@@ -17,7 +27,8 @@
                     <div class="input-group col-10">
                         <span class="input-group-addon wight_background height37"><span
                                     class="glyphicon glyphicon-search"></span></span>
-                        <input type="text" name="usarch" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                        <input type="text" name="usarch" class="form-control" id="inlineFormInputGroup"
+                               placeholder="Пошук...">
                     </div>
 
                     <button type="submit" class="btn btn-light"><span class="glyphicon glyphicon-search"
@@ -187,7 +198,8 @@
                     {% if UrlData != null and UrlData.auto != null %}
                         <li class="inline">
                             <span class="slash"></span>
-                            <a href="{{ path('products_data', { 'model_id': UrlData.model.id, 'auto_id': UrlData.auto.id }) }}" class="link"
+                            <a href="{{ path('products_data', { 'model_id': UrlData.model.id, 'auto_id': UrlData.auto.id }) }}"
+                               class="link"
                                itemprop="url">
                                 <span itemprop="title">{{ UrlData.auto.name }}</span>
                             </a>
@@ -196,7 +208,8 @@
                     {% if UrlData != null %}
                         <li class="inline">
                             <span class="slash"></span>
-                            <a href="{{ path('products_items', { 'model_id': UrlData.model.id, 'auto_id': UrlData.auto.id, 'data_id': UrlData.id }) }}" class="link"
+                            <a href="{{ path('products_items', { 'model_id': UrlData.model.id, 'auto_id': UrlData.auto.id, 'data_id': UrlData.id }) }}"
+                               class="link"
                                itemprop="url">
                                 <span itemprop="title">{{ UrlData.name }}</span>
                             </a>

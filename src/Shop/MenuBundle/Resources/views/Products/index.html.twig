@@ -2,6 +2,23 @@
 
 {% block title %}Каталог авто запчастин{% endblock %}
 
+    {% set description = "" %}
+    {% for model in modelMenus %}
+        {% if description|length < 300 %}
+            {% set  description = description ~ model.name |striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) ~ ", " %}
+        {% endif %}
+    {% endfor %}
+
+    {% if description|length < 300 %}
+        {% for item in Items %}
+            {% if description|length < 300 %}
+                {% set  description = description ~ item.name |striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) ~ ", " %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+{% block description %}{{ description|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 300) }}{% endblock %}
+
 {% block serch %}{% endblock %}
 {% block body_up %}{% endblock %}
 {% block body_down %}{% endblock %}
@@ -17,7 +34,8 @@
                     <div class="input-group col-10">
                         <span class="input-group-addon wight_background height37"><span
                                     class="glyphicon glyphicon-search"></span></span>
-                        <input type="text" name="usarch" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                        <input type="text" name="usarch" class="form-control" id="inlineFormInputGroup"
+                               placeholder="Пошук...">
                     </div>
 
                     <button type="submit" class="btn btn-light"><span class="glyphicon glyphicon-search"
@@ -153,38 +171,41 @@
                     <!--max 30 -->
                     {% for key, item in Items %}
 
-                    <li class="wrap tleft rel fleft ad_idvVjnO ">
+                        <li class="wrap tleft rel fleft ad_idvVjnO ">
 
-                        <div class="mheight tcenter">
-                            <a title="{{ item.name |striptags}}" href="{{ path('products_product', { 'product_id': item.id }) }}" class="thumb tdnone scale1 rel detailsLinkPromoted linkWithHash ">
-                                <img alt="{{ item.name |striptags}}"
-                                     src="/img/upload/{% if item.pictures|length > 0 %}{{ item.pictures[0].imageName}}{% else %}nofoto.jpg{% endif %}">
-                                <span class="inlblk icon paid  abs zi2" title="{{ item.name |striptags}}"></span>
-                            </a>
-                        </div>
-
-                        <div class="inner">
-
-                            <h4 class="normal">
-                                <a href="{{ path('products_product', { 'product_id': item.id }) }}" title="{{ item.name |striptags}}" class="link linkWithHash detailsLinkPromoted">
-                                    <strong>{{ item.name |striptags}}</strong>
+                            <div class="mheight tcenter">
+                                <a title="{{ item.name |striptags }}"
+                                   href="{{ path('products_product', { 'product_id': item.id }) }}"
+                                   class="thumb tdnone scale1 rel detailsLinkPromoted linkWithHash ">
+                                    <img alt="{{ item.name |striptags }}"
+                                         src="/img/upload/{% if item.pictures|length > 0 %}{{ item.pictures[0].imageName }}{% else %}nofoto.jpg{% endif %}">
+                                    <span class="inlblk icon paid  abs zi2" title="{{ item.name |striptags }}"></span>
                                 </a>
-                            </h4>
-                            <p class="lheight14 color-1 margintop2 brkword">
-                                            <span class="breadcrumb small">{{ item.details |striptags}}</span>
-                            </p>
-                        </div>
-                        <div class="price ">
-                            {% if item.price == null %}
-                                Під заказ
-                            {% elseif item.price | money_as_float == 0 %}
-                                Під заказ
-                            {% else %}
-                                {{ item.price | money_convert("UAH") | money_format }}
-                            {% endif %}
-                        </div>
+                            </div>
 
-                    </li>
+                            <div class="inner">
+
+                                <h4 class="normal">
+                                    <a href="{{ path('products_product', { 'product_id': item.id }) }}"
+                                       title="{{ item.name |striptags }}" class="link linkWithHash detailsLinkPromoted">
+                                        <strong>{{ item.name |striptags }}</strong>
+                                    </a>
+                                </h4>
+                                <p class="lheight14 color-1 margintop2 brkword">
+                                    <span class="breadcrumb small">{{ item.details |striptags }}</span>
+                                </p>
+                            </div>
+                            <div class="price ">
+                                {% if item.price == null %}
+                                    Під заказ
+                                {% elseif item.price | money_as_float == 0 %}
+                                    Під заказ
+                                {% else %}
+                                    {{ item.price | money_convert("UAH") | money_format }}
+                                {% endif %}
+                            </div>
+
+                        </li>
                     {% endfor %}
 
                 </ul>
@@ -201,10 +222,8 @@
             </section>
 
 
-
             <div></div>
         </div>
-
 
 
     </section>

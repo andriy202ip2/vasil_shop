@@ -2,6 +2,25 @@
 
 {% block title %}товари {{ UrlData.name |striptags }}{% endblock %}
 
+    {% set description = "" %}
+    {% for model in SubCategori %}
+        {% if description|length < 300 %}
+            {% set  description = description ~ model.name |striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) ~ ", " %}
+        {% endif %}
+    {% endfor %}
+
+    {% if description|length < 300 %}
+        {% for item in Items %}
+            {% if description|length < 300 %}
+                {% set  description = description ~ item.name |striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "}) ~ ", " %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+{% block description %}{{ description|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 300) }}{% endblock %}
+
+
+
 {% block serch %}{% endblock %}
 {% block body_up %}{% endblock %}
 {% block body_down %}{% endblock %}
@@ -17,7 +36,8 @@
                     <div class="input-group col-10">
                         <span class="input-group-addon wight_background height37"><span
                                     class="glyphicon glyphicon-search"></span></span>
-                        <input type="text" name="usarch" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                        <input type="text" name="usarch" class="form-control" id="inlineFormInputGroup"
+                               placeholder="Пошук...">
                     </div>
 
                     <button type="submit" class="btn btn-light"><span class="glyphicon glyphicon-search"

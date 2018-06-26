@@ -1,5 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block title %}Наші контакти{% endblock %}
+{% block description %}{{ contacts.contact|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 300) }}{% endblock %}
 
 {% block body %}
 

@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title %}Про нас{% endblock %}
+{% block description %}{{ abouts.about|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 300) }}{% endblock %}
 
 {% block body %}
+
+
 
     <div class="text-center">
         <h1>Про Нас</h1>      

@@ -2,11 +2,16 @@
 
 {% block title %} {{ Item.name |striptags }}{% endblock %}
 
+{% set description = (Item.name ~ ", " ~ Item.details)|striptags|replace({"\n": " ", "\r\n": " ", "\t": " ", "\n\r": " "})|slice(0, 300) %}
+{% block description %}{{description}}{% endblock %}
+
 {% block serch %}{% endblock %}
 {% block body_up %}{% endblock %}
 {% block body_down %}{% endblock %}
 
 {% block body %}
+
+
 
     <!--serch and kategori-->
     <section id="searchmain-container">
