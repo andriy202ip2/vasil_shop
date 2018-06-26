@@ -349,7 +349,7 @@ class ProductsController extends Controller
 
         $IsSerchProd = strlen($serch) == 13 && intval(substr($serch, 0, 6) == "777003")
             && intval(substr($serch, 6, 13)) > 0;
-        
+
         if ($IsSerchProd) {
 
             $dql = $dql->where('a.id = :pid')

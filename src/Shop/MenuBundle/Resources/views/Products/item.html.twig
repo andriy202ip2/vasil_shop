@@ -1,6 +1,6 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}Запчастини{% endblock %}
+{% block title %} {{ Item.name |striptags }}{% endblock %}
 
 {% block serch %}{% endblock %}
 {% block body_up %}{% endblock %}
