@@ -115,14 +115,14 @@
         <div class="wrapper">
 
             <div class="form-row align-items-center search_div searchmain">
-                <form class="form-inline">
+                <form class="form-inline" action="{{ path('products_all') }}">
                     <div class="input-group col-10">
                         <span class="input-group-addon wight_background height37"><span
                                     class="glyphicon glyphicon-search"></span></span>
-                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                        <input type="text" name="usarch" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
                     </div>
 
-                    <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search"
+                    <button type="submit" class="btn btn-light"><span class="glyphicon glyphicon-search"
                                                                       aria-hidden="true"></span> &nbsp; <b>ПОШУК</b>
                     </button>
                 </form>

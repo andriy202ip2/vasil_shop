@@ -342,6 +342,25 @@ class ProductsController extends Controller
                 ->setParameter(':PLN', $PLN);
         }
 
+        $serch = $request->query->get("usarch", "");
+        $serch = strip_tags($serch);
+        $serch = strtr($serch, array('<' => " ", '>' => " "));
+        $IsSerch = strlen($serch) > 1;
+
+        $IsSerchProd = strlen($serch) == 13 && intval(substr($serch, 0, 6) == "777003")
+            && intval(substr($serch, 6, 13)) > 0;
+        
+        if ($IsSerchProd) {
+
+            $dql = $dql->where('a.id = :pid')
+                ->setParameter('pid', intval(substr($serch, 6, 13)));
+
+        } elseif ($IsSerch) {
+
+            $dql = $dql->where('a.name LIKE :serch')
+                ->setParameter('serch', '%' . $serch . '%');
+        }
+
         $query = $dql->getQuery();
 
         $paginator = $this->get('knp_paginator');
@@ -362,6 +381,7 @@ class ProductsController extends Controller
             'isGal' => $isGal,
             'currency' => $currency,
             'sorts' => $sorts,
+            'serch' => $serch,
         ));
 
     }

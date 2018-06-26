@@ -13,14 +13,14 @@
         <div class="wrapper">
 
             <div class="form-row align-items-center search_div searchmain">
-                <form class="form-inline">
+                <form class="form-inline" action="{{ path('products_all') }}">
                     <div class="input-group col-10">
                         <span class="input-group-addon wight_background height37"><span
                                     class="glyphicon glyphicon-search"></span></span>
-                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                        <input type="text" name="usarch" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
                     </div>
 
-                    <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search"
+                    <button type="submit" class="btn btn-light"><span class="glyphicon glyphicon-search"
                                                                       aria-hidden="true"></span> &nbsp; <b>ПОШУК</b>
                     </button>
                 </form>
@@ -54,32 +54,32 @@
                     </li>
 
                     {% if Item.model != null %}
-                    <li class="inline">
-                        <span class="slash"></span>
-                        <a href="{{ path('products_autos', { 'model_id': Item.model.id }) }}" class="link" itemprop="url">
-                            <span itemprop="title">{{ Item.model.name }}</span>
-                        </a>
-                    </li>
+                        <li class="inline">
+                            <span class="slash"></span>
+                            <a href="{{ path('products_autos', { 'model_id': Item.model.id }) }}" class="link" itemprop="url">
+                                <span itemprop="title">{{ Item.model.name }}</span>
+                            </a>
+                        </li>
                     {% endif %}
 
                     {% if Item.auto != null %}
-                    <li class="inline">
-                        <span class="slash"></span>
-                        <a href="{{ path('products_data', { 'model_id': Item.model.id, 'auto_id': Item.auto.id }) }}" class="link"
-                           itemprop="url">
-                            <span itemprop="title">{{ Item.auto.name }}</span>
-                        </a>
-                    </li>
+                        <li class="inline">
+                            <span class="slash"></span>
+                            <a href="{{ path('products_data', { 'model_id': Item.model.id, 'auto_id': Item.auto.id }) }}" class="link"
+                               itemprop="url">
+                                <span itemprop="title">{{ Item.auto.name }}</span>
+                            </a>
+                        </li>
                     {% endif %}
 
                     {% if Item.data != null %}
-                    <li class="inline selected">
-                        <span class="slash"></span>
-                        <a href="{{ path('products_items', { 'model_id': Item.model.id, 'auto_id': Item.auto.id, 'data_id': Item.data.id }) }}" class="link"
-                           itemprop="url">
-                            <span itemprop="title">{{ Item.data.name }}</span>
-                        </a>
-                    </li>
+                        <li class="inline selected">
+                            <span class="slash"></span>
+                            <a href="{{ path('products_items', { 'model_id': Item.model.id, 'auto_id': Item.auto.id, 'data_id': Item.data.id }) }}" class="link"
+                               itemprop="url">
+                                <span itemprop="title">{{ Item.data.name }}</span>
+                            </a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
@@ -192,16 +192,13 @@
     <script>
         $(document).ready(function () {
             jQuery("#gallery").unitegallery({});
-
             $("#dialog_to_order").dialog({
                 autoOpen: false,
                 width: 400,
                 buttons: {
                     "Відправити": function () {
                         if ($("#registerOrderForm").valid()) {
-
                             $("#dialog_to_order").dialog("close");
-
                             $.ajax({
                                 method: "GET",
                                 url: "/oderemale",
@@ -216,7 +213,6 @@
                                     var data = eval('(' + msg + ')');
                                     if (data.Result) {
                                         $("#dialog_to_order_ok").dialog();
-
                                         //alert(data.Result);
                                     }
                                 });
@@ -224,14 +220,11 @@
                     }
                 }
             });
-
             $("#to_order_a").click(function () {
                 $("#dialog_to_order").dialog("open");
                 return false;
             });
-
             $("#call_mob_oder").mask("(999) 999-9999");
-
         });
     </script>
 {% endblock %}

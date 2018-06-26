@@ -13,14 +13,14 @@
         <div class="wrapper">
 
             <div class="form-row align-items-center search_div searchmain">
-                <form class="form-inline">
+                <form class="form-inline" action="{{ path('products_all') }}">
                     <div class="input-group col-10">
                         <span class="input-group-addon wight_background height37"><span
                                     class="glyphicon glyphicon-search"></span></span>
-                        <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Пошук...">
+                        <input type="text" name="usarch" class="form-control" id="inlineFormInputGroup" placeholder="Пошук..." value="{{ serch }}">
                     </div>
 
-                    <button type="button" class="btn btn-light"><span class="glyphicon glyphicon-search"
+                    <button type="submit" class="btn btn-light"><span class="glyphicon glyphicon-search"
                                                                       aria-hidden="true"></span> &nbsp; <b>ПОШУК</b>
                     </button>
                 </form>
@@ -55,31 +55,31 @@
                             <span>Самі нові</span>
                         </li>
                         <li>
-                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=1"><span>Самі дешеві</span></a>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=1&usarch={{ serch }}"><span>Самі дешеві</span></a>
                         </li>
                         <li>
-                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=2"><span>Самі дорогі</span></a>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=2&usarch={{ serch }}"><span>Самі дорогі</span></a>
                         </li>
 
                     {% elseif sorts == 1 %}
 
                         <li>
-                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=0"><span>Самі нові</span></a>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=0&usarch={{ serch }}"><span>Самі нові</span></a>
                         </li>
                         <li>
                             <span>Самі дешеві</span>
                         </li>
                         <li>
-                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=2"><span>Самі дорогі</span></a>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=2&usarch={{ serch }}"><span>Самі дорогі</span></a>
                         </li>
 
                     {% else %}
 
                         <li>
-                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=0"><span>Самі нові</span></a>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=0&usarch={{ serch }}"><span>Самі нові</span></a>
                         </li>
                         <li>
-                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=1"><span>Самі дешеві</span></a>
+                            <a class="link " href="?page=1&isgal={{ isGal }}&currency={{ currency }}&sorts=1&usarch={{ serch }}"><span>Самі дешеві</span></a>
                         </li>
                         <li>
                             <span>Самі дорогі</span>
@@ -97,12 +97,12 @@
                         </li>
                         <li>
                             <a class="topTabView link"
-                               href="?page={{ page }}&isgal=1&currency={{ currency }}&sorts={{ sorts }}"><span>Галерея</span></a>
+                               href="?page={{ page }}&isgal=1&currency={{ currency }}&sorts={{ sorts }}&usarch={{ serch }}"><span>Галерея</span></a>
                         </li>
                     {% else %}
                         <li>
                             <a class="topTabView link"
-                               href="?page={{ page }}&isgal=0&currency={{ currency }}&sorts={{ sorts }}"><span>Список</span></a>
+                               href="?page={{ page }}&isgal=0&currency={{ currency }}&sorts={{ sorts }}&usarch={{ serch }}"><span>Список</span></a>
                         </li>
                         <li>
                             <span>Галерея</span>
@@ -120,18 +120,18 @@
                         </li>
                         <li>
                             <a class="currency-link link"
-                               href="?page={{ page }}&isgal={{ isGal }}&currency=1&sorts={{ sorts }}"><span>$</span></a>
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=1&sorts={{ sorts }}&usarch={{ serch }}"><span>$</span></a>
                         </li>
                         <li>
                             <a class="currency-link link"
-                               href="?page={{ page }}&isgal={{ isGal }}&currency=2&sorts={{ sorts }}"><span>€</span></a>
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=2&sorts={{ sorts }}&usarch={{ serch }}"><span>€</span></a>
                         </li>
 
                     {% elseif currency == 1 %}
 
                         <li>
                             <a class="currency-link link"
-                               href="?page={{ page }}&isgal={{ isGal }}&currency=0&sorts={{ sorts }}"><span>грн.</span></a>
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=0&sorts={{ sorts }}&usarch={{ serch }}"><span>грн.</span></a>
 
                         </li>
                         <li>
@@ -139,19 +139,19 @@
                         </li>
                         <li>
                             <a class="currency-link link"
-                               href="?page={{ page }}&isgal={{ isGal }}&currency=2&sorts={{ sorts }}"><span>€</span></a>
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=2&sorts={{ sorts }}&usarch={{ serch }}"><span>€</span></a>
                         </li>
 
                     {% else %}
 
                         <li>
                             <a class="currency-link link"
-                               href="?page={{ page }}&isgal={{ isGal }}&currency=0&sorts={{ sorts }}"><span>грн.</span></a>
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=0&sorts={{ sorts }}&usarch={{ serch }}"><span>грн.</span></a>
 
                         </li>
                         <li>
                             <a class="currency-link link"
-                               href="?page={{ page }}&isgal={{ isGal }}&currency=1&sorts={{ sorts }}"><span>$</span></a>
+                               href="?page={{ page }}&isgal={{ isGal }}&currency=1&sorts={{ sorts }}&usarch={{ serch }}"><span>$</span></a>
                         </li>
                         <li>
                             <span>€</span>
