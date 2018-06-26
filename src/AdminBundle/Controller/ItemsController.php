@@ -85,7 +85,7 @@ class ItemsController extends Controller
         if (strlen($direction) == 0){
             $dql = $dql->orderBy('a.id' , 'DESC');
         }
-        
+
         $query = $dql->getQuery();
 
         $paginator = $this->get('knp_paginator');

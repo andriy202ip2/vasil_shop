@@ -19,7 +19,9 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
 use Shop\MenuBundle\Entity\Picture;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Shop\MenuBundle\Repository\ModelMenuRepository;
+use Shop\MenuBundle\Repository\AutoMenuRepository;
+use Shop\MenuBundle\Repository\DataMenuRepository;
 
 class ItemsType extends AbstractType
 {
@@ -43,6 +45,10 @@ class ItemsType extends AbstractType
             'label' => 'Імя: '))
             ->add('model', EntityType::class, array(
                 'class' => 'ShopMenuBundle:ModelMenu',
+                'query_builder' => function (ModelMenuRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.name', 'ASC');
+                },
                 'choice_label' => 'name',
                 'attr' => array(
                     'class' => 'admin-selekt cat mid'
@@ -51,6 +57,10 @@ class ItemsType extends AbstractType
             ))
             ->add('auto', EntityType::class, array(
                 'class' => 'ShopMenuBundle:AutoMenu',
+                'query_builder' => function (AutoMenuRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.name', 'ASC');
+                },
                 'choice_label' => 'name',
                 'attr' => array(
                     'class' => 'admin-selekt cat aid'
@@ -59,6 +69,10 @@ class ItemsType extends AbstractType
             ))
             ->add('data', EntityType::class, array(
                 'class' => 'ShopMenuBundle:DataMenu',
+                'query_builder' => function (DataMenuRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.name', 'ASC');
+                },
                 'choice_label' => 'name',
                 'attr' => array(
                     'class' => 'admin-selekt cat'
@@ -72,7 +86,7 @@ class ItemsType extends AbstractType
             ->add('picturesMultiple', FileType::class, [
                 'multiple' => true,
                 'required' => false,
-                'attr'     => [
+                'attr' => [
                     'accept' => 'image/*',
                     'multiple' => 'multiple',
                     'class' => 'admin-pictures-multiple'
@@ -106,13 +120,13 @@ class ItemsType extends AbstractType
 
             $autos = array();
             if ($data->getModel() == NULL) {
-                $model_id = $this->em->getRepository('ShopMenuBundle:ModelMenu')->findOneBy([])->getId();
+                $model_id = $this->em->getRepository('ShopMenuBundle:ModelMenu')->findOneBy([], ['name' => 'ASC'])->getId();
             } else {
                 $model_id = $data->getModel()->getId();
                 //var_dump($data->getModel()->getName());                
             }
 
-            $autos = $this->em->getRepository('ShopMenuBundle:AutoMenu')->findBy(["modelMenuId" => $model_id]);
+            $autos = $this->em->getRepository('ShopMenuBundle:AutoMenu')->findBy(["modelMenuId" => $model_id], ['name' => 'ASC']);
 
             if ($data->getAuto() == NULL) {
                 $autos_id = $autos[0]->getId();
@@ -132,13 +146,17 @@ class ItemsType extends AbstractType
                 //var_dump($data->getAuto()->getName());
             }
 
-            $datas = $this->em->getRepository('ShopMenuBundle:DataMenu')->findBy(["autoMenuId" => $autos_id]);
+            $datas = $this->em->getRepository('ShopMenuBundle:DataMenu')->findBy(["autoMenuId" => $autos_id], ['name' => 'ASC']);
 
 
             //var_dump($data);
 
             $form->add('auto', EntityType::class, array(
                 'class' => 'ShopMenuBundle:AutoMenu',
+                'query_builder' => function (AutoMenuRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.name', 'ASC');
+                },
                 'choices' => $autos,
                 'choice_label' => 'name',
                 'attr' => array(
@@ -147,6 +165,10 @@ class ItemsType extends AbstractType
                 'label' => 'Рубрика 2: '
             ))->add('data', EntityType::class, array(
                 'class' => 'ShopMenuBundle:DataMenu',
+                'query_builder' => function (DataMenuRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.name', 'ASC');
+                },
                 'choices' => $datas,
                 'choice_label' => 'name',
                 'attr' => array(
