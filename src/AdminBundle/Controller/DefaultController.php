@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Shop\MenuBundle\Entity\Items;
 use Tbbc\MoneyBundle\Form\Type\MoneyType;
 use Money\Money;
+use Money\Currency;
 
 class DefaultController extends Controller {
 
@@ -36,26 +37,46 @@ class DefaultController extends Controller {
 
                 if (count($arr2) == 2) {
 
+                    $curling = $data['curling']->getAmount() / 100 ;
+
                     $id = preg_replace('/\s+/', '', $arr2[0]);
                     $prise = preg_replace('/\s+/', '', $arr2[1]);
                     $prise = str_replace(array(","), array("."), $prise);
-                    $prise = $prise * ($data['curling'] / 100 + 1);
-                    $prise = round($prise, 2) * 100;     
-                    
-                    //echo $id . '<br>';
-                    //echo $prise . '<br>';
-                    
+                    $prise = $prise * ($curling / 100 + 1);
+                    $prise = round($prise, 2) * 100;
+
+                    $IsSerchProd = strlen($id) == 13 && intval(substr($id, 0, 6) == "777003")
+                        && intval(substr($id, 6, 13)) > 0;
+
+                    if (!$IsSerchProd){
+                        continue;
+                    }
+
+                    $id = intval(substr($id, 6, 13));
+
                     $dql = $em->getRepository('ShopMenuBundle:Items')->createQueryBuilder('a');;
-                    $dql = $dql->where('a.itemId = :id')
+                    $dql = $dql->where('a.id = :id')
                                 ->setParameter('id', $id)
                                 ->getQuery();
                     
                     $items = $dql->getResult();
+
                     $i = 0;
                     foreach ($items as $item) {
                         $i++;
-                        
-                        $money = Money::PLN($prise);
+
+                        $currency = $data['curling']->getCurrency();
+
+                        if($currency == "UAH"){
+                            $money = Money::UAH($prise);
+                        } else if ($currency == "USD"){
+                            $money = Money::USD($prise);
+                        } else if ($currency == "EUR"){
+                            $money = Money::EUR($prise);
+                        } else {
+                            $money = Money::PLN($prise);
+                        }
+
                         $item->setPrice($money);
                                                         
                         //exit();

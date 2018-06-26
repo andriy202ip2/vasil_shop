@@ -4,7 +4,15 @@
 
     <div class="text-center admin-font">     
 
-            <h2>Авто добавлення цін в злотих</h2>
+            <h2>Авто добавлення багато цін </h2>
+
+<div style="font-size: 14px;line-height: 1.3em;">
+Приклад вводу <b>Дані:</b> <br/><br/>
+Код товару	{	Ціна	} <br/><br/>
+7770030000185	{	3,33	} <br/>
+7770030000184	{	7,77	} <br/>
+7770030000183	{	8,88	} <br/>
+</div><br/>
 
             {% if isSave %}<span style="color: #090">Ціни переписані !</span><br/><br/>{% endif %}
 
@@ -26,3 +34,15 @@
         </div>              
 
     {% endblock %}
+
+
+        {% block javascripts %}
+        <script>
+            $(document).ready(function () {
+
+                var str = $( ".col-form-label" ).text();
+                $( ".money-text" ).text( str );
+
+             });
+    </script>
+{% endblock %}
