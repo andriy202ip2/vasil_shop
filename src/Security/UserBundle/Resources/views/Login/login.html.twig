@@ -6,42 +6,42 @@
 
     <div class="text-center">
 
-        <div class="login-box-body">
+        <div class="login-box-body"><br/><br/>
             <p class="login-box-msg">Залогінитись</p>
-            <form action="{{ path('security_user_login_check') }}"  method="post">
+            <br/><br/>
+            <form action="{{ path('security_user_login_check') }}" method="post">
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control admin-input" id="username" name="_username" value="{{ last_username }}" placeholder="Логін чи емейл">
-                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                    <input type="text" class="form-control admin-input" id="username" name="_username"
+                           value="{{ last_username }}" placeholder="Логін чи емейл">
+
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control admin-input color_text" name="_password" placeholder="Пароль">
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    <input type="password" class="form-control admin-input color_text" name="_password"
+                           placeholder="Пароль">
+
                 </div>
-                <div class="row">
-                    <div class="col-xs-8">
-                        <div class="checkbox icheck admin-chekbox">
-                            <label>
-                                <input type="checkbox"> Запямятати мене
-                            </label>
-                        </div>
-                    </div><!-- /.col -->
-                    <div class="col-xs-4">
-                        <button type="submit" class="ui-button ui-corner-all ui-widget">Залогінитись</button>
-                    </div><!-- /.col -->
+                <div class="align-middle">
+                    <input type="checkbox"> <span class="login-rememberme"> Запямятати мене</span>
                 </div>
+                <br/>
+                <button type="submit" class="btn btn-outline-primary">Залогінитись</button>
+
             </form>
 
             {% if error is defined and error %}
-                <div class="container col-md-6 col-lg-6 col-sm-12 col-xs-12" style="width:100%;margin:20px;background: #337AB7;color: white;border-radius: 2px;font-size: 18px;">
+                <div class="container"
+                     style="width:850px;margin:20px;background: #337AB7;color: white;border-radius: 2px;font-size: 18px;">
                     {{ error.messageKey|trans(error.messageData, 'security') }}
                 </div>
             {% endif %}
+
+            <br/><br/>
             {#<a href="#">I forgot my password</a><br>#}
             {#<a href="register.html" class="text-center">Register a new membership</a>#}
 
         </div>
     </div>
-            
+
     <script>
         $(function () {
             $('input').iCheck({

@@ -20,6 +20,20 @@
     font-size: 20px;
 }
 
+.login-box-msg{
+    color: #0098d0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.login-rememberme{
+    color: #0098d0;
+    font-size: 18px;
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
 .item-batton-font{
     font-size: 28px;
 }
