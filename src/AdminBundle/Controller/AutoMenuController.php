@@ -46,6 +46,11 @@ class AutoMenuController extends Controller {
                 ->setParameter('serch', '%' . $serch . '%');
         }
 
+        $direction = $request->query->get("direction", "");
+        if (strlen($direction) == 0){
+            $dql = $dql->orderBy('a.id' , 'DESC');
+        }
+
         $query = $dql->getQuery();
 
 

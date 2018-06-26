@@ -32,8 +32,13 @@ class ModelMenuController extends Controller
         $IsSerch = strlen($serch) > 1;
         if ($IsSerch) {
 
-            $dql = $dql->where('a.name LIKE :serch')
+            $dql = $dql->andWhere('a.name LIKE :serch')
                 ->setParameter('serch', '%' . $serch . '%');
+        }
+
+        $direction = $request->query->get("direction", "");
+        if (strlen($direction) == 0){
+            $dql = $dql->orderBy('a.id' , 'DESC');
         }
 
         $query = $dql->getQuery();
