@@ -141,7 +141,11 @@ class ItemsType extends AbstractType
                     }
                 }
                 if (!$is_contein) {
-                    $autos_id = $autos[0]->getId();
+                    if(count($autos) == 0){
+                        $autos_id = 0;
+                    } else {
+                        $autos_id = $autos[0]->getId();
+                    }
                 }
                 //var_dump($data->getAuto()->getName());
             }
@@ -149,6 +153,8 @@ class ItemsType extends AbstractType
             $datas = $this->em->getRepository('ShopMenuBundle:DataMenu')->findBy(["autoMenuId" => $autos_id], ['name' => 'ASC']);
 
 
+            //array_unshift($autos, $autos[0], $autos[0]);
+            //echo count($autos) ;
             //var_dump($data);
 
             $form->add('auto', EntityType::class, array(
@@ -159,6 +165,8 @@ class ItemsType extends AbstractType
                 },
                 'choices' => $autos,
                 'choice_label' => 'name',
+                'placeholder' => 'Без підкатегорії',
+                'required' => false,
                 'attr' => array(
                     'class' => 'admin-selekt cat aid'
                 ),
@@ -171,6 +179,8 @@ class ItemsType extends AbstractType
                 },
                 'choices' => $datas,
                 'choice_label' => 'name',
+                'placeholder' => 'Без підкатегорії',
+                'required' => false,
                 'attr' => array(
                     'class' => 'admin-selekt cat'
                 ),

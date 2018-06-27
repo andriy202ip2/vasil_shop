@@ -17,50 +17,54 @@
             </div>
 
             {#<form id="form_item" method="GET">#}
-                <div class="admin-txt-font"> Пошук по Рубриці 1: &nbsp</div>
-                <select name="mid" id="mid" class="cat form-control admin-input">
-                    <option value="0" {{ model_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
-                    {% for modelMenu in modelMenus %}
-                        <option value="{{ modelMenu.id }}" {{ model_id == modelMenu.id  ? 'selected=""' : '' }}>
-                            {{ modelMenu.name }}
-                        </option>                                          
-                    {% endfor %}
-                </select>
+            <div class="admin-txt-font"> Пошук по Рубриці 1: &nbsp</div>
+            <select name="mid" id="mid" class="cat form-control admin-input">
+                <option value="0" {{ model_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
+                {% for modelMenu in modelMenus %}
+                    <option value="{{ modelMenu.id }}" {{ model_id == modelMenu.id  ? 'selected=""' : '' }}>
+                        {{ modelMenu.name }}
+                    </option>
+                {% endfor %}
+            </select>
 
-                <div class="admin-txt-font"> Пошук по Рубриці 2: &nbsp</div>
-                <select name="aid" id="aid" class="cat form-control admin-input" {{ model_id == 0  ? 'disabled="" style="background: transparent;"' : '' }}>
-                    <option value="0" {{ auto_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
-                    {% for auto in autoMenu %}
-                        <option value="{{ auto.id }}" {{ auto_id == auto.id  ? 'selected=""' : '' }}>
-                            {{ auto.name }}
-                        </option>                                          
-                    {% endfor %}
-                </select>
+            <div class="admin-txt-font"> Пошук по Рубриці 2: &nbsp</div>
+            <select name="aid" id="aid"
+                    class="cat form-control admin-input" {{ model_id == 0  ? 'disabled="" style="background: transparent;"' : '' }}>
+                <option value="0" {{ auto_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
+                {% for auto in autoMenu %}
+                    <option value="{{ auto.id }}" {{ auto_id == auto.id  ? 'selected=""' : '' }}>
+                        {{ auto.name }}
+                    </option>
+                {% endfor %}
+            </select>
 
-                <div class="admin-txt-font"> Пошук по Рубриці 3: &nbsp</div>
-                <select name="did" id="did" class="cat form-control admin-input" {{ auto_id == 0  ? 'disabled="" style="background: transparent;"' : '' }}>
-                    <option value="0" {{ data_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
-                    {% for data in dataMenu %}
-                        <option value="{{ data.id }}" {{ data_id == data.id  ? 'selected=""' : '' }}>
-                            {{ data.name }}
-                        </option>                                          
-                    {% endfor %}
-                </select>
-                <br>
+            <div class="admin-txt-font"> Пошук по Рубриці 3: &nbsp</div>
+            <select name="did" id="did"
+                    class="cat form-control admin-input" {{ auto_id == 0  ? 'disabled="" style="background: transparent;"' : '' }}>
+                <option value="0" {{ data_id == 0  ? 'selected=""' : '' }}>Вибрати</option>
+                {% for data in dataMenu %}
+                    <option value="{{ data.id }}" {{ data_id == data.id  ? 'selected=""' : '' }}>
+                        {{ data.name }}
+                    </option>
+                {% endfor %}
+            </select>
+            <br>
 
-                <br>
+            <br>
 
-            </form>
+        </form>
 
         <br/><a href="{{ path('items_new') }}" class="btn btn-outline-primary">Створити нову запчастиниу</a><br/><br/>
 
         <div class="count h6">
             Всього результатів: {{ items.getTotalItemCount }}
-        </div><br/>
+        </div>
+        <br/>
 
         <div class="navigation row justify-content-center align-items-center">
             {{ knp_pagination_render(items) }}
-        </div><br/>
+        </div>
+        <br/>
 
         <table align="center" class="admin-table table table-bordered table-hover h6">
             <thead>
@@ -81,9 +85,17 @@
                         {{ knp_pagination_sortable(items, 'Рубрика 1', 'a.modelMenuId') }}<br/>
                         {{ Item.model.name }}<br/>
                         {{ knp_pagination_sortable(items, 'Рубрика 2', 'a.autoMenuId') }}<br/>
-                        {{ Item.auto.name }}<br/>
+                        {% if Item.auto != null %}
+                            {{ Item.auto.name }}
+                        {% else %}
+                            Без категорії
+                        {% endif %}<br/>
                         {{ knp_pagination_sortable(items, 'Рубрика 3', 'a.dataMenuId') }}<br/>
-                        {{ Item.data.name }}
+                        {% if Item.data != null %}
+                            {{ Item.data.name }}
+                        {% else %}
+                            Без категорії
+                        {% endif %}
                     </td>
 
                     <td class="delete-modal-info">
@@ -116,11 +128,13 @@
             </tbody>
         </table>
 
-        <br/><div class="navigation row justify-content-center align-items-center">
+        <br/>
+        <div class="navigation row justify-content-center align-items-center">
             {{ knp_pagination_render(items) }}
         </div>
 
-        <br/><a href="{{  path('items_new') }}" class="btn btn-outline-primary">Створити нову запчастиниу</a><br/><br/><br/>
+        <br/><a href="{{ path('items_new') }}" class="btn btn-outline-primary">Створити нову
+            запчастиниу</a><br/><br/><br/>
     </div>
 {% endblock %}
 
@@ -148,5 +162,5 @@
             });
 
         });
-    </script>    
+    </script>
 {% endblock %}

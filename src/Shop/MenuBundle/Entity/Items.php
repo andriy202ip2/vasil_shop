@@ -77,14 +77,14 @@ class Items {
     /**
      * @var integer
      *
-     * @ORM\Column(name="auto_menu_id", type="integer", nullable=false)
+     * @ORM\Column(name="auto_menu_id", type="integer", nullable=true)
      */
     private $autoMenuId;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="data_menu_id", type="integer", nullable=false)
+     * @ORM\Column(name="data_menu_id", type="integer", nullable=true)
      */
     private $dataMenuId;
 

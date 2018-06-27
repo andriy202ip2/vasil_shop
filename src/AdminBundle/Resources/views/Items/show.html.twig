@@ -15,11 +15,24 @@
             </tr>
             <tr>
                 <th class="table-success">Рубрика 2</th>
-                <td>{{ Item.auto.name }}</td>
+                <td>
+                    {% if Item.auto != null %}
+                        {{ Item.auto.name }}
+                    {% else %}
+                        Без категорії
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th class="table-success">Рубрика 3</th>
-                <td>{{ Item.data.name }}</td>
+                <td>
+                    {% if Item.data != null %}
+                        {{ Item.data.name }}
+                    {% else %}
+                        Без категорії
+                    {% endif %}
+
+                </td>
             </tr>
             <tr>
                 <th class="table-success bloo">Назва</th>
