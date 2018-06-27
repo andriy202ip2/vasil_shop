@@ -126,24 +126,37 @@ class ModelMenuController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
+        $dql = $em->getRepository('ShopMenuBundle:Items')
+            ->createQueryBuilder('a');
+
+        $dql = $dql->andWhere('a.modelMenuId = :modelId')
+            ->setParameter(':modelId', $modelMenu->getId());
+
+        $query = $dql->getQuery();
+        $res = $query->getResult();
+
+        foreach ($res as $item) {
+
+            //delete img
+            $pic = $item->getPictures();
+            foreach ($pic as $img) {
+                $em->remove($img);
+                $em->flush();
+            }
+            //$item->removeImg($item->getImg(), $this->getParameter('img_directory'));
+            $em->remove($item);
+        }
+
         $Autos = $modelMenu->getAutos();
         foreach ($Autos as $auto) {
 
             $Datas = $auto->getDatas();
             foreach ($Datas as $data) {
 
-                $Items = $data->getItems();
+/*                $Items = $data->getItems();
                 foreach ($Items as $item) {
 
-                    //delete img
-                    $pic = $item->getPictures();
-                    foreach ($pic as $img) {
-                        $em->remove($img);
-                        $em->flush();
-                    }
-                    //$item->removeImg($item->getImg(), $this->getParameter('img_directory'));
-                    $em->remove($item);
-                }
+                }*/
 
                 $em->remove($data);
             }

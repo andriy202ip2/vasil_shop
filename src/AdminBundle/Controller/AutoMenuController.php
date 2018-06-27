@@ -11,13 +11,15 @@ use Symfony\Component\HttpFoundation\Response;
  * Automenu controller.
  *
  */
-class AutoMenuController extends Controller {
+class AutoMenuController extends Controller
+{
 
     /**
      * Lists all autoMenu entities.
      *
      */
-    public function indexAction(Request $request) {
+    public function indexAction(Request $request)
+    {
 
         $model_id = $request->query->getInt('mid', 0);
         if ($model_id < 0) {
@@ -26,7 +28,7 @@ class AutoMenuController extends Controller {
 
         $em = $this->getDoctrine()->getManager();
         $modelMenus = $em->getRepository('ShopMenuBundle:ModelMenu')
-                ->findAllOrderedByName();
+            ->findAllOrderedByName();
 
         $em = $this->getDoctrine()->getManager();
         //$autoMenus = $em->getRepository('ShopMenuBundle:AutoMenu')->findAll();
@@ -47,8 +49,8 @@ class AutoMenuController extends Controller {
         }
 
         $direction = $request->query->get("direction", "");
-        if (strlen($direction) == 0){
-            $dql = $dql->orderBy('a.id' , 'DESC');
+        if (strlen($direction) == 0) {
+            $dql = $dql->orderBy('a.id', 'DESC');
         }
 
         $query = $dql->getQuery();
@@ -56,15 +58,16 @@ class AutoMenuController extends Controller {
 
         $paginator = $this->get('knp_paginator');
         $autoMenus = $paginator->paginate(
-                $query, /* query NOT result */ $request->query->getInt('page', 1)/* page number */, 10/* limit per page */
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/* page number */, 10/* limit per page */
         );
 
 
         return $this->render('AdminBundle:Automenu:index.html.twig', array(
-                    'autoMenus' => $autoMenus,
-                    'modelMenus' => $modelMenus,
-                    'model_id' => $model_id,
-                    'serch' => $serch,
+            'autoMenus' => $autoMenus,
+            'modelMenus' => $modelMenus,
+            'model_id' => $model_id,
+            'serch' => $serch,
         ));
     }
 
@@ -72,7 +75,8 @@ class AutoMenuController extends Controller {
      * Creates a new autoMenu entity.
      *
      */
-    public function newAction(Request $request) {
+    public function newAction(Request $request)
+    {
 
         $autoMenu = new Automenu();
         $form = $this->createForm('AdminBundle\Form\AutoMenuType', $autoMenu);
@@ -91,8 +95,8 @@ class AutoMenuController extends Controller {
         }
 
         return $this->render('AdminBundle:Automenu:new.html.twig', array(
-                    'autoMenu' => $autoMenu,
-                    'form' => $form->createView(),
+            'autoMenu' => $autoMenu,
+            'form' => $form->createView(),
         ));
     }
 
@@ -100,12 +104,13 @@ class AutoMenuController extends Controller {
      * Finds and displays a autoMenu entity.
      *
      */
-    public function showAction(AutoMenu $autoMenu) {
+    public function showAction(AutoMenu $autoMenu)
+    {
         //$deleteForm = $this->createDeleteForm($autoMenu);
 
         return $this->render('AdminBundle:Automenu:show.html.twig', array(
-                    'autoMenu' => $autoMenu,
-                    //'delete_form' => $deleteForm->createView(),
+            'autoMenu' => $autoMenu,
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -113,7 +118,8 @@ class AutoMenuController extends Controller {
      * Displays a form to edit an existing autoMenu entity.
      *
      */
-    public function editAction(Request $request, AutoMenu $autoMenu) {
+    public function editAction(Request $request, AutoMenu $autoMenu)
+    {
         //$deleteForm = $this->createDeleteForm($autoMenu);
         $editForm = $this->createForm('AdminBundle\Form\AutoMenuType', $autoMenu);
         $editForm->handleRequest($request);
@@ -125,9 +131,9 @@ class AutoMenuController extends Controller {
         }
 
         return $this->render('AdminBundle:Automenu:edit.html.twig', array(
-                    'autoMenu' => $autoMenu,
-                    'edit_form' => $editForm->createView(),
-                    //'delete_form' => $deleteForm->createView(),
+            'autoMenu' => $autoMenu,
+            'edit_form' => $editForm->createView(),
+            //'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -135,34 +141,59 @@ class AutoMenuController extends Controller {
      * Deletes a autoMenu entity.
      *
      */
-    public function deleteAction(Request $request, AutoMenu $autoMenu) {
+    public function deleteAction(Request $request, AutoMenu $autoMenu)
+    {
         //$form = $this->createDeleteForm($autoMenu);
         //$form->handleRequest($request);
 
         //if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();
 
-            $Datas = $autoMenu->getDatas();            
-            foreach ($Datas as $data) {
+        $dql = $em->getRepository('ShopMenuBundle:Items')
+            ->createQueryBuilder('a');
 
-                $Items = $data->getItems();                
-                foreach ($Items as $item) {
+        $dql = $dql->andWhere('a.modelMenuId = :modelId')
+            ->setParameter(':modelId', $autoMenu->getModelMenuId());
 
-                    //delete img
-                    $pic = $item->getPictures();
-                    foreach ($pic as $img) {
-                        $em->remove($img);
-                        $em->flush();
-                    }
-                    //$item->removeImg($item->getImg(), $this->getParameter('img_directory'));
-                    $em->remove($item);
-                }
+        $dql = $dql->andWhere('a.autoMenuId = :autoId')
+            ->setParameter(':autoId', $autoMenu->getId());
 
-                $em->remove($data);
+        $query = $dql->getQuery();
+        $res = $query->getResult();
+
+        foreach ($res as $item) {
+
+            //delete img
+            $pic = $item->getPictures();
+            foreach ($pic as $img) {
+                $em->remove($img);
+                $em->flush();
             }
+            //$item->removeImg($item->getImg(), $this->getParameter('img_directory'));
+            $em->remove($item);
+        }
 
-            $em->remove($autoMenu);
-            $em->flush();
+        $Datas = $autoMenu->getDatas();
+        foreach ($Datas as $data) {
+
+/*            $Items = $data->getItems();
+            foreach ($Items as $item) {
+
+                //delete img
+                $pic = $item->getPictures();
+                foreach ($pic as $img) {
+                    $em->remove($img);
+                    $em->flush();
+                }
+                //$item->removeImg($item->getImg(), $this->getParameter('img_directory'));
+                $em->remove($item);
+            }*/
+
+            $em->remove($data);
+        }
+
+        $em->remove($autoMenu);
+        $em->flush();
         //}
         //$request->isMethod('GET')
         return $this->redirectToRoute('automenu_index');
